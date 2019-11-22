@@ -57,6 +57,7 @@ class PaymentRefreshView(AdministratorMixin, PostOnlyRedirectView):
         'OPEN': Payment.STATUT_OUVERT,
         'COMPLETED': Payment.STATUT_TERMINE,
         'CANCELED': Payment.STATUT_ANNULE,
+        'FAILED': Payment.STATUT_ECHOUE,
     }
 
     def post(self, request, *args, **kwargs):
@@ -217,8 +218,12 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
         ).distinct().annotate(
             num_paye_juges=Count('adjudicator', filter=Q(adjudicator__payment__in=self.paiements), distinct=True),
             num_paye_deb=Count('team__speaker', filter=Q(team__speaker__payment__in=self.paiements), distinct=True),
-            num_nonpaye_juges=Count('adjudicator', filter=~Q(adjudicator__payment__in=self.paiements), distinct=True),
-            num_nonpaye_deb=Count('team__speaker', filter=~Q(team__speaker__payment__in=self.paiements), distinct=True),
+            num_nonpaye_juges=Count('adjudicator', filter=
+                ~Q(adjudicator__payment__in=self.paiements) & Q(adjudicator__tournament=self.tournament),
+            distinct=True),
+            num_nonpaye_deb=Count('team__speaker', filter=
+                ~Q(team__speaker__payment__in=self.paiements) & Q(team__tournament=self.tournament),
+            distinct=True),
         )
 
         table.add_column({'key': 'institution', 'tooltip': "École", 'icon': 'home'}, [{
@@ -267,7 +272,10 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
 
 
     def get_unpaid_table(self):
-        participants = Person.objects.filter(~Q(payment__in=self.paiements)).distinct().select_related(
+        dans_tournoi = Q(speaker__team__tournament=self.tournament) | Q(adjudicator__tournament=self.tournament)
+        participants = Person.objects.filter(
+             ~Q(payment__in=self.paiements) & dans_tournoi
+        ).distinct().select_related(
             'adjudicator', 'adjudicator__institution',
             'speaker', 'speaker__team', 'speaker__team__institution',
         )

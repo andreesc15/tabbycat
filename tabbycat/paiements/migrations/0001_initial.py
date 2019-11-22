@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('reference', models.CharField(editable=False, max_length=40, unique=True, verbose_name='reference')),
                 ('checkout', models.CharField(blank=True, max_length=30, null=True, unique=True)),
                 ('order', models.CharField(blank=True, max_length=64, null=True, unique=True)),
-                ('methode', models.CharField(choices=[('o', 'En ligne'), ('c', 'Par crédit'), ('p', 'En comptant'), ('v', 'Void')], max_length=1)),
+                ('methode', models.CharField(choices=[('o', 'En ligne'), ('c', 'Par crédit'), ('p', 'En comptant'), ('v', 'Void'), ('e', 'Échoué')], max_length=1)),
                 ('statut', models.CharField(choices=[('f', 'Payé'), ('o', 'Ouvert'), ('a', 'Annulé')], max_length=1)),
                 ('institution', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='participants.Institution', verbose_name='école')),
                 ('personnes', models.ManyToManyField(to='participants.Person', verbose_name='personnes')),

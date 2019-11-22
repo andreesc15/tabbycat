@@ -22,10 +22,12 @@ class Payment(models.Model):
     STATUT_TERMINE = 'f'
     STATUT_OUVERT = 'o'
     STATUT_ANNULE = 'a'
+    STATUT_ECHOUE = 'e'
     STATUT_CHOICES = (
         (STATUT_TERMINE, 'Payé'),
         (STATUT_OUVERT, 'Ouvert'),
         (STATUT_ANNULE, 'Annulé'),
+        (STATUT_ECHOUE, 'Échoué'),
     )
 
     date = models.DateTimeField(auto_now=True)
