@@ -7,11 +7,10 @@
     <a class="btn btn-outline-primary"
        href="{% tournamenturl 'paiements-tournament-add-admin' %}">Ajouter</a>
   </div>
-{% else %}
-  <div class="btn-group">
-    <a href="{% url 'paiements-adhesion-admin' %}" class="btn btn-outline-primary">Adhésion</a>
-  </div>
 {% endif %}
+<div class="btn-group">
+  <a href="{% url 'paiements-adhesion-admin' %}" class="btn btn-outline-primary">Adhésion</a>
+</div>
 <div class="btn-group">
   <form action="{% url 'paiements-refresh' %}" method="POST">
     {% csrf_token %}

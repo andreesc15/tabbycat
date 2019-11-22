@@ -209,6 +209,13 @@
 
   </div>
 
+  <div class="list-group mt-2">
+
+    {% tournamenturl 'paiements-tournament-institution' as url %}
+    {% include "components/item-action.html" with text="Paiement" icon="credit-card" %}
+
+  </div>
+
   {% if pref.tournament_staff %}
     <div class="card mt-3">
       <div class="card-header h6">

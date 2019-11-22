@@ -186,6 +186,7 @@ class PublicPaymentInstitutionView(TournamentMixin, VueTableTemplateView):
 
 
 class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView):
+    template_name = "admin_payments.html"
     page_title = "Paiements de tournoi"
     page_emoji = '💰'
 
