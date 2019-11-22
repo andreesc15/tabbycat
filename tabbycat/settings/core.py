@@ -286,3 +286,10 @@ CHANNEL_LAYERS = {
 DYNAMIC_PREFERENCES = {
     'REGISTRY_MODULE': 'preferences',
 }
+
+# ==============================================================================
+# LiDUC
+# ==============================================================================
+
+SQUARE_TOKEN = os.environ.get('SQUARE_ACCESS_TOKEN')
+SQUARE_LOCATION = os.environ.get('SQUARE_LOCATION')

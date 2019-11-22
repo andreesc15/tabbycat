@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load debate_tags i18n %}
+
+{% block page-subnav-sections %}{% include 'payment_admin_nav.html' %}{% endblock page-subnav-sections %}
+
+{% block page-alerts %}{% endblock %}
+
+{% block content %}
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <div id="vueMount">
+      <checkbox-tables-container :tables-data=tablesData
+                                 :round-info=roundInfo
+                                 :categories=categories
+                                 :translations=translations
+                                 :urls=urls
+                                 :navigation=navigation
+                                 :hide-auto-save=hideAutoSave
+                                 orientation={{ tables_orientation|safe }} >
+      </checkbox-tables-container>
+    </div>
+
+    {{ form.non_field_errors }}
+    {% for field in form.visible_fields %}
+      {% include "components/form-field.html" %}
+    {% endfor %}
+    <button type="submit" class="btn btn-block btn-success">
+      {% trans "Payer" %}
+    </button>
+  </form>
+
+{% endblock content %}
+
+{% block js %}
+
+  <script>
+    window.vueData = {
+      tablesData: {% if tables_data %}{{ tables_data|safe }}{% else %}null{% endif %},
+      roundInfo: null,
+      categories: {% if categories %}{{ categories|safe }}{% else %}null{% endif %},
+      hideAutoSave: true,
+      translations: null,
+      urls: null,
+      navigation: null,
+    }
+  </script>
+  {{ block.super }}
+
+{% endblock %}

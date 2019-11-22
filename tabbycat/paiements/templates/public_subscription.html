@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head-title %}{% endblock %}
+{% block page-title %}Payer adhésion{% endblock %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-lg-8 ml-lg-auto mr-md-auto">
+
+    <div class="card">
+      <form action="." method="POST">
+      {% csrf_token %}
+
+      {% include "components/form-title.html" with emoji="💰" title="Payer adhésion" text="" %}
+
+      {% include "components/form-main.html" %}
+
+      {% include "components/form-submit.html" with title="Continuer vers Square" %}
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
