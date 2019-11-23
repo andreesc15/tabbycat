@@ -175,7 +175,9 @@ class PublicPaymentInstitutionView(TournamentMixin, VueTableTemplateView):
     def get_table(self):
         table = TabbycatTableBuilder(view=self, title='Selectionner un école', sort_key='name')
 
-        queryset = Institution.objects.all()
+        queryset = Institution.objects.filter(
+            Q(adjudicator__tournament=self.tournament) | Q(team__tournament=self.tournament)
+        ).distinct()
 
         table.add_column({'key': 'name', 'tooltip': 'École', 'icon': 'home'}, [{
             'text': p.name,
