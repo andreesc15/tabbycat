@@ -59,6 +59,13 @@ def get_preferences_data(selected_preset, tournament):
     return preset_preferences
 
 
+def save_presets(tournament, preset):
+    preset_preferences = get_preferences_data(preset, tournament)
+
+    for pref in preset_preferences:
+        tournament.preferences[pref['key']] = pref['new_value']
+
+
 class PreferencesPreset:
     show_in_list                               = False
 
@@ -117,6 +124,7 @@ class BritishParliamentaryPreferences(PreferencesPreset):
     debate_rules__teams_in_debate              = 'bp'
     debate_rules__ballots_per_debate_prelim    = 'per-debate'
     debate_rules__ballots_per_debate_elim      = 'per-debate'
+    debate_rules__speakers_in_ballots          = 'prelim'
     debate_rules__side_names                   = 'gov-opp'
     debate_rules__reply_scores_enabled         = False
     debate_rules__motion_vetoes_enabled        = False

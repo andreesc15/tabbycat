@@ -34,3 +34,4 @@ ipython==7.8.*
 redis==3.3.8
 qrcode==6.1                             # QR codes for printed private URL sheets
 html2text==2019.8.11                    # Compatibility with plain-text email clients
+defusedxml==0.6.0                       # Protection against XML vulnerabilities in import

@@ -32,10 +32,12 @@ from utils.mixins import AdministratorMixin, AssistantMixin
 from utils.views import VueTableTemplateView
 from utils.tables import TabbycatTableBuilder
 
-from .forms import BPEliminationResultForm, PerAdjudicatorBallotSetForm, SingleBallotSetForm
+from .forms import (PerAdjudicatorBallotSetForm, PerAdjudicatorEliminationBallotSetForm, SingleBallotSetForm,
+                    SingleEliminationBallotSetForm)
 from .models import BallotSubmission, TeamScore
 from .tables import ResultsTableBuilder
 from .prefetch import populate_confirmed_ballots
+from .result import get_class_name
 from .utils import populate_identical_ballotsub_lists
 
 logger = logging.getLogger(__name__)
@@ -229,7 +231,7 @@ class BaseBallotSetView(LogActionMixin, TournamentMixin, FormView):
         kwargs['iron'] = self.debate.debateteam_set.annotate(iron=Count('team__debateteam__speakerscore',
             filter=Q(team__debateteam__debate__round=self.debate.round.prev) & Q(team__debateteam__speakerscore__ghost=True),
             distinct=True)).filter(iron__gt=0)
-        kwargs['currentIron'] = self.debate.debateteam_set.annotate(iron=Count('team__debateteam__speakerscore',
+        kwargs['current_iron'] = self.debate.debateteam_set.annotate(iron=Count('team__debateteam__speakerscore',
             filter=Q(team__debateteam__debate__round=self.debate.round) & Q(team__debateteam__speakerscore__ghost=True),
             distinct=True)).filter(iron__gt=0)
 
@@ -243,12 +245,12 @@ class BaseBallotSetView(LogActionMixin, TournamentMixin, FormView):
         return all_ballotsubs
 
     def get_form_class(self):
-        if self.tournament.pref('teams_in_debate') == 'bp' and self.debate.round.is_break_round:
-            return BPEliminationResultForm
-        elif self.debate.round.ballots_per_debate == 'per-adj':
-            return PerAdjudicatorBallotSetForm
-        else:
-            return SingleBallotSetForm
+        return {
+            'DebateResultByAdjudicator': PerAdjudicatorEliminationBallotSetForm,
+            'DebateResultByAdjudicatorWithScores': PerAdjudicatorBallotSetForm,
+            'ConsensusDebateResult': SingleEliminationBallotSetForm,
+            'ConsensusDebateResultWithScores': SingleBallotSetForm,
+        }[get_class_name(self.debate.round, self.tournament)]
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -614,7 +616,7 @@ class PublicBallotScoresheetsView(BasePublicBallotScoresheetsView):
             return (404, _("The debate %s does not have a confirmed ballot.") % self.matchup_description())
 
     def get_context_data(self, **kwargs):
-        kwargs['motion'] = self.object.confirmed_ballot.motion
+        kwargs['motion'] = self.object.confirmed_ballot.motion or self.object.round.motion_set.first()
         kwargs['result'] = self.object.confirmed_ballot.result
         kwargs['use_code_names'] = use_team_code_names(self.tournament, False)
         return super().get_context_data(**kwargs)
