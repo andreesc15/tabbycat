@@ -2,7 +2,7 @@ import uuid
 
 from square.client import Client
 
-from settings.core import SQUARE_LOCATION, SQUARE_TOKEN
+from settings.core import SQUARE_LOCATION, SQUARE_TOKEN, ADHESION_AMOUNT
 
 
 merchant_support_email = 'tresorerie@liduc.org'
@@ -31,7 +31,7 @@ def create_payment(payment, return_url):
             'name': 'Adhésion',
             'quantity': '1',
             'base_price_money': {
-                'amount': 2500,
+                'amount': ADHESION_AMOUNT,
                 'currency': 'CAD',
             }
         })
@@ -41,7 +41,7 @@ def create_payment(payment, return_url):
             'name': 'Inscription de débatteur',
             'quantity': str(payment.numDebatteurs),
             'base_price_money': {
-                'amount': 5000,
+                'amount': paiement.tournament.pref('frais_debatteur'),
                 'currency': 'CAD',
             }
         })
@@ -50,7 +50,7 @@ def create_payment(payment, return_url):
             'name': 'Inscription de juge',
             'quantity': str(payment.numJuges),
             'base_price_money': {
-                'amount': 2000,
+                'amount': paiement.tournament.pref('frais_juge'),
                 'currency': 'CAD',
             }
         })

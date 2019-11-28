@@ -44,6 +44,7 @@ class Payment(models.Model):
 
     personnes = models.ManyToManyField('participants.Person',
         verbose_name='personnes')
+    montant = models.PositiveIntegerField(default=0, help_text='Argent payé (en sous)')
 
     methode = models.CharField(max_length=1, choices=METHODE_CHOICES)
     statut = models.CharField(max_length=1, choices=STATUT_CHOICES)
@@ -76,3 +77,12 @@ class Payment(models.Model):
         event = 'adhesion' if self.tournament is None else self.tournament.slug
         reference = event + '/' + institution + '/' + generate_identifier_string(string.digits, 40)
         return reference[:40]
+
+    def set_montant(self):
+        assert self.tournament is not None, "Ne peut pas être un paiement d'adhésion"
+        if self.methode == self.METHODE_VOID:
+            self.montant = 0
+        else:
+            self.montant = self.tournament.pref('frais_juge') * self.numJuges + \
+                           self.tournament.pref('frais_debatteur') * self.numDebatteurs
+        self.save()

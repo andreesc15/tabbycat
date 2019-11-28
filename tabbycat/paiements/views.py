@@ -8,6 +8,7 @@ from django.views.generic import View
 from django.views.generic.edit import FormView
 
 from participants.models import Adjudicator, Institution, Speaker, Person
+from settings.core import ADHESION_AMOUNT
 from tournaments.mixins import TournamentMixin
 from tournaments.models import Tournament
 from utils.misc import reverse_tournament
@@ -26,7 +27,7 @@ class PublicAdhesionPaymentView(FormView):
 
     def form_valid(self, form):
         paiement = Payment(
-            institution=form.cleaned_data['institution'],
+            institution=form.cleaned_data['institution'], montant=ADHESION_AMOUNT,
             methode=Payment.METHODE_ENLIGNE, statut=Payment.STATUT_OUVERT,
         )
         paiement.save()
@@ -96,7 +97,8 @@ class PaymentRefreshView(AdministratorMixin, PostOnlyRedirectView):
 
         paiement = Payment(
             order=order['id'], tournament=tournament, institution=institution,
-            methode=Payment.METHODE_CARTE, statut=self.statuts[order['status']]
+            methode=Payment.METHODE_CARTE, statut=self.statuts[order['status']],
+            montant=order['total_money']['amount'],
         )
         paiement.save()
 
@@ -160,7 +162,10 @@ class AdminAdhesionPaymentView(AdministratorMixin, VueTableTemplateView, FormVie
         ).exclude(id__in=self.deja_paye)
 
         for inst in insts:
-            paiement = Payment(institution=inst, methode=request.POST.get('methode'), statut=Payment.STATUT_TERMINE)
+            paiement = Payment(
+                institution=inst, methode=request.POST.get('methode'),
+                statut=Payment.STATUT_TERMINE, montant=ADHESION_AMOUNT
+            )
             paiement.save()
 
         messages.success(request, "Les paiement d'adhésion ont été reçus !")
@@ -363,14 +368,14 @@ class PublicPaymentSelectView(BasePaymentSelectView):
 
     def post(self, request, *args, **kwargs):
         institution = Institution.objects.get(pk=self.kwargs['institution_id'])
+        personnes = Person.objects.filter(id__in=list(map(int, request.POST.getlist('personnes'))))
         paiement = Payment(
             institution=institution, tournament=self.tournament,
             methode=Payment.METHODE_ENLIGNE, statut=Payment.STATUT_OUVERT,
         )
         paiement.save()
-        paiement.personnes.add(
-            *Person.objects.filter(id__in=list(map(int, request.POST.getlist('personnes'))))
-        )
+        paiement.personnes.add(*personnes)
+        paiement.set_montant()
 
         return_url = request.build_absolute_uri(reverse('paiements-return'))
         square_response = create_payment(paiement, return_url)
@@ -429,5 +434,6 @@ class AdminPaymentSelectView(AdministratorMixin, BasePaymentSelectView):
         )
         paiement.save()
         paiement.personnes.add(*personnes)
+        paiement.set_montant()
 
         return super().post(request, *args, **kwargs)

@@ -49,6 +49,9 @@
       {% trans "How adjudicators are ranked and who can submit feedback" as description %}
       {% include "components/item-action.html" with type="primary" emoji="🙅" text=title extra=description %}
 
+      {% tournamenturl 'options-tournament-section' section='paiements' as url %}
+      {% include "components/item-action.html" with type="primary" emoji="💸" text="Paiements" extra="Les frais d'inscription" %}
+
     </ul>
   </div>
 
