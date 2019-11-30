@@ -422,8 +422,6 @@ class AdminPaymentSelectView(AdministratorMixin, BasePaymentSelectView):
         institution = Institution.objects.filter(
             Q(adjudicator__id__in=personnes_id) | Q(team__speaker__id__in=personnes_id)
         ).distinct()
-        if not institution.exists():
-            institution = None
         if institution.count() > 1:
             messages.error(request, "Vous ne pouvez pas combiner des participants de plusieurs écoles.")
             return HttpResponseRedirect(reverse_tournament('paiements-tournament-add-admin', self.tournament))
