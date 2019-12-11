@@ -17,6 +17,7 @@ urlpatterns = [
     # Application URLs for public pages
     path('break/',                  include('breakqual.urls_public')),
     path('checkins/',               include('checkins.urls_public')),
+    path('discours/',               include('discours.urls_public')),
     path('draw/',                   include('draw.urls_public')),
     path('feedback/',               include('adjfeedback.urls_public')),
     path('motions/',                include('motions.urls_public')),
@@ -31,6 +32,7 @@ urlpatterns = [
     path('admin/availability/',     include('availability.urls')),
     path('admin/break/',            include('breakqual.urls_admin')),
     path('admin/checkins/',         include('checkins.urls_admin')),
+    path('admin/discours/',         include('discours.urls_admin')),
     path('admin/draw/',             include('draw.urls_admin')),
     path('admin/feedback/',         include('adjfeedback.urls_admin')),
     path('admin/import/',           include('importer.urls')),
