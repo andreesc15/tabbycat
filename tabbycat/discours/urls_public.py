@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
@@ -8,7 +8,12 @@ urlpatterns = [
         views.PublicDiscoursDrawView.as_view(),
         name='public-discours-draw'),
 
-    path('<slug:url_key>/',
-        views.PrivateurlResultsView.as_view(),
-        name='privateurls-discours-results'),
+    path('<slug:url_key>/', include([
+        path('results/',
+            views.PrivateurlResultsView.as_view(),
+            name='privateurls-discours-results'),
+        path('inscription/',
+            views.PrivateurlInscriptionView.as_view(),
+            name='privateurls-discours-inscription'),
+    ])),
 ]

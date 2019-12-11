@@ -101,7 +101,8 @@ TABBYCAT_APPS = (
     'users',
     'standings',
     'notifications',
-    'importer'
+    'importer',
+    'discours',
 )
 
 INSTALLED_APPS = (
