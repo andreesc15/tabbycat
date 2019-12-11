@@ -53,15 +53,15 @@ class Payment(models.Model):
         return self.reference
 
     @property
-    def isAdhesion(self):
+    def is_adhesion(self):
         return self.tournament is None
 
     @property
-    def numJuges(self):
+    def num_juges(self):
         return self.personnes.filter(adjudicator__isnull=False).count()
 
     @property
-    def numDebatteurs(self):
+    def num_debatteurs(self):
         return self.personnes.filter(speaker__isnull=False).count()
 
     def save(self, *args, **kwargs):
@@ -83,6 +83,6 @@ class Payment(models.Model):
         if self.methode == self.METHODE_VOID:
             self.montant = 0
         else:
-            self.montant = self.tournament.pref('frais_juge') * self.numJuges + \
-                           self.tournament.pref('frais_debatteur') * self.numDebatteurs
+            self.montant = self.tournament.pref('frais_juge') * self.num_juges + \
+                           self.tournament.pref('frais_debatteur') * self.num_debatteurs
         self.save()

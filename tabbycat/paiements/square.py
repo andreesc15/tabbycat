@@ -2,7 +2,7 @@ import uuid
 
 from square.client import Client
 
-from settings.core import SQUARE_LOCATION, SQUARE_TOKEN, ADHESION_AMOUNT
+from settings.core import ADHESION_AMOUNT, SQUARE_LOCATION, SQUARE_TOKEN
 
 
 merchant_support_email = 'tresorerie@liduc.org'
@@ -11,6 +11,7 @@ client = Client(
     access_token=SQUARE_TOKEN,
     environment='production',
 )
+
 
 def create_payment(payment, return_url):
     checkout_api = client.checkout
@@ -36,21 +37,21 @@ def create_payment(payment, return_url):
             }
         })
 
-    if payment.numDebatteurs > 0:
+    if payment.num_debatteurs > 0:
         body['order']['line_items'].append({
             'name': 'Inscription de débatteur',
-            'quantity': str(payment.numDebatteurs),
+            'quantity': str(payment.num_debatteurs),
             'base_price_money': {
-                'amount': paiement.tournament.pref('frais_debatteur'),
+                'amount': payment.tournament.pref('frais_debatteur'),
                 'currency': 'CAD',
             }
         })
-    if payment.numJuges > 0:
+    if payment.num_juges > 0:
         body['order']['line_items'].append({
             'name': 'Inscription de juge',
-            'quantity': str(payment.numJuges),
+            'quantity': str(payment.num_juges),
             'base_price_money': {
-                'amount': paiement.tournament.pref('frais_juge'),
+                'amount': payment.tournament.pref('frais_juge'),
                 'currency': 'CAD',
             }
         })

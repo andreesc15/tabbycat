@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View
 from django.views.generic.edit import FormView
 
-from participants.models import Adjudicator, Institution, Speaker, Person
+from participants.models import Adjudicator, Institution, Person, Speaker
 from settings.core import ADHESION_AMOUNT
 from tournaments.mixins import TournamentMixin
 from tournaments.models import Tournament
@@ -16,9 +16,9 @@ from utils.mixins import AdministratorMixin
 from utils.views import PostOnlyRedirectView, VueTableTemplateView
 from utils.tables import BaseTableBuilder, TabbycatTableBuilder
 
-from .forms import AdminPaymentForm, AdhesionPaymentForm, PublicParticipantSelectForm
+from .forms import AdhesionPaymentForm, AdminPaymentForm, PublicParticipantSelectForm
 from .models import Payment
-from .square import create_payment, get_payment, list_payments, update_payments
+from .square import create_payment, list_payments
 
 
 class PublicAdhesionPaymentView(FormView):
@@ -39,7 +39,7 @@ class PublicAdhesionPaymentView(FormView):
 
 
 class PaymentReturnView(View):
-    
+
     def get(self, request, *args, **kwargs):
         paiement = Payment.objects.get(reference=request.GET.get('referenceId'))
         paiement.order = request.GET.get('transactionId')
@@ -62,9 +62,6 @@ class PaymentRefreshView(AdministratorMixin, PostOnlyRedirectView):
     }
 
     def post(self, request, *args, **kwargs):
-        #payments = Payment.objects.filter(
-        #    checkout__isnull=False, statut=Payment.STATUT_OUVERT
-        #).values_list('order', flat=True)
         orders = list_payments()
 
         for order in orders['payments']:
@@ -137,7 +134,7 @@ class AdminAdhesionPaymentView(AdministratorMixin, VueTableTemplateView, FormVie
         return style
 
     def get_table(self):
-        table = BaseTableBuilder(title='Adhésion d\'école', sort_key='payer')
+        table = BaseTableBuilder(title="Adhésion d'école", sort_key='payer')
 
         queryset = Institution.objects.all()
         table.add_column({'key': 'payer', 'title': "Payer l'adhésion"}, [{
@@ -199,15 +196,15 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
     page_emoji = '💰'
 
     def _institution_name(self, p):
-            inst = None
-            if hasattr(p, 'adjudicator'):
-                inst = p.adjudicator.institution
-            if hasattr(p, 'speaker'):
-                inst = p.speaker.team.institution
-            if inst is not None:
-                inst = inst.code
-            return inst
-    
+        inst = None
+        if hasattr(p, 'adjudicator'):
+            inst = p.adjudicator.institution
+        if hasattr(p, 'speaker'):
+            inst = p.speaker.team.institution
+        if inst is not None:
+            inst = inst.code
+        return inst
+
     def get_tables(self):
         self.paiements = Payment.objects.filter(tournament=self.tournament).values_list('pk', flat=True)
         return [self.get_summary_table(), self.get_paid_table(), self.get_unpaid_table()]
@@ -225,12 +222,10 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
         ).distinct().annotate(
             num_paye_juges=Count('adjudicator', filter=Q(adjudicator__payment__in=self.paiements), distinct=True),
             num_paye_deb=Count('team__speaker', filter=Q(team__speaker__payment__in=self.paiements), distinct=True),
-            num_nonpaye_juges=Count('adjudicator', filter=
-                ~Q(adjudicator__payment__in=self.paiements) & Q(adjudicator__tournament=self.tournament),
-            distinct=True),
-            num_nonpaye_deb=Count('team__speaker', filter=
-                ~Q(team__speaker__payment__in=self.paiements) & Q(team__tournament=self.tournament),
-            distinct=True),
+            num_nonpaye_juges=Count('adjudicator',
+                filter=~Q(adjudicator__payment__in=self.paiements) & Q(adjudicator__tournament=self.tournament), distinct=True),
+            num_nonpaye_deb=Count('team__speaker',
+                filter=~Q(team__speaker__payment__in=self.paiements) & Q(team__tournament=self.tournament), distinct=True),
         )
 
         table.add_column({'key': 'institution', 'tooltip': "École", 'icon': 'home'}, [{
@@ -277,7 +272,6 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
         )
         return self.get_payment_table('Payé', participants)
 
-
     def get_unpaid_table(self):
         dans_tournoi = Q(speaker__team__tournament=self.tournament) | Q(adjudicator__tournament=self.tournament)
         participants = Person.objects.filter(
@@ -294,22 +288,19 @@ class BasePaymentSelectView(TournamentMixin, VueTableTemplateView, FormView):
     template_name = "select_payments.html"
 
     def _person_style(self, person):
-        style = ''
-        style += 'no-wrap ' if len(person.name) < 20 else ''
+        style = 'no-wrap ' if len(person.name) < 20 else ''
         style += 'text-muted' if person.pk in self.deja_paye else ''
         return style
 
     def get_speaker_queryset(self):
-        return Speaker.objects.filter(
-            Q(team__tournament=self.tournament, team__institution=self.institution) \
-            | Q(team__tournament=self.tournament, team__institution__isnull=True)
-        )
+        filters = Q(team__tournament=self.tournament, team__institution=self.institution)
+        filters |= Q(team__tournament=self.tournament, team__institution__isnull=True)
+        return Speaker.objects.filter(filters)
 
     def get_adjudicator_queryset(self):
-        return Adjudicator.objects.filter(
-            Q(tournament=self.tournament, institution=self.institution) \
-            | Q(tournament=self.tournament, institution__isnull=True)
-        )
+        filters = Q(tournament=self.tournament, institution=self.institution)
+        filters |= Q(tournament=self.tournament, institution__isnull=True)
+        return Adjudicator.objects.filter(filters)
 
     def get_tables(self):
         if self.kwargs.get('institution_id') is None:
