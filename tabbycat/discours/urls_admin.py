@@ -8,6 +8,15 @@ urlpatterns = [
         views.DiscoursIndexView.as_view(),
         name='discours-index'),
 
+    path('participants/', include([
+        path('',
+            views.DiscoursParticipantsView.as_view(),
+            name='discours-participants'),
+        path('update/',
+            views.UpdateDiscoursParticipantsView.as_view(),
+            name='update-discours-participants'),
+    ])),
+
     path('<int:round_seq>/', include([
         path('draw/',
             views.DiscoursDrawView.as_view(),

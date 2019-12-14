@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load debate_tags static i18n %}
+
+{% block content %}
+
+  <div id="vueMount">
+    <checkbox-tables-container :tables-data=tablesData
+                               :categories=categories
+                               :urls=urls
+                               :navigation=navigation
+                               :hide-auto-save="false"
+                               orientation={{ tables_orientation|safe }} >
+    </checkbox-tables-container>
+  </div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    window.vueData = {
+      tablesData: {% if tables_data %}{{ tables_data|safe }}{% else %}null{% endif %},
+      categories: [
+        {'id': "o", 'name': "orateur"},
+        {'id': "j", 'name': "juge"}
+      ],
+      urls: { 'save': "{% tournamenturl 'update-discours-participants' %}" },
+      navigation: [
+        { title: 'Overview', url: "{% tournamenturl 'discours-index' %}", back: true }
+      ]
+    }
+  </script>
+  {{ block.super }}
+{% endblock %}
