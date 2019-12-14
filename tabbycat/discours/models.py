@@ -22,8 +22,7 @@ class Joute(models.Model):
     start_time = models.TimeField(null=True)
     completed = models.BooleanField(default=False)
 
-    @property
-    def name(self):
+    def __str__(self):
         return "Ronde %d" % self.seq
 
 
@@ -34,9 +33,13 @@ class Salle(models.Model):
     juges = models.ManyToManyField(Juge)
     orateurs = models.ManyToManyField(Orateur, through='OrateurSalle')
 
+    def __str__(self):
+        return "%s @ %s" % (self.joute, self.venue)
+
 
 class OrateurSalle(models.Model):
     orateur = models.ForeignKey(Orateur, models.CASCADE)
     salle = models.ForeignKey(Salle, models.CASCADE)
 
-    points = models.PositiveIntegerField(blank=True)
+    points = models.PositiveIntegerField(blank=True,
+        help_text='0 points en dernier place')
