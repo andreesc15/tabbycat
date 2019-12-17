@@ -3,6 +3,7 @@ from django.db import models
 
 class Juge(models.Model):
     person = models.OneToOneField('participants.Person', models.CASCADE)
+    tournament = models.ForeignKey('tournaments.Tournament', models.CASCADE)
 
     def __str__(self):
         return str(self.person)
@@ -10,6 +11,7 @@ class Juge(models.Model):
 
 class Orateur(models.Model):
     person = models.OneToOneField('participants.Person', models.CASCADE)
+    tournament = models.ForeignKey('tournaments.Tournament', models.CASCADE)
 
     def __str__(self):
         return str(self.person)
@@ -24,6 +26,11 @@ class Joute(models.Model):
 
     def __str__(self):
         return "Ronde %d" % self.seq
+
+    @property
+    def finaux(self):
+        return not self.objects.filter(tournament=self.tournament, seq__gt=self.seq).exists()
+    
 
 
 class Salle(models.Model):
@@ -41,5 +48,5 @@ class OrateurSalle(models.Model):
     orateur = models.ForeignKey(Orateur, models.CASCADE)
     salle = models.ForeignKey(Salle, models.CASCADE)
 
-    points = models.PositiveIntegerField(blank=True,
+    points = models.PositiveIntegerField(blank=True, null=True,
         help_text='0 points en dernier place')

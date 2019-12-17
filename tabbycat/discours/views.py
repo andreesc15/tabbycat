@@ -60,14 +60,14 @@ class UpdateDiscoursParticipantsView(AdministratorMixin, TournamentMixin, View):
     def set_orateur_status(self, person, sent_status):
         marked = hasattr(person, 'orateur')
         if sent_status['checked'] and not marked:
-            Orateur(person=person).save()
+            Orateur(person=person, tournament=self.tournament).save()
         elif not sent_status['checked'] and marked:
             Orateur.objects.filter(person=person).delete()
 
     def set_juge_status(self, person, sent_status):
         marked = hasattr(person, 'juge')
         if sent_status['checked'] and not marked:
-            Juge(person=person).save()
+            Juge(person=person, tournament=self.tournament).save()
         elif not sent_status['checked'] and marked:
             Juge.objects.filter(person=person).delete()
 
