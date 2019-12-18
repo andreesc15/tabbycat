@@ -263,6 +263,14 @@
   {% endfor %}
 
   <div class="list-group-item d-inline-block">
+    <a href="{% tournamenturl 'paiements-tournament-admin' %}" data-parent="#sidebar"
+     class="collapsed">
+      <i data-feather="credit-card"></i>
+      <span class="d-none d-md-inline">Paiements</span>
+    </a>
+  </div>
+
+  <div class="list-group-item d-inline-block">
     <a href="{% url 'logout' %}" data-parent="#sidebar"
      class="collapsed">
       <i data-feather="log-out"></i>

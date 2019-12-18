@@ -1,0 +1,19 @@
+{% load debate_tags %}
+
+{% if tournament %}
+  <div class="btn-group">
+    <a class="btn btn-outline-primary"
+       href="{% tournamenturl 'paiements-tournament-admin' %}">Voir paiements</a>
+    <a class="btn btn-outline-primary"
+       href="{% tournamenturl 'paiements-tournament-add-admin' %}">Ajouter</a>
+  </div>
+{% endif %}
+<div class="btn-group">
+  <a href="{% url 'paiements-adhesion-admin' %}" class="btn btn-outline-primary">Adhésion</a>
+</div>
+<div class="btn-group">
+  <form action="{% url 'paiements-refresh' %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-success" type="submit" id="refreshPayments">Mettre à jour</button>
+  </form>
+</div>

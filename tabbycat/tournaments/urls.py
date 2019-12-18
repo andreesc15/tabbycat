@@ -17,6 +17,7 @@ urlpatterns = [
     # Application URLs for public pages
     path('break/',                  include('breakqual.urls_public')),
     path('checkins/',               include('checkins.urls_public')),
+    path('discours/',               include('discours.urls_public')),
     path('draw/',                   include('draw.urls_public')),
     path('feedback/',               include('adjfeedback.urls_public')),
     path('motions/',                include('motions.urls_public')),
@@ -25,12 +26,14 @@ urlpatterns = [
     path('results/',                include('results.urls_public')),
     path('standings/',              include('standings.urls_public')),
     path('tab/',                    include('standings.urls_public')),
+    path('paiements/',        include('paiements.urls.urls_tournament')),
 
     # Application URLs for admin pages
     path('admin/allocations/',      include('adjallocation.urls')),
     path('admin/availability/',     include('availability.urls')),
     path('admin/break/',            include('breakqual.urls_admin')),
     path('admin/checkins/',         include('checkins.urls_admin')),
+    path('admin/discours/',         include('discours.urls_admin')),
     path('admin/draw/',             include('draw.urls_admin')),
     path('admin/feedback/',         include('adjfeedback.urls_admin')),
     path('admin/import/',           include('importer.urls')),
@@ -43,6 +46,7 @@ urlpatterns = [
     path('admin/results/',          include('results.urls_admin')),
     path('admin/standings/',        include('standings.urls_admin')),
     path('admin/venues/',           include('venues.urls_admin')),
+    path('admin/paiements/',        include('paiements.urls.urls_tournament_admin')),
 
     # Application URLs for assistant pages
     path('assistant/feedback/',     include('adjfeedback.urls_assistant')),

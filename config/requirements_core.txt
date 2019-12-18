@@ -1,7 +1,7 @@
 # The necessary dependencies to run Tabbycat
 
 # Django
-Django==2.2.4
+Django==2.2.8
 django-appconf==1.0.3                   # Helper for handling app configs
 django-dynamic-preferences==1.7.1       # Settings management
 django-extensions==2.2.1                # For the generate secret command
@@ -35,3 +35,6 @@ redis==3.3.8
 qrcode==6.1                             # QR codes for printed private URL sheets
 html2text==2019.8.11                    # Compatibility with plain-text email clients
 defusedxml==0.6.0                       # Protection against XML vulnerabilities in import
+
+# LiDUC
+squareup==3.20191120.0                  # Paiements

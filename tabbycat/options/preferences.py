@@ -1335,3 +1335,26 @@ class TeamNameEmailMessage(LongStringPreference):
     name = 'team_email_message'
     default = ("<p>Hi {{ USER }},</p>"
         "<p>You are registered as <strong>{{ LONG }}</strong> in {{ TOURN }} with {{ SPEAKERS }}.</p>")
+
+
+# ==============================================================================
+paiements = Section('paiements', verbose_name="Paiements")
+# ==============================================================================
+
+
+@tournament_preferences_registry.register
+class FraisDebatteur(IntegerPreference):
+    help_text = "Frais pour l'inscription de débatteur (en sous CAD)"
+    verbose_name = "Frais de débatteur"
+    section = paiements
+    name = 'frais_debatteur'
+    default = 5000
+
+
+@tournament_preferences_registry.register
+class FraisJuge(IntegerPreference):
+    help_text = "Frais pour l'inscription de juge (en sous CAD)"
+    verbose_name = "Frais de juge"
+    section = paiements
+    name = 'frais_juge'
+    default = 2000

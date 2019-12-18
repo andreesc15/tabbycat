@@ -67,6 +67,10 @@ urlpatterns = [
     path('accounts/',
         include('django.contrib.auth.urls')),
 
+    # Paiements
+    path('paiements/',
+        include('paiements.urls.urls')),
+
     # Tournament URLs
     path('<slug:tournament_slug>/',
         include('tournaments.urls')),

@@ -82,6 +82,18 @@
 </div>
 
 <div class="list-group mt-2">
+  {% if user.is_superuser %}
+
+    {% url 'paiements-adhesion-admin' as url %}
+    {% include "components/item-action.html" with text="Voir Transactions" icon="credit-card" %}
+
+  {% endif %}
+
+  {% url 'paiements-adhesion' as url %}
+  {% include "components/item-action.html" with text="Payer Frais d'Adhésion" icon="credit-card" %}
+</div>
+
+<div class="list-group mt-2">
   {% if user.is_authenticated %}
 
     {% blocktrans asvar text %}Change Password ({{ user }}){% endblocktrans %}

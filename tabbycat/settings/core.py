@@ -101,7 +101,9 @@ TABBYCAT_APPS = (
     'users',
     'standings',
     'notifications',
-    'importer'
+    'importer',
+    'discours',
+    'paiements',
 )
 
 INSTALLED_APPS = (
@@ -285,3 +287,11 @@ CHANNEL_LAYERS = {
 DYNAMIC_PREFERENCES = {
     'REGISTRY_MODULE': 'preferences',
 }
+
+# ==============================================================================
+# LiDUC
+# ==============================================================================
+
+SQUARE_TOKEN = os.environ.get('SQUARE_ACCESS_TOKEN')
+SQUARE_LOCATION = os.environ.get('SQUARE_LOCATION')
+ADHESION_AMOUNT = 2500 # 25$ CAD (sous)
