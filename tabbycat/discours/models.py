@@ -1,20 +1,14 @@
 from django.db import models
 
+from participants.models import Person
 
-class Juge(models.Model):
-    person = models.OneToOneField('participants.Person', models.CASCADE)
+
+class Juge(Person):
     tournament = models.ForeignKey('tournaments.Tournament', models.CASCADE)
 
-    def __str__(self):
-        return str(self.person)
 
-
-class Orateur(models.Model):
-    person = models.OneToOneField('participants.Person', models.CASCADE)
+class Orateur(Person):
     tournament = models.ForeignKey('tournaments.Tournament', models.CASCADE)
-
-    def __str__(self):
-        return str(self.person)
 
 
 class Joute(models.Model):
@@ -30,7 +24,6 @@ class Joute(models.Model):
     @property
     def finaux(self):
         return not self.objects.filter(tournament=self.tournament, seq__gt=self.seq).exists()
-    
 
 
 class Salle(models.Model):
