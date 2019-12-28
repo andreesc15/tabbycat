@@ -112,12 +112,14 @@ if environ.get('SENDGRID_USERNAME', ''):
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
 """
+SERVER_EMAIL = environ['GMAIL_USERNAME']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = environ['GMAIL_USERNAME']
 EMAIL_HOST_PASSWORD = environ['GMAIL_PASSWORD']
+DEFAULT_FROM_EMAIL = environ.get('DEFAULT_FROM_EMAIL', environ['GMAIL_USERNAME'])
 
 # ==============================================================================
 # Sentry
