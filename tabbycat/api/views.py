@@ -1,3 +1,5 @@
+from django.db.models import Prefetch
+
 from dynamic_preferences.api.viewsets import PerInstancePreferenceViewSet
 from dynamic_preferences.api.serializers import PreferenceSerializer
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
@@ -7,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from options.models import TournamentPreferenceModel
+from participants.models import Speaker
 from tournaments.models import Tournament
 from tournaments.mixins import TournamentFromUrlMixin
 
@@ -80,3 +83,18 @@ class SpeakerEligibilityView(TournamentAPIMixin, AdministratorAPIMixin, Retrieve
 
     def get_queryset(self):
         return super().get_queryset().prefetch_related('speaker_set')
+
+
+class AdjudicatorViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
+    serializer_class = serializers.AdjudicatorSerializer
+
+
+class TeamViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
+    serializer_class = serializers.TeamSerializer
+
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related(
+            'break_categories',
+            Prefetch('speaker_set', queryset=Speaker.objects.all().prefetch_related('categories'))
+        )
+

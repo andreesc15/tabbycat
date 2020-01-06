@@ -1,7 +1,10 @@
+from django.db.models import Q
+
 from rest_framework import serializers
 
 from breakqual.models import BreakCategory
-from participants.models import Speaker, SpeakerCategory
+from participants.emoji import pick_unused_emoji
+from participants.models import Adjudicator, Institution, Speaker, SpeakerCategory, Team
 from tournaments.models import Tournament
 
 from .fields import TournamentHyperlinkedIdentityField
@@ -105,3 +108,96 @@ class SpeakerEligibilitySerializer(serializers.ModelSerializer):
         else:
             self.instance.speaker_set.set(speakers)
         return self.instance
+
+
+class SpeakerSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['categories'] = serializers.SlugRelatedField(
+            many=True,
+            queryset=kwargs['context']['tournament'].speakercategory_set.all(),
+            slug_field="slug"
+        )
+
+    class Meta:
+        model = Speaker
+        fields = ('id', 'name', 'gender', 'email', 'categories')
+
+
+class AdjudicatorSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    institution = serializers.SlugRelatedField(
+        queryset=Institution.objects.all(),
+        slug_field="code"
+    )
+
+    class Meta:
+        model = Adjudicator
+        fields = ('id', 'name', 'gender', 'email', 'institution', 'base_score',
+                  'trainee', 'independent', 'adj_core')
+
+    def create(self, validated_data):
+        adj = super().create(validated_data)
+
+        if adj.institution is not None:
+            adj.adjudicatorinstitutionconflict_set.create(institution=adj.institution)
+
+        return adj
+
+
+class TeamSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    emoji = serializers.CharField(
+        required=False, max_length=2,
+        help_text='Automatically generated if not specified. Do not include variation selectors or modifiers.'
+    )  # Remove choices list
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['break_categories'] = serializers.SlugRelatedField(
+            many=True,
+            queryset=kwargs['context']['tournament'].breakcategory_set.all(),
+            slug_field="slug"
+        )
+        self.fields['speakers'] = SpeakerSerializer(
+            many=True,
+            context=kwargs['context']
+        )
+
+    class Meta:
+        model = Team
+        fields = ('id', 'reference', 'code_name', 'emoji', 'institution', 'speakers',
+                  'use_institution_prefix', 'break_categories')
+
+    def create(self, validated_data):
+        """Four things must be done, excluding saving the Team object:
+        1. Create the short_reference based on 'reference',
+        2. Create emoji/code name if not stated,
+        3. Create the speakers.
+        4. Add institution conflict"""
+        validated_data['short_reference'] = validated_data['reference'][:34]
+        speakers_data = validated_data.pop('speakers')
+        break_categories = validated_data.pop('break_categories')
+
+        emoji, code_name = pick_unused_emoji()
+        if 'emoji' not in validated_data:
+            validated_data['emoji'] = emoji
+        if 'code_name' not in validated_data:
+            validated_data['code_name'] = code_name
+
+        team = Team.objects.create(**validated_data)
+        team.break_categories.set(team.tournament.breakcategory_set.filter(
+            Q(is_general=True) | Q(name__in=break_categories)
+        ))
+
+        speakers = SpeakerSerializer(many=True, data=speakers_data, context={'tournament': team.tournament})
+        if speakers.is_valid():
+            speakers.save(team=team)
+
+        if team.institution is not None:
+            team.teaminstitutionconflict_set.create(institution=team.institution)
+
+        return team

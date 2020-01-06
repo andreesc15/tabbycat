@@ -66,9 +66,32 @@ urlpatterns = [
                 ])),
             ])),
 
+            path('teams/', include([
+
+                path('',
+                    views.TeamViewSet.as_view(list_methods),
+                    name='api-team-list'),
+
+                path('<int:pk>/',
+                    views.TeamViewSet.as_view(detail_methods),
+                    name='api-team-detail'),
+
+            ])),
+
+            path('adjudicators/', include([
+
+                path('',
+                    views.AdjudicatorViewSet.as_view(list_methods),
+                    name='api-adjudicator-list'),
+
+                path('<int:pk>/',
+                    views.AdjudicatorViewSet.as_view(detail_methods),
+                    name='api-adjudicator-detail'),
+
+            ])),
+
             url('', include(pref_router.urls)),  # Preferences
         ])),
-        url('', include(pref_router.urls)),  # Preferences
     ])),
 
 ]
