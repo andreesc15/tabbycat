@@ -15,8 +15,6 @@ from django.utils.translation import gettext as _
 from django.views.generic.base import ContextMixin
 from django.views.generic.detail import SingleObjectMixin
 
-from sentry_sdk import configure_scope
-
 from adjallocation.models import DebateAdjudicator
 from breakqual.utils import calculate_live_thresholds
 from draw.models import DebateTeam, MultipleDebateTeamsError, NoDebateTeamFoundError
@@ -24,7 +22,8 @@ from participants.models import Institution, Speaker
 from participants.prefetch import populate_win_counts
 from participants.serializers import InstitutionSerializer
 from tournaments.serializers import RoundSerializer, TournamentSerializer
-from utils.misc import redirect_tournament, reverse_round, reverse_tournament
+from utils.misc import (add_query_string_parameter, redirect_tournament,
+                        reverse_round, reverse_tournament)
 from utils.mixins import AssistantMixin, CacheMixin, TabbycatPageTitlesMixin
 from utils.serializers import django_rest_json_render
 
@@ -101,6 +100,7 @@ class TournamentMixin(TabbycatPageTitlesMixin, TournamentFromUrlMixin):
         t = self.tournament
 
         if not getattr(settings, 'DISABLE_SENTRY', False):
+            from sentry_sdk import configure_scope
             with configure_scope() as scope:
                 scope.set_extra('tab_director_email', getattr(settings, 'TAB_DIRECTOR_EMAIL', "not provided"))
                 scope.set_extra('tournament_prefs', self.tournament.preferences.all())
@@ -109,8 +109,8 @@ class TournamentMixin(TabbycatPageTitlesMixin, TournamentFromUrlMixin):
         if t.current_round is None:
             if hasattr(self.request, 'user') and self.request.user.is_superuser:
                 messages.warning(request, _("You've been redirected to this "
-                    "page because tournament %(tournament_name)s has no rounds."
-                    "Please create some before returning to the admin site") %
+                    "page because tournament %(tournament_name)s has no rounds. "
+                    "Please create some before returning to the admin site.") %
                     {'tournament_name': t.name})
                 admin_url = reverse('admin:tournaments_round_changelist')
                 return redirect(admin_url)
@@ -120,7 +120,8 @@ class TournamentMixin(TabbycatPageTitlesMixin, TournamentFromUrlMixin):
                     "for the tournament %(tournament_name)s. Please contact a "
                     "tab director and ask them to investigate.") %
                     {'tournament_name': t.name})
-                return redirect('tabbycat-index')
+                url = add_query_string_parameter(reverse('tabbycat-index'), 'redirect', 'false')
+                return redirect(url)
 
         try:
             return super().dispatch(request, *args, **kwargs)
@@ -426,6 +427,7 @@ class DragAndDropMixin(RoundMixin):
                 'fields': {'name': bc.name, 'safe': safe, 'dead': dead},
             }
             serialised_bcs.append(serialised_bc)
+
         extra_info['highlights']['break'] = serialised_bcs
 
         extra_info['backUrl'] = reverse_round('draw', self.round)

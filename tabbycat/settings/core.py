@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'formtools',
     'statici18n', # Compile js translations as static file; saving requests
     'polymorphic',
+    'rest_framework',
 )
 
 ROOT_URLCONF = 'urls'
@@ -286,6 +287,23 @@ CHANNEL_LAYERS = {
 
 DYNAMIC_PREFERENCES = {
     'REGISTRY_MODULE': 'preferences',
+}
+
+# ==============================================================================
+# REST Framework
+# ==============================================================================
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
 
 # ==============================================================================

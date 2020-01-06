@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 PROHIBITED_TOURNAMENT_SLUGS = [
     'jet', 'database', 'admin', 'accounts', 'summernote',  # System
     'start', 'create', 'load-demo', # Setup Wizards
-    'draw', 'notifications', 'archive', # Cross-Tournament app's view roots
+    'tournament', 'notifications', 'archive', 'api', # Cross-Tournament app's view roots
     'favicon.ico', 'robots.txt',  # Files that must be at top level
     '__debug__', 'static', 'donations', 'style', 'i18n', 'jsi18n']  # Misc
 
@@ -455,10 +455,6 @@ class Round(models.Model):
     # --------------------------------------------------------------------------
     # Draw retrieval methods
     # --------------------------------------------------------------------------
-
-    def get_draw(self, ordering=('venue__name',)):
-        # Deprecated fully 8/3/2018, remove after 8/4/2018
-        raise RuntimeError("Round.get_draw() is deprecated, use Round.debate_set or Round.debate_set_with_prefetches() instead.")
 
     def debate_set_with_prefetches(self, filter_kwargs=None, ordering=('venue__name',),
             teams=True, adjudicators=True, speakers=True, wins=False,
