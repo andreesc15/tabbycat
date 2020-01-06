@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-11-21 04:31\n"
+"PO-Revision-Date: 2020-01-02 01:49\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1069,7 +1069,7 @@ msgstr ""
 #: tournaments/views.py:171
 #, python-format
 msgid "%(round)s has been marked as completed. That was the last preliminary round, but one or more preliminary rounds are still not completed. Going back to the first incomplete preliminary round."
-msgstr ""
+msgstr "La ronda actual ha sido avanzada a %(round)s. ¡Has llegado al final de las rondas preliminares! ¡Felicitaciones! El siguiente paso es generar el break."
 
 #: tournaments/views.py:179
 #, python-format

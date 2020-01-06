@@ -3,15 +3,14 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 04:50+1100\n"
-"PO-Revision-Date: 2019-11-21 04:28\n"
-"Last-Translator: philip_tc\n"
+"PO-Revision-Date: 2019-12-24 02:26\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: ja\n"
 "X-Crowdin-File: /develop/tabbycat/locale/en/LC_MESSAGES/djangojs.po\n"
@@ -148,6 +147,10 @@ msgstr ""
 
 #: checkins/templates/VenuesStatusMixin.vue:
 msgid "Uncategorised"
+msgstr ""
+
+#: checkins/templates/VenuesStatusMixin.vue:
+msgid "No Category"
 msgstr ""
 
 #: checkins/templates/VenuesStatusMixin.vue:
@@ -500,6 +503,27 @@ msgstr ""
 
 #: utils/templates/DragAndDropActions.vue:17
 msgid "Auto-Allocate"
+msgstr ""
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Break"
+msgstr "ブレイク"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Gender"
+msgstr ""
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Rank"
+msgstr ""
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Region"
+msgstr ""
+
+#. Translators: Short for "Venue Category"
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Category"
 msgstr ""
 
 #: utils/templates/DragAndDropDebate.vue:5

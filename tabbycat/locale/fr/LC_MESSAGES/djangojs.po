@@ -3,15 +3,14 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 04:50+1100\n"
-"PO-Revision-Date: 2019-11-21 04:28\n"
-"Last-Translator: philip_tc\n"
+"PO-Revision-Date: 2019-12-29 20:45\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: /develop/tabbycat/locale/en/LC_MESSAGES/djangojs.po\n"
@@ -152,7 +151,7 @@ msgstr "Non catégorisé"
 
 #: checkins/templates/VenuesStatusMixin.vue:
 msgid "No Category"
-msgstr ""
+msgstr "Aucune catégorie"
 
 #: checkins/templates/VenuesStatusMixin.vue:
 msgid "Priority %1"
@@ -505,6 +504,27 @@ msgstr "Prioriser automatiquement"
 #: utils/templates/DragAndDropActions.vue:17
 msgid "Auto-Allocate"
 msgstr "Allouer automatiquement"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Break"
+msgstr "Qualification"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Gender"
+msgstr "Genre"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Rank"
+msgstr "Classement"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Region"
+msgstr "Région"
+
+#. Translators: Short for "Venue Category"
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Category"
+msgstr "Catégorie"
 
 #: utils/templates/DragAndDropDebate.vue:5
 msgid "The debate's bracket"

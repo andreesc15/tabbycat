@@ -3,15 +3,14 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-04 14:10-0500\n"
-"PO-Revision-Date: 2019-11-21 04:29\n"
-"Last-Translator: philip_tc\n"
+"PO-Revision-Date: 2019-12-24 02:25\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/locale/en/LC_MESSAGES/django.po\n"
@@ -325,7 +324,7 @@ msgstr "%(tournament)s работает на Tabbycat %(tabbycat_version)s (%(ta
 #: templates/footer.html:16
 #, python-format
 msgid "This site runs on Tabbycat %(tabbycat_version)s (%(tabbycat_codename)s)"
-msgstr "Этот сайт работает на Tabbycat %(tabbycat_version)s%(tabbycat_codename)s"
+msgstr "Этот сайт работает на Tabbycat %(tabbycat_version)s (%(tabbycat_codename)s)"
 
 #: templates/footer.html:20
 msgid "Tabbycat is an open-source project developed by volunteers, and is free to use for tabbing non-profit, non-fundraising tournaments."
@@ -352,7 +351,7 @@ msgstr "Все ещё используйте приложение-секундо
 #: templates/footer.html:42
 #, python-format
 msgid "Using an app designed for debate timekeeping makes speaking and adjudicating easier! Check out <a href=\"https://itunes.apple.com/app/apple-store/id1156065589?pt=814172&ct=Tabbycat%%20Installs&mt=8\">Timekept</a> (iPhone/iPad) or <a href=\"https://play.google.com/store/apps/details?id=net.czlee.debatekeeper&referrer=utm_source%%3Dtabbycat%%26utm_medium%%3Dfooter\">Debatekeeper</a> (Android)."
-msgstr "Использование приложения, созданного для таймкиперов дебатов делает игру и судейство проще. Ознакомьтесь с <a href=\"https://itunes.apple.com/app/apple-store/id1156065589?pt=814172&ct=Tabbycat%%20Installs&mt=8\"> Timekept </a> (iPhone/iPad) или <a href=\"https://play.google.com/store/apps/details?id=net.czlee.debatekeeper&referrer=utm_source%%3Dtabbycat%%26utm_medium%%3Dfooter\">Debatekeeper</a>(Android)."
+msgstr "Использование приложения, созданного для таймкиперов дебатов делает игру и судейство проще. Ознакомьтесь с <a href=\"https://itunes.apple.com/app/apple-store/id1156065589?pt=814172&ct=Tabbycat%%20Installs&mt=8\"> Timekept </a> (iPhone/iPad) или <a href=\"https://play.google.com/store/apps/details?id=net.czlee.debatekeeper&referrer=utm_source%%3Dtabbycat%%26utm_medium%%3Dfooter\">Debatekeeper</a> (Android)."
 
 #: templates/footer.html:51
 msgid "Need ballots?"

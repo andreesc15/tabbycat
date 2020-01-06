@@ -2,16 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 12:43-0500\n"
-"PO-Revision-Date: 2019-11-27 17:49\n"
-"Last-Translator: philip_tc\n"
+"POT-Creation-Date: 2019-11-20 23:12-0500\n"
+"PO-Revision-Date: 2020-01-02 01:47\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/adjfeedback/locale/en/LC_MESSAGES/django.po\n"
@@ -156,7 +155,7 @@ msgstr "%(name)s (%(round)s - чэйр дал устный разбор)"
 
 #: adjfeedback/forms.py:308
 #, python-format
-msgid "%(name)s (%(round)s — panellist gave oral as chair rolled)"
+msgid "%(name)s (%(round)s — chair rolled, this panellist gave oral)"
 msgstr ""
 
 #: adjfeedback/forms.py:384

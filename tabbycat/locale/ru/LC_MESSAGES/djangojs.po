@@ -3,15 +3,14 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 04:50+1100\n"
-"PO-Revision-Date: 2019-11-21 04:28\n"
-"Last-Translator: philip_tc\n"
+"PO-Revision-Date: 2019-12-24 02:25\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/locale/en/LC_MESSAGES/djangojs.po\n"
@@ -149,6 +148,10 @@ msgstr "%1 (нет категории) без назначенного иден�
 #: checkins/templates/VenuesStatusMixin.vue:
 msgid "Uncategorised"
 msgstr "Не определена категория"
+
+#: checkins/templates/VenuesStatusMixin.vue:
+msgid "No Category"
+msgstr ""
 
 #: checkins/templates/VenuesStatusMixin.vue:
 msgid "Priority %1"
@@ -501,6 +504,27 @@ msgstr "Автоприоритет"
 #: utils/templates/DragAndDropActions.vue:17
 msgid "Auto-Allocate"
 msgstr "Распределить автоматически"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Break"
+msgstr "Брейк"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Gender"
+msgstr ""
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Rank"
+msgstr "Место"
+
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Region"
+msgstr "Регион"
+
+#. Translators: Short for "Venue Category"
+#: utils/templates/DragAndDropActions.vue:65
+msgid "Category"
+msgstr "Категория"
 
 #: utils/templates/DragAndDropDebate.vue:5
 msgid "The debate's bracket"
