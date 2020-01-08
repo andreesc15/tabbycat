@@ -128,10 +128,6 @@ class SpeakerSerializer(serializers.ModelSerializer):
 
 class AdjudicatorSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    institution = serializers.SlugRelatedField(
-        queryset=Institution.objects.all(),
-        slug_field="code"
-    )
 
     class Meta:
         model = Adjudicator
