@@ -18,7 +18,8 @@ from utils.tables import BaseTableBuilder, TabbycatTableBuilder
 
 from .forms import AdhesionPaymentForm, AdminPaymentForm, PublicParticipantSelectForm
 from .models import Payment
-from .square import create_payment, list_payments
+from .square import create_payment
+from .utils import update_or_create_payments
 
 
 class PublicAdhesionPaymentView(FormView):
@@ -46,7 +47,7 @@ class PaymentReturnView(View):
         paiement.save()
 
         messages.success(request, "Votre paiement a été reçu !")
-
+        update_or_create_payments()  # Update the listing as soon as possible
         return HttpResponseRedirect(reverse('tabbycat-index'))
 
 
@@ -54,60 +55,9 @@ class PaymentRefreshView(AdministratorMixin, PostOnlyRedirectView):
 
     redirect_url = reverse_lazy('paiements-adhesion-admin')
 
-    statuts = {
-        'OPEN': Payment.STATUT_OUVERT,
-        'COMPLETED': Payment.STATUT_TERMINE,
-        'CANCELED': Payment.STATUT_ANNULE,
-        'FAILED': Payment.STATUT_ECHOUE,
-    }
-
     def post(self, request, *args, **kwargs):
-        orders = list_payments()
-
-        for order in orders['payments']:
-            try:
-                payment = Payment.objects.get(order=order['id'])
-            except Payment.DoesNotExist:
-                self.create_from_order(order)
-                continue
-
-            pay_state = self.statuts[order['status']]
-            if payment.statut != pay_state:
-                payment.statut = pay_state
-                payment.save()
-
+        update_or_create_payments()
         return super().post(request, *args, **kwargs)
-
-    def create_from_order(self, order):
-        note = order.get('note', '').split("/")
-        # Note format: "Tournament/Inst|Names|..."
-        if len(note) != 2:
-            return
-
-        personnes = note[1].split("|")
-        inst = personnes.pop(0)
-
-        institution = Institution.objects.get(code=inst)
-        tournament = Tournament.objects.none()
-        if note[0] != 'adhesion':
-            tournament = Tournament.objects.get(slug=note[0])
-
-        paiement = Payment(
-            order=order['id'], tournament=tournament, institution=institution,
-            methode=Payment.METHODE_CARTE, statut=self.statuts[order['status']],
-            montant=order['total_money']['amount'],
-        )
-        paiement.save()
-
-        if len(personnes) > 0:
-            personnes = Person.objects.filter(
-                Q(adjudicator__tournament=tournament) | Q(speaker__team__tournament=tournament),
-                name__in=personnes
-            ).distinct()
-            if personnes.exists():
-                paiement.personnes.add(*personnes)
-
-        return paiement
 
 
 class AdminAdhesionPaymentView(AdministratorMixin, VueTableTemplateView, FormView):
@@ -177,9 +127,7 @@ class PublicPaymentInstitutionView(TournamentMixin, VueTableTemplateView):
     def get_table(self):
         table = TabbycatTableBuilder(view=self, title='Selectionner un école', sort_key='name')
 
-        queryset = Institution.objects.filter(
-            Q(adjudicator__tournament=self.tournament) | Q(team__tournament=self.tournament)
-        ).distinct()
+        queryset = Institution.objects.all().order_by('name')
 
         table.add_column({'key': 'name', 'tooltip': 'École', 'icon': 'home'}, [{
             'text': p.name,
