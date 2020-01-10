@@ -1,9 +1,7 @@
 from django.contrib import admin
-from django.db.models import Q
 
-from .models import Juge, Joute, Orateur, OrateurSalle, Salle
+from .models import Joute, Juge, Orateur, OrateurSalle, Salle
 
-# Register your models here.
 
 @admin.register(Juge)
 class JugeAdmin(admin.ModelAdmin):

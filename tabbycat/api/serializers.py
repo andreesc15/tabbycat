@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from breakqual.models import BreakCategory
 from participants.emoji import pick_unused_emoji
-from participants.models import Adjudicator, Institution, Speaker, SpeakerCategory, Team
+from participants.models import Adjudicator, Speaker, SpeakerCategory, Team
 from tournaments.models import Tournament
 
 from .fields import TournamentHyperlinkedIdentityField

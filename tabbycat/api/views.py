@@ -97,4 +97,3 @@ class TeamViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
             'break_categories',
             Prefetch('speaker_set', queryset=Speaker.objects.all().prefetch_related('categories'))
         )
-

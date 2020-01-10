@@ -10,7 +10,6 @@ from django.views.generic.edit import FormView
 from participants.models import Adjudicator, Institution, Person, Speaker
 from settings.core import ADHESION_AMOUNT
 from tournaments.mixins import TournamentMixin
-from tournaments.models import Tournament
 from utils.misc import reverse_tournament
 from utils.mixins import AdministratorMixin
 from utils.views import PostOnlyRedirectView, VueTableTemplateView

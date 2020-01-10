@@ -22,7 +22,6 @@ class DiscoursParticipantsView(AdministratorMixin, TournamentMixin, VueTableTemp
     page_emoji = '🍯'
 
     def get_table(self):
-        t = self.tournament
         table = TabbycatTableBuilder(view=self, sort_key='person')
         people = Person.objects.filter(
             Q(adjudicator__tournament=self.tournament) | Q(speaker__team__tournament=self.tournament)
