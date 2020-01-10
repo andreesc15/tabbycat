@@ -1,13 +1,13 @@
 from django.db import models
 
-from participants.models import Person
 
-
-class Juge(Person):
+class Juge(models.Model):
+    person = models.OneToOneField('participants.Person', models.CASCADE, primary_key=True)
     tournament = models.ForeignKey('tournaments.Tournament', models.CASCADE)
 
 
-class Orateur(Person):
+class Orateur(models.Model):
+    person = models.OneToOneField('participants.Person', models.CASCADE, primary_key=True)
     tournament = models.ForeignKey('tournaments.Tournament', models.CASCADE)
 
 
