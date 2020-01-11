@@ -242,7 +242,7 @@ class BasePaymentSelectView(TournamentMixin, VueTableTemplateView, FormView):
     def get_speaker_queryset(self):
         filters = Q(team__tournament=self.tournament, team__institution=self.institution)
         filters |= Q(team__tournament=self.tournament, team__institution__isnull=True)
-        return Speaker.objects.filter(filters)
+        return Speaker.objects.filter(filters).select_related('team')
 
     def get_adjudicator_queryset(self):
         filters = Q(tournament=self.tournament, institution=self.institution)
@@ -287,7 +287,12 @@ class BasePaymentSelectView(TournamentMixin, VueTableTemplateView, FormView):
 
     def get_speaker_table(self):
         speakers = self.get_speaker_queryset()
-        return self.get_table('Débatteurs', speakers)
+
+        table = self.get_table('Débatteurs', speakers)
+        table.add_column({'key': 'team', 'title': 'Équipe'}, [{
+            'text': p.team.short_reference
+        } for p in speakers])
+        return table
 
     def get_adjudicator_table(self):
         adjs = self.get_adjudicator_queryset()
