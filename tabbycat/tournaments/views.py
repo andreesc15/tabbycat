@@ -1,19 +1,22 @@
 import json
 import logging
 from collections import OrderedDict
+from datetime import timedelta
 from threading import Lock
 
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.urls import reverse_lazy
-from django.db.models import Count, Q
+from django.db.models import Count, DateTimeField, Min, Q
+from django.db.models.functions import Cast, Extract
 from django.shortcuts import redirect, resolve_url
 from django.utils.http import is_safe_url
 from django.utils.html import format_html_join
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView, UpdateView
+from django.views.generic.list import ListView
 
 from actionlog.mixins import LogActionMixin
 from actionlog.models import ActionLogEntry
@@ -41,7 +44,7 @@ class PublicSiteIndexView(WarnAboutDatabaseUseMixin, TemplateView):
     template_name = 'site_index.html'
 
     def get(self, request, *args, **kwargs):
-        tournaments = Tournament.objects.all()
+        tournaments = Tournament.objects.filter(active=True)
         if request.GET.get('redirect', '') == 'false':
             return super().get(request, *args, **kwargs)
         if tournaments.count() == 1 and not request.user.is_authenticated:
@@ -54,8 +57,24 @@ class PublicSiteIndexView(WarnAboutDatabaseUseMixin, TemplateView):
             return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        kwargs['tournaments'] = Tournament.objects.all()
+        kwargs['tournaments'] = Tournament.objects.filter(active=True)
         return super().get_context_data(**kwargs)
+
+
+class PublicSiteArchiveIndexView(ListView):
+    context_object_name = 'tournaments'
+    template_name = 'site_index.html'
+    model = Tournament
+
+    def get_queryset(self):
+        return super().get_queryset().annotate(
+            annee=Extract(Cast(Min('actionlogentry__timestamp') - timedelta(days=270), output_field=DateTimeField()), 'year'))
+
+
+class PublicSiteArchiveByYearIndexView(PublicSiteArchiveIndexView):
+
+    def get_queryset(self):
+        return super().get_queryset().filter(annee=self.kwargs['annee'])
 
 
 class TournamentPublicHomeView(CacheMixin, TournamentMixin, TemplateView):

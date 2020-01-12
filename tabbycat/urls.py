@@ -86,6 +86,16 @@ urlpatterns = [
     # API
     path('api/v1/',
         include('api.urls')),
+
+    # Old tournaments
+    path('vieux/', include([
+        path('',
+            tournaments.views.PublicSiteArchiveIndexView.as_view(),
+            name='tournament-archive-index'),
+        path('<int:annee>/',
+            tournaments.views.PublicSiteArchiveByYearIndexView.as_view(),
+            name='tournament-by-year-index'),
+    ])),
 ]
 
 if settings.DEBUG and settings.ENABLE_DEBUG_TOOLBAR:  # Only serve debug toolbar when on DEBUG
