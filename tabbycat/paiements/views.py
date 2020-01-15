@@ -153,7 +153,7 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
         return inst
 
     def get_tables(self):
-        self.paiements = Payment.objects.filter(tournament=self.tournament).values_list('pk', flat=True)
+        self.paiements = Payment.objects.filter(tournament=self.tournament, statut=Payment.STATUT_TERMINE).values_list('pk', flat=True)
         return [self.get_summary_table(), self.get_paid_table(), self.get_unpaid_table()]
 
     def get_summary_table(self):
