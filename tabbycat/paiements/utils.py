@@ -20,7 +20,7 @@ def update_or_create_payments():
 
     for order in orders['payments']:
         try:
-            payment = Payment.objects.get(order=order['id'])
+            payment = Payment.objects.get(order=order['order_id'])
         except Payment.DoesNotExist:
             create_from_order(order)
             continue
