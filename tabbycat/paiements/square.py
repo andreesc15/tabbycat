@@ -95,3 +95,15 @@ def get_payment(payment):
         return result.body
     elif result.is_error():
         raise Exception(result.errors)
+
+
+def get_order(order_id):
+    orders_api = client.orders
+
+    body = {"order_ids": [order_id]}
+    result = orders_api.batch_retrieve_orders(SQUARE_LOCATION, body)
+
+    if result.is_success():
+        return result.body['orders'][0]
+    elif result.is_error():
+        raise Exception(result.errors)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Payment(models.Model):
@@ -30,12 +31,13 @@ class Payment(models.Model):
         (STATUT_ECHOUE, 'Échoué'),
     )
 
-    date = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(default=timezone.now)
     reference = models.CharField(editable=False, max_length=40, unique=True,
         verbose_name='reference')
 
-    checkout = models.CharField(max_length=30, unique=True, blank=True, null=True)
-    order = models.CharField(max_length=64, unique=True, blank=True, null=True)
+    checkout_id = models.CharField(max_length=30, unique=True, blank=True, null=True)
+    order_id = models.CharField(max_length=64, unique=True, blank=True, null=True)
+    payment_id = models.CharField(max_length=64, unique=True, blank=True, null=True)
 
     tournament = models.ForeignKey('tournaments.Tournament', models.SET_NULL,
         blank=True, null=True, verbose_name='tournament')
@@ -44,7 +46,7 @@ class Payment(models.Model):
 
     personnes = models.ManyToManyField('participants.Person',
         verbose_name='personnes')
-    montant = models.PositiveIntegerField(default=0, help_text='Argent payé (en sous)')
+    montant = models.PositiveIntegerField(default=0, help_text='Argent payé (cents)')
 
     methode = models.CharField(max_length=1, choices=METHODE_CHOICES)
     statut = models.CharField(max_length=1, choices=STATUT_CHOICES)

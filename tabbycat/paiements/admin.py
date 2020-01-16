@@ -5,7 +5,7 @@ from .models import Payment
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('date', 'reference', 'methode', 'statut')
+    list_display = ('timestamp', 'reference', 'methode', 'statut')
     list_filter = ('methode', 'statut', 'tournament')
     search_fields = ('tournament','institution')
 

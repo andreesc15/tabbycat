@@ -17,7 +17,7 @@ class AdhesionPaymentForm(forms.ModelForm):
         annee = datetime.date(today.year, 8, 1) if today.month > 8 \
             else datetime.date(today.year - 1, 8, 1)
         return Payment.objects.filter(
-            date__gt=annee, tournament__isnull=True, statut=Payment.STATUT_TERMINE
+            timestamp__gt=annee, tournament__isnull=True, statut=Payment.STATUT_TERMINE
         ).values_list('institution_id', flat=True)
 
     def __init__(self, *args, **kwargs):

@@ -1,5 +1,6 @@
 import datetime
 
+import pytz
 from django.contrib import messages
 from django.db.models import Count, Q
 from django.http import HttpResponseRedirect
@@ -17,8 +18,8 @@ from utils.tables import BaseTableBuilder, TabbycatTableBuilder
 
 from .forms import AdhesionPaymentForm, AdminPaymentForm, PublicParticipantSelectForm
 from .models import Payment
-from .square import create_payment
-from .utils import update_or_create_payments
+from .square import create_payment, get_order
+from .utils import STATUTS, update_or_create_payments
 
 
 class PublicAdhesionPaymentView(FormView):
@@ -42,11 +43,17 @@ class PaymentReturnView(View):
 
     def get(self, request, *args, **kwargs):
         paiement = Payment.objects.get(reference=request.GET.get('referenceId'))
-        paiement.order = request.GET.get('transactionId')
+        order = get_order(request.GET.get('transactionId'))
+        date = datetime.datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+
+        paiement.order_id = order['id']
+        if 'tenders' in order:
+            paiement.payment_id = order['tenders'][0]['id']
+        paiement.statut = STATUTS[order['state']]
+        paiement.timestamp = pytz.utc.localize(date)
         paiement.save()
 
         messages.success(request, "Votre paiement a été reçu !")
-        update_or_create_payments()  # Update the listing as soon as possible
         return HttpResponseRedirect(reverse('tabbycat-index'))
 
 
@@ -73,7 +80,7 @@ class AdminAdhesionPaymentView(AdministratorMixin, VueTableTemplateView, FormVie
         annee = datetime.date(today.year, 8, 1) if today.month > 8 \
             else datetime.date(today.year - 1, 8, 1)
         self.deja_paye = Payment.objects.filter(
-            date__gt=annee, tournament__isnull=True, statut=Payment.STATUT_TERMINE
+            timestamp__gt=annee, tournament__isnull=True, statut=Payment.STATUT_TERMINE
         ).values_list('institution_id', flat=True)
         return super().setup(request, *args, **kwargs)
 

@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import pytz
 from django.db.models import Q
 
 from participants.models import Institution, Person
@@ -20,15 +23,15 @@ def update_or_create_payments():
 
     for order in orders['payments']:
         try:
-            payment = Payment.objects.get(order=order['order_id'])
+            payment = Payment.objects.get(order_id=order['order_id'])
         except Payment.DoesNotExist:
             create_from_order(order)
             continue
 
-        pay_state = STATUTS[order['status']]
-        if payment.statut != pay_state:
-            payment.statut = pay_state
-            payment.save()
+        payment.statut = STATUTS[order['status']]
+        date = datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+        payment.timestamp = pytz.utc.localize(date)
+        payment.save()
 
 
 def create_from_order(order):
@@ -45,10 +48,12 @@ def create_from_order(order):
     if note[0] != 'adhesion':
         tournament = Tournament.objects.get(slug=note[0])
 
+    date = datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
     paiement = Payment(
-        order=order['id'], tournament=tournament, institution=institution,
+        order_id=order['id'], tournament=tournament, institution=institution,
         methode=Payment.METHODE_CARTE, statut=STATUTS[order['status']],
-        montant=order['total_money']['amount'],
+        montant=order['total_money']['amount'], payment_id=order['tenders']['id'],
+        timestamp=pytz.utc.localize(date)
     )
     paiement.save()
 
