@@ -197,9 +197,8 @@ class BaseResultForm(forms.Form):
         if self.ballotsub.confirmed:
             self.ballotsub.confirm_timestamp = timezone.now()
 
-        # 5. Notify the Latest Results consumer (for results/overview)
-        if self.ballotsub.confirmed:
-            if self.debate.result_status is self.debate.STATUS_CONFIRMED:
+            # 5. Notify the Latest Results consumer (for results/overview)
+            if self.debate.result_status == Debate.STATUS_CONFIRMED:
                 group_name = BallotResultConsumer.group_prefix + "_" + t.slug
                 async_to_sync(get_channel_layer().group_send)(group_name, {
                     "type": "send_json",
@@ -212,12 +211,12 @@ class BaseResultForm(forms.Form):
         async_to_sync(get_channel_layer().group_send)(group_name, {
             "type": "send_json",
             "data": {
-                'status': self.cleaned_data['debate_result_status'],
+                'status': self.debate.result_status,
                 'icon': meta[0],
                 'class': meta[1],
                 'sort': meta[2],
                 'ballot': self.ballotsub.serialize(t),
-                'round': self.debate.round.id
+                'round': self.debate.round_id
             }
         })
 
@@ -660,6 +659,9 @@ class SingleBallotSetForm(ScoresMixin, BaseBallotSetForm):
                 required=True,
             )
 
+        if self.using_declared_winner:
+            self.fields[self._fieldname_declared_winner()] = self.create_declared_winner_dropdown()
+
     def initial_from_result(self, result):
         initial = super().initial_from_result(result)
 
@@ -748,7 +750,11 @@ class SingleBallotSetForm(ScoresMixin, BaseBallotSetForm):
     def scoresheets(self):
         """Generates a sequence of nested dicts that allows for easy iteration
         through the form. Used in the ballot_set.html.html template."""
-        return [{"teams": self.scoresheet(self._fieldname_score)}]
+        sheets = [{"teams": self.scoresheet(self._fieldname_score)}]
+
+        if self.using_declared_winner:
+            sheets[0]['declared_winner'] = self[self._fieldname_declared_winner()]
+        return sheets
 
 
 class PerAdjudicatorBallotSetForm(ScoresMixin, BaseBallotSetForm):
@@ -932,7 +938,7 @@ class SingleEliminationBallotSetForm(TeamsMixin, BaseBallotSetForm):
 
     def initial_from_result(self, result):
         initial = super().initial_from_result(result)
-        initial[self._fieldname_advancing()] = result.get_winner()
+        initial[self._fieldname_advancing()] = list(result.get_winner())
         return initial
 
     def clean(self):

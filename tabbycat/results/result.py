@@ -248,10 +248,7 @@ class BaseDebateResult:
         if not self.debate.sides_confirmed:
             return  # don't load if sides aren't confirmed
 
-        debateteams = self.debate.debateteam_set.filter(
-                side__in=self.sides).select_related('team')
-
-        for dt in debateteams:
+        for dt in self.debate.debateteam_set.select_related('team').all():
             self.debateteams[dt.side] = dt
 
     def load_scoresheets(self, **kwargs):
@@ -340,12 +337,13 @@ class BaseDebateResult:
             side_dict = self.side_as_dicts(sheet, side, side_name)
 
             # Colour result according to outcome of debate
-            if hasattr(sheet, 'winners'):
-                side_dict["win_style"] = "success" if side in sheet.winners() else "danger"
-            elif hasattr(sheet, 'rank'):
+            if hasattr(sheet, 'rank') and len(self.sides) == 4:
                 rank = sheet.rank(side)
-                if rank:
-                    side_dict["win_style"] = ["success", "info", "warning", "danger"][rank-1]
+                side_dict["rank"] = rank
+                side_dict["win_style"] = ["success", "info", "warning", "danger"][rank-1]
+            elif hasattr(sheet, 'winners'):
+                side_dict["win"] = side in sheet.winners()
+                side_dict["win_style"] = "success" if side in sheet.winners() else "danger"
 
             self.speakers_as_dicts(sheet, side_dict, side, pos_names)
 
@@ -771,12 +769,9 @@ class ConsensusDebateResult(BaseDebateResult):
     def load_scoresheets(self):
         super().load_scoresheets()
 
-        winners = set(self.ballotsub.teamscore_set.filter(
-            debate_team__side__in=self.sides,
-            win=True,
-        ).select_related('debate_team').values_list('debate_team__side', flat=True))
-
-        self.set_winner(winners)
+        for team in self.ballotsub.teamscore_set.select_related('debate_team').all():
+            if team.win:
+                self.add_winner(team.debate_team.side)
 
     def get_winner(self):
         if len(self.scoresheet.winners()) == 0:
@@ -796,7 +791,7 @@ class ConsensusDebateResult(BaseDebateResult):
         return next(iter(self.get_winner()))
 
     def winning_dt(self):
-        return self.debateteams[self.winning_side()]
+        return self.debateteams.get(self.winning_side())
 
     def winning_team(self):
         return self.winning_dt().team

@@ -50,6 +50,7 @@ urlpatterns = [
                 ])),
 
             ])),
+
             path('speaker-categories/', include([
 
                 path('',
