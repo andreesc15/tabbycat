@@ -44,7 +44,7 @@ class PaymentReturnView(View):
     def get(self, request, *args, **kwargs):
         paiement = Payment.objects.get(reference=request.GET.get('referenceId'))
         order = get_order(request.GET.get('transactionId'))
-        date = datetime.datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+        date = datetime.datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%SZ")
 
         paiement.order_id = order['id']
         if 'tenders' in order:
