@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load debate_tags i18n %}
 
-{% block page-subnav-sections %}{% include 'payment_admin_nav.html' %}{% endblock page-subnav-sections %}
+{% block page-subnav-sections %}{% if admin %}{% include 'payment_admin_nav.html' %}{% endif %}{% endblock page-subnav-sections %}
 
 {% block page-alerts %}{% endblock %}
 
