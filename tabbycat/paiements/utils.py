@@ -29,7 +29,7 @@ def update_or_create_payments():
             continue
 
         payment.statut = STATUTS[order['status']]
-        date = datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%SZ")
+        date = datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
         payment.timestamp = pytz.utc.localize(date)
         payment.save()
 
@@ -48,7 +48,7 @@ def create_from_order(order):
     if note[0] != 'adhesion':
         tournament = Tournament.objects.get(slug=note[0])
 
-    date = datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%SZ")
+    date = datetime.strptime(order['updated_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
     paiement = Payment(
         order_id=order['id'], tournament=tournament, institution=institution,
         methode=Payment.METHODE_CARTE, statut=STATUTS[order['status']],
