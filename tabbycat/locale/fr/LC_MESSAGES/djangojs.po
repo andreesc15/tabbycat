@@ -150,10 +150,6 @@ msgid "Uncategorised"
 msgstr "Non catégorisé"
 
 #: checkins/templates/VenuesStatusMixin.vue:
-msgid "No Category"
-msgstr "Aucune catégorie"
-
-#: checkins/templates/VenuesStatusMixin.vue:
 msgid "Priority %1"
 msgstr "Priorité %1"
 
