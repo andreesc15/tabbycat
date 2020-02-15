@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-11-21 04:31\n"
+"PO-Revision-Date: 2020-02-03 16:02\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -152,7 +152,7 @@ msgstr ""
 
 #: tournaments/models.py:42
 msgid "slug"
-msgstr ""
+msgstr "スラグ"
 
 #: tournaments/models.py:43
 msgid "The sub-URL of the tournament, cannot have spaces, e.g. \"australs2016\""

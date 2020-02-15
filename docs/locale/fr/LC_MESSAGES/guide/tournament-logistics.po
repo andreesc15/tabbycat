@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-02-03 16:21\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:5
 msgid "Tournament Logistics"
-msgstr ""
+msgstr "Logistique de tournoi"
 
 #: ../../guide/tournament-logistics.rst:7
 msgid "Unlike the rest of our documentation, this section does not deal with particular features or technical concerns with Tabbycat itself. Instead it is an attempt to outline the logistics of tab direction and aims to be of general relevance for people running major tournaments. At present, it is organised by the various ‘stages' of tabbing a tournament, and most of the content takes the form of check-lists or comments designed to highlight and provide guidance on common issues."
@@ -34,7 +34,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:14
 msgid "Planning and Preparation"
-msgstr ""
+msgstr "Planification et préparation"
 
 #: ../../guide/tournament-logistics.rst:16
 msgid "This section aims to outline concerns that occur in the months before the tournament: after you have agreed to help with tabbing and while the organising committee and adjudication core are deciding how they want to run key processes such as registration and feedback. It is organised in terms of who you should coordinate with in order to plan for a well-tabbed tournament."
@@ -42,7 +42,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:19
 msgid "General Notes"
-msgstr ""
+msgstr "Notes générales"
 
 #: ../../guide/tournament-logistics.rst:21
 msgid "You should avoid being the sole person responsible for that tab unless it is a small tournament. There are many cases where you want to be in several places at once and the easiest way to accommodate that is by having co-directors or trusted assistants. Few tab decisions require a single source of authority; it is far better to have multiple people available to share responsibilities around."
@@ -54,7 +54,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:26
 msgid "Convenors"
-msgstr ""
+msgstr "Directeurs"
 
 #: ../../guide/tournament-logistics.rst:28
 msgid "It might sound obvious but it will pay to have a very thorough conversation about the tab process (more or less the contents of this document) with the convenors a few months out from the tournament. Do this even if you know the convenors to be knowledgeable or experienced debaters. Key concerns are:"
@@ -114,7 +114,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:47
 msgid "Registration"
-msgstr ""
+msgstr "Inscription"
 
 #: ../../guide/tournament-logistics.rst:49
 msgid "Having effective registration systems and processes is one of the most important aspects of preparing to tab a large tournament. Bad registration data *will* make setting up a tab extremely painful and introduces the chance for mistakes or inconsistencies in tab data that will only come to light in the first round. As such:"
@@ -190,7 +190,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:78
 msgid "Adjudication cores"
-msgstr ""
+msgstr "Juges en chef"
 
 #: ../../guide/tournament-logistics.rst:80
 msgid "If there is a group chat for the adjudication core you probably want to be part of it; even if you don't contribute much. There are lots of small things that end up being discussed without consideration of how they will affect tab issues and it is also a chance to get to know — ahead of time — the people you will be working with closely over the tournament."
@@ -390,19 +390,19 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:164
 msgid "Day"
-msgstr ""
+msgstr "Jour"
 
 #: ../../guide/tournament-logistics.rst:164
 msgid "One"
-msgstr ""
+msgstr "Un"
 
 #: ../../guide/tournament-logistics.rst:164
 msgid "Two"
-msgstr ""
+msgstr "Deux"
 
 #: ../../guide/tournament-logistics.rst:164
 msgid "Three"
-msgstr ""
+msgstr "Trois"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "Round"
@@ -410,172 +410,172 @@ msgstr "Tour"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "6"
-msgstr ""
+msgstr "6"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "7"
-msgstr ""
+msgstr "7"
 
 #: ../../guide/tournament-logistics.rst:166
 msgid "8"
-msgstr ""
+msgstr "8"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "Draw generated"
-msgstr ""
+msgstr "Tirage généré"
 
 #: ../../guide/tournament-logistics.rst:168
 #: ../../guide/tournament-logistics.rst:169
 msgid "*Night prior**"
-msgstr ""
+msgstr "*Nuit avant**"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "12:43"
-msgstr ""
+msgstr "12h43"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "16:12"
-msgstr ""
+msgstr "16h12"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "19:17*"
-msgstr ""
+msgstr "19h17*"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "12:05"
-msgstr ""
+msgstr "12h05"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "15:46"
-msgstr ""
+msgstr "15h46"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "19:10*"
-msgstr ""
+msgstr "19h10*"
 
 #: ../../guide/tournament-logistics.rst:168
 msgid "12:07"
-msgstr ""
+msgstr "12h07"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "Allocation finished"
-msgstr ""
+msgstr "Repartition terminé"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "13:17 ``+34m``"
-msgstr ""
+msgstr "13h17 ``+34m``"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "16:36 ``+24m``"
-msgstr ""
+msgstr "16h36 ``+24m``"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "20:28* ``+71m``"
-msgstr ""
+msgstr "20h28* ``+71m``"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "12:58 ``+53m``"
-msgstr ""
+msgstr "12h58 ``+53m``"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "16:24 ``+38m``"
-msgstr ""
+msgstr "16h24 ``+38m``"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "21:30* ``+140m``"
-msgstr ""
+msgstr "21h30* ``+140m``"
 
 #: ../../guide/tournament-logistics.rst:169
 msgid "13:25 ``+78m``"
-msgstr ""
+msgstr "13h25 ``+78m``"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "Motions released"
-msgstr ""
+msgstr "Motions publiées"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "09:28"
-msgstr ""
+msgstr "09h28"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "13:50 ``+33m``"
-msgstr ""
+msgstr "13h50 ``+33m``"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "16:47 ``+11m``"
-msgstr ""
+msgstr "16h47 ``+11m``"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "09:22"
-msgstr ""
+msgstr "09h22"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "13:14 ``+16m``"
-msgstr ""
+msgstr "13h14 ``+16m``"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "16:40 ``+16m``"
-msgstr ""
+msgstr "16h40 ``+16m``"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "9:30"
-msgstr ""
+msgstr "9h30"
 
 #: ../../guide/tournament-logistics.rst:170
 msgid "14:18 ``+53m``"
-msgstr ""
+msgstr "14h18 ``+53m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "First ballot received"
-msgstr ""
+msgstr "Première feuille reçue"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "11:51 ``+143m``"
-msgstr ""
+msgstr "11h51 ``+143m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "15:46 ``+116m``"
-msgstr ""
+msgstr "15h46 ``+116m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "18:52 ``+125m``"
-msgstr ""
+msgstr "18h52 ``+125m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "11:18 ``+116m``"
-msgstr ""
+msgstr "11h18 ``+116m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "15:13 ``+119m``"
-msgstr ""
+msgstr "15h13 ``+119m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "18:40 ``+120m``"
-msgstr ""
+msgstr "18h40 ``+120m``"
 
 #: ../../guide/tournament-logistics.rst:171
 msgid "11:35 ``+125m``"
-msgstr ""
+msgstr "11h35 ``+125m``"
 
 #: ../../guide/tournament-logistics.rst:171
 #: ../../guide/tournament-logistics.rst:172
@@ -584,35 +584,35 @@ msgstr "?"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "Last ballot confirmed"
-msgstr ""
+msgstr "Dernière feuille confirmée"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "12:38 ``+47m``"
-msgstr ""
+msgstr "12h38 ``+47m``"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "16:07 ``+21m``"
-msgstr ""
+msgstr "16h07 ``+21m``"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "19:15 ``+23m``"
-msgstr ""
+msgstr "19h15 ``+23m``"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "12:05 ``+47m``"
-msgstr ""
+msgstr "12h05 ``+47m``"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "15:44 ``+31m``"
-msgstr ""
+msgstr "15h44 ``+31m``"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "19:09 ``+29m``"
-msgstr ""
+msgstr "19h09 ``+29m``"
 
 #: ../../guide/tournament-logistics.rst:172
 msgid "12:06 ``+31m``"
-msgstr ""
+msgstr "12h06 ``+31m``"
 
 #: ../../guide/tournament-logistics.rst:176
 msgid "Tab Setup"
@@ -680,7 +680,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:213
 msgid "Data import: rooms"
-msgstr ""
+msgstr "Importation de données: salles"
 
 #: ../../guide/tournament-logistics.rst:217
 msgid "Ideally you want not just a list of rooms, but also of their types and categories — i.e. what building a room is in and/or it will be coded so that participants can find it."

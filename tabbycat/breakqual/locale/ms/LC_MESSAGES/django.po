@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-12-24 02:25\n"
+"PO-Revision-Date: 2020-02-03 12:53\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Malay\n"
 "Language: ms_MY\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: breakqual/models.py:8
 msgid "tournament"
-msgstr ""
+msgstr "pertandingan"
 
 #: breakqual/models.py:10
 msgid "name"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: breakqual/models.py:69
 msgid "team"
-msgstr ""
+msgstr "pasukan"
 
 #: breakqual/models.py:71
 msgid "rank"

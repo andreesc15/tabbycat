@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-04 13:37-0500\n"
-"PO-Revision-Date: 2019-11-21 04:31\n"
+"PO-Revision-Date: 2020-02-03 13:30\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Malay\n"
 "Language: ms_MY\n"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: results/models.py:35
 msgid "timestamp"
-msgstr ""
+msgstr "cap masa"
 
 #: results/models.py:37
 msgid "version"
@@ -154,7 +154,7 @@ msgstr ""
 
 #: results/models.py:53
 msgid "IP address"
-msgstr ""
+msgstr "alamat IP"
 
 #: results/models.py:90
 msgid "A tab room ballot must have a user associated."
@@ -162,7 +162,7 @@ msgstr ""
 
 #: results/models.py:98
 msgid "debate"
-msgstr ""
+msgstr "debat"
 
 #: results/models.py:100
 msgid "motion"
@@ -192,7 +192,7 @@ msgstr ""
 
 #: results/models.py:183
 msgid "debate adjudicator"
-msgstr ""
+msgstr "hakim debat"
 
 #: results/models.py:185 results/models.py:221 results/models.py:263
 msgid "debate team"

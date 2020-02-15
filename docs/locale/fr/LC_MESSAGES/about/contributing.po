@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-02-04 15:58\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../../../CONTRIBUTING.rst:3
 msgid "Contributing"
-msgstr ""
+msgstr "Contribuer"
 
 #: ../../../CONTRIBUTING.rst:5
 msgid "Contributions are welcome, and are greatly appreciated! Every little bit helps, and credit will be given. While at its core Tabbycat is a software project, you do not need to know how to code or use Git in order to help. We welcome feedback and ideas based on your tabbing experience and appreciate suggestions or proposals for how to improve the wording, translation, and design of our interface and documentation."
@@ -38,7 +38,7 @@ msgstr ""
 
 #: ../../../CONTRIBUTING.rst:15
 msgid "Bug reports"
-msgstr ""
+msgstr "Signaler des bogues"
 
 #: ../../../CONTRIBUTING.rst:17
 msgid "Please report bugs by opening a new issue in our `GitHub repository <https://github.com/TabbycatDebate/tabbycat/issues>`_. It is most helpful if you can include:"

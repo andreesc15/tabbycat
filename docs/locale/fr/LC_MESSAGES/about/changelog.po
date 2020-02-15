@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-02-04 16:18\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:3
 msgid "Change Log"
-msgstr ""
+msgstr "Journal des modifications"
 
 #: ../../../CHANGELOG.rst:6
 msgid "2.4.0 (Maine)"
-msgstr ""
+msgstr "2.4.0 (Maine)"
 
 #: ../../../CHANGELOG.rst:7
 msgid "*Release date: ?*"
-msgstr ""
+msgstr "*Date de sortie : ?*"
 
 #: ../../../CHANGELOG.rst:9
 msgid "Added support for Russian, and shortened the language selector"
@@ -62,11 +62,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:20
 msgid "2.3.2"
-msgstr ""
+msgstr "2.3.2"
 
 #: ../../../CHANGELOG.rst:21
 msgid "*Release date: 19 October 2019*"
-msgstr ""
+msgstr "*Date de sortie : 19 octobre 2019*"
 
 #: ../../../CHANGELOG.rst:23
 msgid "Fixed issue where teams would appear to be unavailable in break rounds"
@@ -79,11 +79,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:28
 msgid "2.3.1"
-msgstr ""
+msgstr "2.3.1"
 
 #: ../../../CHANGELOG.rst:29
 msgid "*Release date: 6 October 2019*"
-msgstr ""
+msgstr "*Date de sortie : 6 octobre 2019*"
 
 #: ../../../CHANGELOG.rst:31
 msgid "Fixed issue where the institutions list would count teams/adjudicators outside of the tournament"
@@ -103,11 +103,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:38
 msgid "2.3.0 (LaPerm)"
-msgstr ""
+msgstr "2.3.0 (LaPerm)"
 
 #: ../../../CHANGELOG.rst:39
 msgid "*Release date: 27 September 2019*"
-msgstr ""
+msgstr "*Date de sortie : 27 septembre 2019*"
 
 #: ../../../CHANGELOG.rst:44
 msgid "Added a preformed panel system which provides a powerful take on a 'shadow draw' workflow"
@@ -263,11 +263,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:82
 msgid "2.2.10"
-msgstr ""
+msgstr "2.2.10"
 
 #: ../../../CHANGELOG.rst:83
 msgid "*Release date: 10 February 2019*"
-msgstr ""
+msgstr "*Date de sortie : 10 février 2019*"
 
 #: ../../../CHANGELOG.rst:85
 msgid "Fixed the display of feedback quantities on the Feedback Overview Page"
@@ -279,11 +279,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:90
 msgid "2.2.9"
-msgstr ""
+msgstr "2.2.9"
 
 #: ../../../CHANGELOG.rst:91
 msgid "*Release date: 24 January 2019*"
-msgstr ""
+msgstr "*Date de sortie : 24 janvier 2019*"
 
 #: ../../../CHANGELOG.rst:93
 msgid "Fixed an issue that could cause errors for tournaments when using an atypical number of rounds and break sizes. Thanks to Étienne for this fix"
@@ -295,11 +295,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:98
 msgid "2.2.8"
-msgstr ""
+msgstr "2.2.8"
 
 #: ../../../CHANGELOG.rst:99
 msgid "*Release date: 14 December 2018*"
-msgstr ""
+msgstr "*Date de sortie : 14 décembre 2018*"
 
 #: ../../../CHANGELOG.rst:101
 msgid "Fix issue where the check-in buttons were always disabled on admin and assistant pages"
@@ -311,11 +311,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:106
 msgid "2.2.7"
-msgstr ""
+msgstr "2.2.7"
 
 #: ../../../CHANGELOG.rst:107
 msgid "*Release date: 16 November 2018*"
-msgstr ""
+msgstr "*Date de sortie : 16 novembre 2018*"
 
 #: ../../../CHANGELOG.rst:109
 msgid "Lock redis-py version to 2.10.6, as workaround for `compatibility issue between django-redis and redis-py <https://github.com/niwinz/django-redis/issues/342>`_"
@@ -327,11 +327,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:114
 msgid "2.2.6"
-msgstr ""
+msgstr "2.2.6"
 
 #: ../../../CHANGELOG.rst:115
 msgid "*Release date: 14 November 2018*"
-msgstr ""
+msgstr "*Date de sortie : 14 novembre 2018*"
 
 #: ../../../CHANGELOG.rst:117
 msgid "Fix issue where check-ins could not be revoked"
@@ -351,11 +351,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:124
 msgid "2.2.5"
-msgstr ""
+msgstr "2.2.5"
 
 #: ../../../CHANGELOG.rst:125
 msgid "*Release date: 21 October 2018*"
-msgstr ""
+msgstr "*Date de sortie : 21 octobre 2018*"
 
 #: ../../../CHANGELOG.rst:127
 msgid "Remove the buttons from the public check-ins page (as these do nothing unless the user is logged in)"
@@ -371,11 +371,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:133
 msgid "2.2.4"
-msgstr ""
+msgstr "2.2.4"
 
 #: ../../../CHANGELOG.rst:134
 msgid "*Release date: 9 October 2018*"
-msgstr ""
+msgstr "*Date de sortie : 9 octobre 2018*"
 
 #: ../../../CHANGELOG.rst:136
 msgid "Small fixes for functions related to email sending, conflict highlighting, and certain configurations of standings metrics"
@@ -383,11 +383,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:140
 msgid "2.2.3"
-msgstr ""
+msgstr "2.2.3"
 
 #: ../../../CHANGELOG.rst:141
 msgid "*Release date: 28 September 2018*"
-msgstr ""
+msgstr "*Date de sortie : 28 septembre 2018*"
 
 #: ../../../CHANGELOG.rst:143
 msgid "*Literally* fix the issue causing public views of released scoresheets to throw errors (thanks for the pull request Étienne)"
@@ -403,11 +403,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:149
 msgid "2.2.2"
-msgstr ""
+msgstr "2.2.2"
 
 #: ../../../CHANGELOG.rst:150
 msgid "*Release date: 22 September 2018*"
-msgstr ""
+msgstr "*Date de sortie : 22 septembre 2018*"
 
 #: ../../../CHANGELOG.rst:152
 msgid "*Actually* fix the issue causing public views of released scoresheets to throw errors"
@@ -415,11 +415,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:156
 msgid "2.2.1"
-msgstr ""
+msgstr "2.2.1"
 
 #: ../../../CHANGELOG.rst:157
 msgid "*Release date: 21 September 2018*"
-msgstr ""
+msgstr "*Date de sortie : 21 septembre 2018*"
 
 #: ../../../CHANGELOG.rst:159
 msgid "Fix issue causing public views of released scoresheets to throw errors"
@@ -427,11 +427,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:163
 msgid "2.2.0 (Khao Manee)"
-msgstr ""
+msgstr "2.2.0 (Khao Manee)"
 
 #: ../../../CHANGELOG.rst:164
 msgid "*Release date: 20 September 2018*"
-msgstr ""
+msgstr "*Date de sortie : 20 septembre 2018*"
 
 #: ../../../CHANGELOG.rst:167
 msgid "Implemented a new server architecture on Heroku along with other optimisation that should significantly improve the performance of sites receiving lots of traffic. Note that if you are upgrading an existing Heroku instance this requires a few tweaks before you deploy the update:"
@@ -519,11 +519,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:191
 msgid "2.1.3"
-msgstr ""
+msgstr "2.1.3"
 
 #: ../../../CHANGELOG.rst:192
 msgid "*Release date: 21 August 2018*"
-msgstr ""
+msgstr "*Date de sortie : 21 août 2018*"
 
 #: ../../../CHANGELOG.rst:194
 msgid "Added an alert for British Parliamentary format grand-final ballots that explains the workaround needed to nominate a sole winner"
@@ -551,11 +551,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:203
 msgid "2.1.2"
-msgstr ""
+msgstr "2.1.2"
 
 #: ../../../CHANGELOG.rst:204
 msgid "*Release date: 14 July 2018*"
-msgstr ""
+msgstr "*Date de sortie : 14 juillet 2018*"
 
 #: ../../../CHANGELOG.rst:206
 msgid "Fixed an error caused when calculating breaks including teams without institutions"
@@ -583,11 +583,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:215
 msgid "2.1.1"
-msgstr ""
+msgstr "2.1.1"
 
 #: ../../../CHANGELOG.rst:216
 msgid "*Release date: 19 May 2018*"
-msgstr ""
+msgstr "*Date de sortie : 19 mai 2018*"
 
 #: ../../../CHANGELOG.rst:218
 msgid "The Scan Identifiers page now orders check-ins from top to bottom"
@@ -603,11 +603,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:224
 msgid "2.1.0 (Japanese Bobtail)"
-msgstr ""
+msgstr "2.1.0 (Bobtail japonais)"
 
 #: ../../../CHANGELOG.rst:225
 msgid "*Release date: 7 May 2018*"
-msgstr ""
+msgstr "*Date de sortie : 7 mai 2018*"
 
 #: ../../../CHANGELOG.rst:227
 msgid "Added an introductory modal for the adjudicator allocation page to help outline how the features and workflow operate"
@@ -811,7 +811,7 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:280
 msgid "Upgraded to Django 2.0"
-msgstr ""
+msgstr "Mis à jour vers Django 2.0"
 
 #: ../../../CHANGELOG.rst:279
 msgid "Converted most raw SQL queries to use the new ``filter`` keyword in annotations"
@@ -819,11 +819,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:283
 msgid "2.0.7"
-msgstr ""
+msgstr "2.0.7"
 
 #: ../../../CHANGELOG.rst:284
 msgid "*Release date: 13 April 2018*"
-msgstr ""
+msgstr "*Date de sortie : 13 avril 2018*"
 
 #: ../../../CHANGELOG.rst:286
 msgid "Fixed an issue preventing draws with pre-allocate sides generating"
@@ -831,11 +831,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:290
 msgid "2.0.6"
-msgstr ""
+msgstr "2.0.6"
 
 #: ../../../CHANGELOG.rst:291
 msgid "*Release date: 20 March 2018*"
-msgstr ""
+msgstr "*Date de sortie : 20 mars 2018*"
 
 #: ../../../CHANGELOG.rst:293
 msgid "Added reminder to add own-institution conflicts in the Edit Database area"
@@ -843,11 +843,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:298
 msgid "2.0.5"
-msgstr ""
+msgstr "2.0.5"
 
 #: ../../../CHANGELOG.rst:299
 msgid "*Release date: 7 February 2018*"
-msgstr ""
+msgstr "*Date de sortie : 7 février 2018*"
 
 #: ../../../CHANGELOG.rst:301
 msgid "Improved the printing of scoresheets and feedback forms on Chrome."
@@ -855,11 +855,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:306
 msgid "2.0.4"
-msgstr ""
+msgstr "2.0.4"
 
 #: ../../../CHANGELOG.rst:307
 msgid "*Release date: 22 January 2018*"
-msgstr ""
+msgstr "*Date de sortie : 22 janvier 2018*"
 
 #: ../../../CHANGELOG.rst:309
 msgid "Add alert for users who try to do voting ballots on BP-configured tournaments"
@@ -883,11 +883,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:318
 msgid "2.0.3"
-msgstr ""
+msgstr "2.0.3"
 
 #: ../../../CHANGELOG.rst:319
 msgid "*Release date: 3 December 2017*"
-msgstr ""
+msgstr "*Date de sortie : 3 décembre 2017*"
 
 #: ../../../CHANGELOG.rst:321
 msgid "Fixed issue where the 'prefix team name with institution name' checkbox would not be correctly saved when using the Simple Importer"
@@ -903,11 +903,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:327
 msgid "2.0.2"
-msgstr ""
+msgstr "2.0.2"
 
 #: ../../../CHANGELOG.rst:328
 msgid "*Release date: 27 November 2017*"
-msgstr ""
+msgstr "*Date de sortie : 27 novembre 2017*"
 
 #: ../../../CHANGELOG.rst:333
 msgid "Fixes and improvements to diversity overview"
@@ -955,11 +955,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:344
 msgid "2.0.1"
-msgstr ""
+msgstr "2.0.1"
 
 #: ../../../CHANGELOG.rst:345
 msgid "*Release date: 21 November 2017*"
-msgstr ""
+msgstr "*Date de sortie : 21 novembre 2017*"
 
 #: ../../../CHANGELOG.rst:347
 msgid "Fixed issue where results submission would crash if sides are unconfirmed"
@@ -975,11 +975,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:353
 msgid "2.0.0 (Iberian Lynx)"
-msgstr ""
+msgstr "2.0.0 (Lynx pardelle)"
 
 #: ../../../CHANGELOG.rst:354
 msgid "*Release date: 13 November 2017*"
-msgstr ""
+msgstr "*Date de sortie : 13 novembre 2017*"
 
 #: ../../../CHANGELOG.rst:358
 msgid "British Parliamentary support"
@@ -1099,11 +1099,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:389
 msgid "1.4.6"
-msgstr ""
+msgstr "1.4.6"
 
 #: ../../../CHANGELOG.rst:390
 msgid "*Release date: 23 October 2017*"
-msgstr ""
+msgstr "*Date de sortie : 23 octobre 2017*"
 
 #: ../../../CHANGELOG.rst:392
 msgid "Fixed issue where speaker standings with a large amount of non-ranking speakers would cause the page to load slowly or time-out."
@@ -1111,11 +1111,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:396
 msgid "1.4.5"
-msgstr ""
+msgstr "1.4.5"
 
 #: ../../../CHANGELOG.rst:397
 msgid "*Release date: 14 October 2017*"
-msgstr ""
+msgstr "*Date de sortie : 14 octobre 2017*"
 
 #: ../../../CHANGELOG.rst:399
 msgid "Added warning message when adjudicator scores are outside the expected range"
@@ -1127,11 +1127,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:404
 msgid "1.4.4"
-msgstr ""
+msgstr "1.4.4"
 
 #: ../../../CHANGELOG.rst:405
 msgid "*Release date: 27 September 2017*"
-msgstr ""
+msgstr "*Date de sortie : 27 septembre 2017*"
 
 #: ../../../CHANGELOG.rst:407
 msgid "Fixed Vue dependency issue preventing Heroku installs after a dependency release"
@@ -1147,11 +1147,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:413
 msgid "1.4.3"
-msgstr ""
+msgstr "1.4.3"
 
 #: ../../../CHANGELOG.rst:414
 msgid "*Release date: 9 September 2017*"
-msgstr ""
+msgstr "*Date de sortie : 9 septembre 2017*"
 
 #: ../../../CHANGELOG.rst:416
 msgid "A number of improvements to error handling and logging"
@@ -1167,11 +1167,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:422
 msgid "1.4.2"
-msgstr ""
+msgstr "1.4.2"
 
 #: ../../../CHANGELOG.rst:423
 msgid "*Release date: 23 August 2017*"
-msgstr ""
+msgstr "*Date de sortie : 23 août 2017*"
 
 #: ../../../CHANGELOG.rst:425
 msgid "Minor bug fixes and error logging improvements"
@@ -1179,11 +1179,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:429
 msgid "1.4.1"
-msgstr ""
+msgstr "1.4.1"
 
 #: ../../../CHANGELOG.rst:430
 msgid "*Release date: 2 August 2017*"
-msgstr ""
+msgstr "*Date de sortie : 2 août 2017*"
 
 #: ../../../CHANGELOG.rst:432
 msgid "Fixed bug that prevented edited matchups from being saved"
@@ -1195,11 +1195,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:437
 msgid "1.4.0 (Havana Brown)"
-msgstr ""
+msgstr "1.4.0 (Havana Brown)"
 
 #: ../../../CHANGELOG.rst:438
 msgid "*Release date: 26 July 2017*"
-msgstr ""
+msgstr "*Date de sortie : 26 juillet 2017*"
 
 #: ../../../CHANGELOG.rst:444
 msgid "Overhauled the adjudicator allocation, venue allocation, and matchups editing pages, including:"
@@ -1271,11 +1271,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:460
 msgid "1.3.1"
-msgstr ""
+msgstr "1.3.1"
 
 #: ../../../CHANGELOG.rst:461
 msgid "*Release date: 26 May 2017*"
-msgstr ""
+msgstr "*Date de sortie : 26 mai 2017*"
 
 #: ../../../CHANGELOG.rst:463
 msgid "Fixed bug that allowed duplicate emoji to be occasionally generated"
@@ -1283,11 +1283,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:467
 msgid "1.3.0 (Genetta)"
-msgstr ""
+msgstr "1.3.0 (Genetta)"
 
 #: ../../../CHANGELOG.rst:468
 msgid "*Release date: 9 May 2017*"
-msgstr ""
+msgstr "*Date de sortie : 9 mai 2017*"
 
 #: ../../../CHANGELOG.rst:470
 msgid "Added the ability to mark speeches as duplicates when entering ballots so that they will not show in speaker tabs, intended for use with 'iron-man' speeches and swing speakers"
@@ -1339,11 +1339,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:485
 msgid "1.2.3"
-msgstr ""
+msgstr "1.2.3"
 
 #: ../../../CHANGELOG.rst:486
 msgid "*Release date: 17 March 2017*"
-msgstr ""
+msgstr "*Date de sortie : 17 mars 2017*"
 
 #: ../../../CHANGELOG.rst:488
 msgid "Improved the display of the admin ballot entry form on mobile devices"
@@ -1356,11 +1356,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:493
 msgid "1.2.2"
-msgstr ""
+msgstr "1.2.2"
 
 #: ../../../CHANGELOG.rst:494
 msgid "*Release date: 4 March 2017*"
-msgstr ""
+msgstr "*Date de sortie : 4 mars 2017*"
 
 #: ../../../CHANGELOG.rst:496
 msgid "Protected debate-team objects from cascaded deletion, and added warning messages with guidance when users would otherwise do this"
@@ -1368,11 +1368,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:501
 msgid "1.2.1"
-msgstr ""
+msgstr "1.2.1"
 
 #: ../../../CHANGELOG.rst:502
 msgid "*Release date: 25 February 2017*"
-msgstr ""
+msgstr "*Date de sortie : 25 février 2017*"
 
 #: ../../../CHANGELOG.rst:504
 msgid "Printable feedback forms will now display the default rating scale, any configured introduction text, and better prompt you to add additional questions"
@@ -1380,11 +1380,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:509
 msgid "1.2.0 (Foldex)"
-msgstr ""
+msgstr "1.2.0 (Foldex)"
 
 #: ../../../CHANGELOG.rst:510
 msgid "*Release date: 15 February 2017*"
-msgstr ""
+msgstr "*Date de sortie : 15 février 2017*"
 
 #: ../../../CHANGELOG.rst:512
 msgid "Changed the core workflow by splitting display- and motion- related activities into separate pages to simplify each stage of running a round"
@@ -1424,11 +1424,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:524
 msgid "1.1.7"
-msgstr ""
+msgstr "1.1.7"
 
 #: ../../../CHANGELOG.rst:525
 msgid "*Release date: 31 January 2017*"
-msgstr ""
+msgstr "*Date de sortie : 31 janvier 2017*"
 
 #: ../../../CHANGELOG.rst:527
 msgid "Yet more minor bug fixes"
@@ -1444,11 +1444,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:533
 msgid "1.1.6"
-msgstr ""
+msgstr "1.1.6"
 
 #: ../../../CHANGELOG.rst:534
 msgid "*Release date: 19 January 2017*"
-msgstr ""
+msgstr "*Date de sortie : 19 janvier 2017*"
 
 #: ../../../CHANGELOG.rst:536
 msgid "A number of minor bug fixes"
@@ -1460,11 +1460,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:541
 msgid "1.1.5"
-msgstr ""
+msgstr "1.1.5"
 
 #: ../../../CHANGELOG.rst:542
 msgid "*Release date: 12 January 2017*"
-msgstr ""
+msgstr "*Date de sortie : 12 janvier 2017*"
 
 #: ../../../CHANGELOG.rst:544
 msgid "A number of minor bug fixes and improvements to documentation"
@@ -1472,11 +1472,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:548
 msgid "1.1.4"
-msgstr ""
+msgstr "1.1.4"
 
 #: ../../../CHANGELOG.rst:549
 msgid "*Release date: 25 November 2016*"
-msgstr ""
+msgstr "*Date de sortie : 25 novembre 2016*"
 
 #: ../../../CHANGELOG.rst:551
 msgid "Redesigned the footer area to better describe Tabbycat and to promote donations and related projects"
@@ -1492,11 +1492,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:557
 msgid "1.1.3"
-msgstr ""
+msgstr "1.1.3"
 
 #: ../../../CHANGELOG.rst:558
 msgid "*Release date: 15 September 2016*"
-msgstr ""
+msgstr "*Date de sortie : 15 septembre 2016*"
 
 #: ../../../CHANGELOG.rst:560
 msgid "Fixed bug affecting some migrations from earlier versions"
@@ -1516,11 +1516,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:567
 msgid "1.1.2"
-msgstr ""
+msgstr "1.1.2"
 
 #: ../../../CHANGELOG.rst:568
 msgid "*Release date: 14 September 2016*"
-msgstr ""
+msgstr "*Date de sortie : 14 septembre 2016*"
 
 #: ../../../CHANGELOG.rst:570
 msgid "Allow panels with even number of adjudicators (with warnings), by giving chair the casting vote"
@@ -1552,11 +1552,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:580
 msgid "1.1.1"
-msgstr ""
+msgstr "1.1.1"
 
 #: ../../../CHANGELOG.rst:581
 msgid "*Release date: 8 September 2016*"
-msgstr ""
+msgstr "*Date de sortie : 8 septembre 2016*"
 
 #: ../../../CHANGELOG.rst:583
 msgid "Fixed a bug where the team standings and team tab would crash when some emoji were not set"
@@ -1564,11 +1564,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:587
 msgid "1.1.0 (Egyptian Mau)"
-msgstr ""
+msgstr "1.1.0 (Mau égyptien)"
 
 #: ../../../CHANGELOG.rst:588
 msgid "*Release date: 3 September 2016*"
-msgstr ""
+msgstr "*Date de sortie : 3 septembre 2016*"
 
 #: ../../../CHANGELOG.rst:590
 msgid "Added support for the United Asian Debating Championships style"
@@ -1592,11 +1592,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:598
 msgid "1.0.1"
-msgstr ""
+msgstr "1.0.1"
 
 #: ../../../CHANGELOG.rst:599
 msgid "*Release date: 19 August 2016*"
-msgstr ""
+msgstr "*Date de sortie : 19 août 2016*"
 
 #: ../../../CHANGELOG.rst:601
 msgid "Fixed a minor bug with the visual importer affecting similarly named institutions"
@@ -1612,11 +1612,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:607
 msgid "1.0.0 (Devon Rex)"
-msgstr ""
+msgstr "1.0.0 (Devon Rex)"
 
 #: ../../../CHANGELOG.rst:608
 msgid "*Release date: 16 August 2016*"
-msgstr ""
+msgstr "*Date de sortie : 16 août 2016*"
 
 #: ../../../CHANGELOG.rst:613
 msgid "Redesigned and redeveloped adjudicator allocation page"
@@ -1640,7 +1640,7 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:616
 msgid "New features"
-msgstr ""
+msgstr "Nouvelles fonctionnalités"
 
 #: ../../../CHANGELOG.rst:616
 msgid "Added record pages for teams and adjudicators"
@@ -1708,11 +1708,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:636
 msgid "0.9.0 (Chartreux)"
-msgstr ""
+msgstr "0.9.0 (Chartreux)"
 
 #: ../../../CHANGELOG.rst:637
 msgid "*Release date: 13 June 2016*"
-msgstr ""
+msgstr "*Date de sortie : 13 juin 2016*"
 
 #: ../../../CHANGELOG.rst:639
 msgid "Added a beta implementation of the break rounds workflow"
@@ -1756,11 +1756,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:652
 msgid "0.8.3"
-msgstr ""
+msgstr "0.8.3"
 
 #: ../../../CHANGELOG.rst:653
 msgid "*Release date: 4 April 2016*"
-msgstr ""
+msgstr "*Date de sortie : 4 avril 2016*"
 
 #: ../../../CHANGELOG.rst:655
 msgid "Restored and reworking printing functionality for scoresheets/feedback"
@@ -1784,11 +1784,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:664
 msgid "0.8.2"
-msgstr ""
+msgstr "0.8.2"
 
 #: ../../../CHANGELOG.rst:665
 msgid "*Release date: 20 March 2016*"
-msgstr ""
+msgstr "*Date de sortie : 20 mars 2016*"
 
 #: ../../../CHANGELOG.rst:667
 msgid "Fixed issue where scores from individual ballots would be deleted when any other panel in the round was edited"
@@ -1800,11 +1800,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:672
 msgid "0.8.1"
-msgstr ""
+msgstr "0.8.1"
 
 #: ../../../CHANGELOG.rst:673
 msgid "*Release date: 15 March 2016*"
-msgstr ""
+msgstr "*Date de sortie : 15 mars 2016*"
 
 #: ../../../CHANGELOG.rst:675
 msgid "Fixed a bug where editing a Team in the admin section could cause an error"
@@ -1820,11 +1820,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:681
 msgid "0.8.0 (Bengal)"
-msgstr ""
+msgstr "0.8.0 (Bengal)"
 
 #: ../../../CHANGELOG.rst:682
 msgid "*Release date: 29 February 2016*"
-msgstr ""
+msgstr "*Date de sortie : 29 février 2016*"
 
 #: ../../../CHANGELOG.rst:684
 msgid "Upgraded to Python 3.4, dropped support for Python 2"
@@ -1872,11 +1872,11 @@ msgstr ""
 
 #: ../../../CHANGELOG.rst:698
 msgid "0.7.0 (Abyssinian)"
-msgstr ""
+msgstr "0.7.0 (Abyssinien)"
 
 #: ../../../CHANGELOG.rst:699
 msgid "*Release date: 31 July 2015*"
-msgstr ""
+msgstr "*Date de sortie : 31 juillet 2015*"
 
 #: ../../../CHANGELOG.rst:701
 msgid "Support for multiple tournaments"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 02:34\n"
+"PO-Revision-Date: 2020-02-04 03:38\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -134,11 +134,11 @@ msgstr "Les participants de tournoi (autre que l’équipe de jumelage) n’ont 
 
 #: ../../features/user-accounts.rst:52
 msgid "When doing data entry, users with superuser status should use the **assistant area**. The administrator area is intended for managing the tournament, and doesn't include someand should **not** in general be used for data entry. Specifically, the administrator area lacks checks that are important for data integrity assurance. It should be used only to override the normal :ref:`data entry <data-entry>` procedure, for example, to unconfirm or modify a ballot."
-msgstr ""
+msgstr "Lors de la saisie des données, les super-utilisateurs devraient utiliser **l'aire des assistants**. L'aire d'administrateur est pour la gestion du tournoi, généralement **pas** pour la saisie de données. Spécifiquement, l'aire d'administrateur n'a pas de vérification qui est important pour l'intégrité des données. Il devrait seulement être utilisé pour redéfinir la procédure de :ref:`saisie de données <data-entry>` normale, par exemple, pour dé-confirmer ou modifier une feuille."
 
 #: ../../features/user-accounts.rst:54
 msgid "The **Edit Database** interface should not be used except where it is actually necessary. There are a few functions which require this, but as a principle, it shouldn't be used as a matter of course."
-msgstr ""
+msgstr "L'**aire de la base de données** ne devrait pas être utilisé que lorsque c'est absolument nécessaire. Il y a quelques fonctionnalités qui le requièrent, mais comme principe, ne devrait pas être utilisé en opération normale."
 
 #: ../../features/user-accounts.rst:56
 msgid "In theory, you could grant an account staff status but not superuser status. But then they'd be allowed to edit the database, but not run the tournament, which would be weird."
@@ -182,11 +182,11 @@ msgstr "L’adresse courriel est facultative."
 
 #: ../../features/user-accounts.rst:73
 msgid "This email address is only used to reset their password if they forget it, and has nothing to do with the email address that Tabbycat uses to send emails to tournament participants (*e.g.* private URL links)."
-msgstr ""
+msgstr "Cet adresse courriel est seulement utiliser pour réinitialiser leur mot de passe s'ils l'oublient, n'ayant aucun lien avec l'adresse courriel que Tabbycat utilise pour envoyer les courriels aux participants de tournoi (*e.g.* les liens privées)."
 
 #: ../../features/user-accounts.rst:75
 msgid "If they are being assigned superuser and/or staff status, check the relevant boxes."
-msgstr ""
+msgstr "S'ils auront le statut de super-utilisateur ou de personnel, cochez les cases pertinents."
 
 #: ../../features/user-accounts.rst:77
 msgid "Click \"Save\" or \"Save and add another\"."

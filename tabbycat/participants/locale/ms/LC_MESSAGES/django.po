@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-11-21 04:29\n"
+"PO-Revision-Date: 2020-02-04 13:28\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Malay\n"
 "Language: ms_MY\n"
@@ -71,7 +71,7 @@ msgstr ""
 #: participants/models.py:54 participants/models.py:158
 #: participants/models.py:342
 msgid "institution"
-msgstr ""
+msgstr "institusi"
 
 #: participants/models.py:55
 msgid "institutions"
@@ -80,7 +80,7 @@ msgstr ""
 #: participants/models.py:63 participants/models.py:160
 #: participants/models.py:345
 msgid "tournament"
-msgstr ""
+msgstr "pertandingan"
 
 #. Translators: Translate ESL to the acronym for "<target language> as a second/foreign language", not "English"
 #: participants/models.py:67
@@ -254,7 +254,7 @@ msgstr ""
 
 #: participants/models.py:180
 msgid "type"
-msgstr ""
+msgstr "jenis"
 
 #: participants/models.py:184
 msgid "emoji"
@@ -262,7 +262,7 @@ msgstr ""
 
 #: participants/models.py:198 participants/models.py:321
 msgid "team"
-msgstr ""
+msgstr "pasukan"
 
 #: participants/models.py:199
 msgid "teams"
@@ -326,7 +326,7 @@ msgstr ""
 
 #: participants/models.py:377
 msgid "adjudicator"
-msgstr ""
+msgstr "hakim"
 
 #: participants/models.py:378
 msgid "adjudicators"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-11-21 04:31\n"
+"PO-Revision-Date: 2020-02-03 14:46\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Malay\n"
 "Language: ms_MY\n"
@@ -34,15 +34,15 @@ msgstr ""
 
 #: utils/tables.py:157
 msgid "chair"
-msgstr ""
+msgstr "Yang Di-Pertua"
 
 #: utils/tables.py:158
 msgid "panellist"
-msgstr ""
+msgstr "ahli panel"
 
 #: utils/tables.py:159
 msgid "trainee"
-msgstr ""
+msgstr "trainee"
 
 #: utils/tables.py:162
 msgid "—"

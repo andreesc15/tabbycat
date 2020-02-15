@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-02-04 15:49\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,47 +18,47 @@ msgstr ""
 
 #: ../../features/team-code-names.rst:5
 msgid "Team Code Names"
-msgstr ""
+msgstr "Noms code d'équipe"
 
 #: ../../features/team-code-names.rst:7
 msgid "Some tournaments use \"code names\" to obscure the institutional affiliations of teams. For example, rather than calling a team \"Harvard DK\", they would be presented in the draw as \"Butterfly\". A natural way to do this would be just to change the name of every team, but then the team's \"real name\" would be hidden from tournament staff, too."
-msgstr ""
+msgstr "Certains tournois utilisent des « noms code » pour masquer les affiliations institutionnelles des équipes. Par exemple, à la place d'appeler un équipe « Harvard DK », il serait affiché dans les tirages comme « Papillon ». Une façon naturelle de le faire serait de juste changer le nom de chaque équipe, mais là, le « vrai nom » de l'équipe serait masqué des officiels du tournoi aussi."
 
 #: ../../features/team-code-names.rst:13
 msgid "Instead, Tabbycat allows you to assign code names to teams, alongside their real names. This way, you can have code names show to participants, while real team names show in administrative views (*e.g.* allocating adjudicators). It also allows you to \"decode\" team names for elimination rounds or final tab release easily, without having to actually change every team's name."
-msgstr ""
+msgstr "Au lieu de cela, Tabbycat vous permet d'assigner des noms code aux équipes, avec leurs vrais noms. De cette façon, vous pouvez avoir les noms codes affichés au public, tandis que les vrais noms sont affichés sur les pages administratives (*e.g.* dans la répartition des juges). Ça permet aussi de « dévoiler » les noms pour les joutes éliminatoires ou la publication des classements facilement, sans avoir besoin de changer le nom de chaque équipe."
 
 #: ../../features/team-code-names.rst:19
 msgid "While the most frequently-used public views have been checked to ensure that they show only code names, not all views have been checked thoroughly. Please check views using demonstration data on a test site, configured in the same way that you would use it at your tournament, before using code names at a real tournament."
-msgstr ""
+msgstr "Bien que les pages publiques les plus fréquemment utilisées ont été vérifiées qu'ils utilisent juste les noms code, pas toutes les pages ont été vérifiées minutieusement. Veuillez vérifier les pages en utilisant des données test sur un site test, configuré de la même manière que votre tournoi, avant d'utiliser les noms code lors d'un vrai tournoi."
 
 #: ../../features/team-code-names.rst:26
 msgid "Assigning code names"
-msgstr ""
+msgstr "Attribution de noms code"
 
 #: ../../features/team-code-names.rst:28
 msgid "Most methods of importing teams, including the simple importer and the ``importtournament`` command, automatically assign code names to teams. The code name is the name of the emoji that is automatically assigned at the same time. For example, the team assigned 🦋 will be code-named \"Butterfly\"."
-msgstr ""
+msgstr "La plupart des méthodes pour importer les équipes, incluant l'importateur simple et la commande ``importtournament`` assignent automatiquement les noms code aux équipes. Le nom code est le nom de l'émoji qui est assigné en même temps. Par exemple, l'équipe avec 🦋comme émoji aura le nom code « Papillon »."
 
 #: ../../features/team-code-names.rst:33
 msgid "If you wish to use your own code names, you need to set the \"code name\" field of each team. Here are two ways to do this:"
-msgstr ""
+msgstr "Si vous souhaitez utiliser vos propres noms code, vous devez définir le champ « nom code » de chaque équipe. Il y a deux façons de le faire :"
 
 #: ../../features/team-code-names.rst:36
 msgid "**Edit Database area:** Enter the Edit Database area, and under **Participants > Teams**, click **Change**. Modify each team one by one, entering a new code name then saving."
-msgstr ""
+msgstr "**Zone de la base de données** : Entrez le zone de la base de données, et sous **Participants > Équipes**, cliquez **Modifier**. Modifiez chaque équipe une par une, entrant un nouveau nom code puis enregistrant."
 
 #: ../../features/team-code-names.rst:39
 msgid "``importtournament`` **command:** If you imported a tournament from CSV files, you can just add a ``code_name`` column to your teams CSV file."
-msgstr ""
+msgstr "**Commande** ``importtournament`` : Si vous avez importé un tournoi depuis des fichiers CSV, vous pouvez simplement ajouter une colonne ``code_name`` au fichier CSV des équipes."
 
 #: ../../features/team-code-names.rst:43
 msgid "Displaying code names"
-msgstr ""
+msgstr "Affichage des noms code"
 
 #: ../../features/team-code-names.rst:45
 msgid "Code names are disabled by default; to enable then, go to **Setup > Configuration > Public Options**, and change the **Team code names** option. You can choose between the following options:"
-msgstr ""
+msgstr "Les noms code sont désactivés par défaut ; pour les activer, allez dans **Configuration > Options > Fonctionnalités publics** et changer l'option **Noms code d'équipes**. Vous pouvez choisir entre ces options :"
 
 #: ../../features/team-code-names.rst:49
 msgid "Do not use code names"
