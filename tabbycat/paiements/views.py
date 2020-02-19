@@ -318,6 +318,13 @@ class PublicPaymentSelectView(BasePaymentSelectView):
 
     def post(self, request, *args, **kwargs):
         institution = Institution.objects.get(pk=self.kwargs['institution_id'])
+
+        if len(request.POST.getlist('personnes')) == 0:
+            messages.error(request, "Il faut sélectionner au moins une personne.")
+            return HttpResponseRedirect(
+                reverse_tournament('paiements-tournament-add', self.tournament, kwargs={'institution_id': self.kwargs['institution_id']})
+            )
+
         personnes = Person.objects.filter(id__in=list(map(int, request.POST.getlist('personnes'))))
         paiement = Payment(
             institution=institution, tournament=self.tournament,
