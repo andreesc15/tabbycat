@@ -87,7 +87,7 @@ function initChart (padding, data, total, setHeight) {
 
   g.append('g')
     .attr('class', 'axis axis--y')
-    .call(d3.axisLeft(y))
+    .call(d3.axisLeft(y).tickFormat(d3.format('d')))
 
   g.append('g')
     .attr('class', 'axis axis--y')
