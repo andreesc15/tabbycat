@@ -224,7 +224,30 @@ class AdminPaymentView(AdministratorMixin, TournamentMixin, VueTableTemplateView
             'adjudicator', 'adjudicator__institution',
             'speaker', 'speaker__team', 'speaker__team__institution',
         )
-        return self.get_payment_table('Payé', participants)
+        table = TabbycatTableBuilder(
+            view=self,
+            title='Payé',
+            sort_key='institution'
+        )
+
+        table.add_column({'key': 'name', 'tooltip': "Participants", 'icon': 'user'}, [{
+            'text': p.name
+        } for p in participants])
+
+        table.add_column({'key': 'role', 'title': 'Rôle'}, [{
+            'text': 'Juge' if hasattr(p, 'adjudicator') else 'Débatteur'
+        } for p in participants])
+
+        table.add_column({'key': 'paiement', 'title': 'Type'}, [{
+            'text': p.payment_set.get(tournament=self.tournament, statut=Payment.STATUT_TERMINE).get_methode_display()
+        } for p in participants])
+
+        table.add_column({'key': 'institution', 'tooltip': "École", 'icon': 'home'}, [{
+            'text': 'S/O' if self._institution_name(p) is None else self._institution_name(p),
+            'class': 'text-muted' if self._institution_name(p) is None else ''
+        } for p in participants])
+
+        return table
 
     def get_unpaid_table(self):
         dans_tournoi = Q(speaker__team__tournament=self.tournament) | Q(adjudicator__tournament=self.tournament)
