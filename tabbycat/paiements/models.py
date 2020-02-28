@@ -8,16 +8,19 @@ class Payment(models.Model):
     METHODE_CARTE = 'c'
     METHODE_COMPTANT = 'p'
     METHODE_VOID = 'v'
+    METHODE_TARDIF = 't'
     METHODE_CHOICES = (
         (METHODE_ENLIGNE, 'En ligne'),
         (METHODE_CARTE, 'Par crédit'),
         (METHODE_COMPTANT, 'En comptant'),
         (METHODE_VOID, 'Void'),
+        (METHODE_TARDIF, 'Tardif'),
     )
     ADMIN_METHODE_CHOICES = (
         (METHODE_CARTE, 'Par crédit'),
         (METHODE_COMPTANT, 'En comptant'),
         (METHODE_VOID, 'Void'),
+        (METHODE_TARDIF, 'Tardif'),
     )
 
     STATUT_TERMINE = 'f'
