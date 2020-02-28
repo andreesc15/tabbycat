@@ -23,8 +23,7 @@ def create_payment(payment, return_url):
             'line_items': []
         },
         'merchant_support_email': merchant_support_email,
-        'redirect_url': return_url,
-        'note': payment.institution.name,
+        'redirect_url': return_url
     }
 
     if payment.tournament is None:
@@ -34,8 +33,11 @@ def create_payment(payment, return_url):
             'base_price_money': {
                 'amount': ADHESION_AMOUNT,
                 'currency': 'CAD',
-            }
+            },
+            'note': payment.institution.name
         })
+    else:
+        body['note'] = "%s (%s)" % (payment.tournament.short_name, payment.institution.code)
 
     if payment.num_debatteurs > 0:
         body['order']['line_items'].append({
@@ -44,7 +46,8 @@ def create_payment(payment, return_url):
             'base_price_money': {
                 'amount': payment.tournament.pref('frais_debatteur'),
                 'currency': 'CAD',
-            }
+            },
+            'note': ", ".join(payment.personnes.filter(speaker__isnull=False).values_list('name', flat=True))
         })
     if payment.num_juges > 0:
         body['order']['line_items'].append({
@@ -53,7 +56,8 @@ def create_payment(payment, return_url):
             'base_price_money': {
                 'amount': payment.tournament.pref('frais_juge'),
                 'currency': 'CAD',
-            }
+            },
+            ", ".join(payment.personnes.filter(adjudicator__isnull=False).values_list('name', flat=True))
         })
 
     result = checkout_api.create_checkout(SQUARE_LOCATION, body)
