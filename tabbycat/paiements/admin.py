@@ -7,7 +7,7 @@ from .models import Payment
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('timestamp', 'reference', 'methode', 'statut')
     list_filter = ('methode', 'statut', 'tournament')
-    search_fields = ('tournament','institution')
+    search_fields = ('tournament', 'institution')
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related(

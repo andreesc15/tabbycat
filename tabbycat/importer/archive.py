@@ -475,7 +475,7 @@ class Importer:
                 team_obj.emoji = emoji
 
             # Find institution from speakers - Get first institution from each speaker to compare
-            p_institutions = set([p.get('institutions',"").split(" ")[0] for p in team.findall('speaker')])
+            p_institutions = set([p.get('institutions', "").split(" ")[0] for p in team.findall('speaker')])
             team_institution = next(iter(p_institutions))
 
             if len(p_institutions) == 1:

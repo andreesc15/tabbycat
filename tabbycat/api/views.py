@@ -9,13 +9,10 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from options.models import TournamentPreferenceModel
-from participants.models import Speaker
 from tournaments.models import Tournament
 from tournaments.mixins import TournamentFromUrlMixin
 
 from participants.models import Institution
-
-from django.db.models import Prefetch
 
 from . import serializers
 
