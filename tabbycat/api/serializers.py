@@ -198,12 +198,12 @@ class TeamSerializer(serializers.ModelSerializer):
             validated_data['code_name'] = code_name
 
         team = super().create(validated_data)
-        team.break_categories.set(BreakCategory.objects.filter(tournament=team.tournament, is_general=True))
-        team.break_categories.add(*break_categories)
+        team.break_categories.set(BreakCategory.objects.filter(tournament=team.tournament, is_general=True), *break_categories)
 
-        speakers = SpeakerSerializer(many=True, data=speakers_data, context={'tournament': team.tournament})
-        if speakers.is_valid():
-            speakers.save(team=team)
+        for speaker in speakers_data:
+            categories = speaker.pop("categories")
+            s = Speaker.objects.create(team=team, **speaker)
+            s.categories.set(categories)
 
         if team.institution is not None:
             team.teaminstitutionconflict_set.create(institution=team.institution)
