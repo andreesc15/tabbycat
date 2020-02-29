@@ -57,7 +57,7 @@ def create_payment(payment, return_url):
                 'amount': payment.tournament.pref('frais_juge'),
                 'currency': 'CAD',
             },
-            ", ".join(payment.personnes.filter(adjudicator__isnull=False).values_list('name', flat=True))
+            'note': ", ".join(payment.personnes.filter(adjudicator__isnull=False).values_list('name', flat=True))
         })
 
     result = checkout_api.create_checkout(SQUARE_LOCATION, body)
