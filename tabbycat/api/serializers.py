@@ -4,10 +4,10 @@ from rest_framework import serializers
 
 from breakqual.models import BreakCategory
 from participants.emoji import pick_unused_emoji
-from participants.models import Adjudicator, Speaker, SpeakerCategory, Team
+from participants.models import Adjudicator, Institution, Speaker, SpeakerCategory, Team
 from tournaments.models import Tournament
 
-from .fields import TournamentHyperlinkedIdentityField
+from .fields import SpeakerHyperlinkedIdentityField, TournamentHyperlinkedIdentityField, TournamentHyperlinkedRelatedField
 
 
 class TournamentSerializer(serializers.ModelSerializer):
@@ -23,6 +23,18 @@ class TournamentSerializer(serializers.ModelSerializer):
         speaker_categories = serializers.HyperlinkedIdentityField(
             view_name='api-speakercategory-list',
             lookup_field='slug', lookup_url_kwarg='tournament_slug')
+        institutions = serializers.HyperlinkedIdentityField(
+            view_name='api-institution-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
+        teams = serializers.HyperlinkedIdentityField(
+            view_name='api-team-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
+        adjudicators = serializers.HyperlinkedIdentityField(
+            view_name='api-adjudicator-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
+        speakers = serializers.HyperlinkedIdentityField(
+            view_name='api-speaker-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
 
     _links = TournamentLinksSerializer(source='*', read_only=True)
 
@@ -35,10 +47,11 @@ class BreakCategorySerializer(serializers.ModelSerializer):
 
     class BreakCategoryLinksSerializer(serializers.Serializer):
         eligibility = TournamentHyperlinkedIdentityField(
-            view_name='api-breakcategory-eligibility', lookup_field='slug')
+            view_name='api-breakcategory-eligibility')
 
     url = TournamentHyperlinkedIdentityField(
-        view_name='api-breakcategory-detail', lookup_field='slug')
+        view_name='api-breakcategory-detail')
+
     _links = BreakCategoryLinksSerializer(source='*', read_only=True)
 
     class Meta:
@@ -51,10 +64,10 @@ class SpeakerCategorySerializer(serializers.ModelSerializer):
 
     class SpeakerCategoryLinksSerializer(serializers.Serializer):
         eligibility = TournamentHyperlinkedIdentityField(
-            view_name='api-speakercategory-eligibility', lookup_field='slug')
+            view_name='api-speakercategory-eligibility', lookup_field='pk')
 
     url = TournamentHyperlinkedIdentityField(
-        view_name='api-speakercategory-detail', lookup_field='slug')
+        view_name='api-speakercategory-detail', lookup_field='pk')
     _links = SpeakerCategoryLinksSerializer(source='*', read_only=True)
 
     class Meta:
@@ -68,7 +81,7 @@ class BreakEligibilitySerializer(serializers.ModelSerializer):
         super().__init__(*args, **kwargs)
         self.fields['team_set'] = serializers.PrimaryKeyRelatedField(
             many=True,
-            queryset=kwargs['context']['tournament'].team_set.all()
+            queryset=kwargs['context']['tournament'].team_set.all(),
         )
 
     class Meta:
@@ -92,7 +105,7 @@ class SpeakerEligibilitySerializer(serializers.ModelSerializer):
         super().__init__(*args, **kwargs)
         self.fields['speaker_set'] = serializers.PrimaryKeyRelatedField(
             many=True,
-            queryset=Speaker.objects.filter(team__tournament=kwargs['context']['tournament'])
+            queryset=Speaker.objects.filter(team__tournament=kwargs['context']['tournament']),
         )
 
     class Meta:
@@ -111,28 +124,37 @@ class SpeakerEligibilitySerializer(serializers.ModelSerializer):
 
 
 class SpeakerSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['categories'] = serializers.SlugRelatedField(
-            many=True,
-            queryset=kwargs['context']['tournament'].speakercategory_set.all(),
-            slug_field="slug"
-        )
+    url = SpeakerHyperlinkedIdentityField(view_name='api-speaker-detail')
+    categories = TournamentHyperlinkedRelatedField(
+        many=True,
+        view_name='api-speakercategory-detail',
+        queryset=SpeakerCategory.objects.all(),
+    )
 
     class Meta:
         model = Speaker
-        fields = ('id', 'name', 'gender', 'email', 'categories')
+        fields = ('url', 'id', 'name', 'gender', 'email', 'phone', 'anonymous', 'pronoun',
+                  'categories')
+
+    def create(self, validated_data):
+        speaker_categories = validated_data.pop("categories")
+        speaker = super().create(validated_data)
+        speaker.categories.set(speaker_categories)
+        return speaker
 
 
 class AdjudicatorSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
+    url = TournamentHyperlinkedIdentityField(view_name='api-adjudicator-detail')
+    institution = serializers.HyperlinkedRelatedField(
+        allow_null=True,
+        view_name='api-global-institution-detail',
+        queryset=Institution.objects.all(),
+    )
 
     class Meta:
         model = Adjudicator
-        fields = ('id', 'name', 'gender', 'email', 'institution', 'base_score',
-                  'trainee', 'independent', 'adj_core')
+        fields = ('url', 'id', 'name', 'gender', 'email', 'phone', 'anonymous', 'pronoun',
+                  'institution', 'base_score', 'trainee', 'independent', 'adj_core')
 
     def create(self, validated_data):
         adj = super().create(validated_data)
@@ -144,29 +166,23 @@ class AdjudicatorSerializer(serializers.ModelSerializer):
 
 
 class TeamSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-
-    emoji = serializers.CharField(
-        required=False, max_length=2,
-        help_text='Automatically generated if not specified. Do not include variation selectors or modifiers.'
-    )  # Remove choices list
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['break_categories'] = serializers.SlugRelatedField(
-            many=True,
-            queryset=kwargs['context']['tournament'].breakcategory_set.all(),
-            slug_field="slug"
-        )
-        self.fields['speakers'] = SpeakerSerializer(
-            many=True,
-            context=kwargs['context']
-        )
+    speakers = SpeakerSerializer(many=True, required=False)
+    url = TournamentHyperlinkedIdentityField(view_name='api-team-detail')
+    institution = serializers.HyperlinkedRelatedField(
+        allow_null=True,
+        view_name='api-global-institution-detail',
+        queryset=Institution.objects.all(),
+    )
+    break_categories = TournamentHyperlinkedRelatedField(
+        many=True,
+        view_name='api-breakcategory-detail',
+        queryset=BreakCategory.objects.all(),
+    )
 
     class Meta:
         model = Team
-        fields = ('id', 'reference', 'code_name', 'emoji', 'institution', 'speakers',
-                  'use_institution_prefix', 'break_categories')
+        fields = ('url', 'id', 'reference', 'code_name', 'emoji',
+                  'institution', 'speakers', 'use_institution_prefix', 'break_categories')
 
     def create(self, validated_data):
         """Four things must be done, excluding saving the Team object:
@@ -177,17 +193,15 @@ class TeamSerializer(serializers.ModelSerializer):
         validated_data['short_reference'] = validated_data['reference'][:34]
         speakers_data = validated_data.pop('speakers')
         break_categories = validated_data.pop('break_categories')
-
         emoji, code_name = pick_unused_emoji()
         if 'emoji' not in validated_data:
             validated_data['emoji'] = emoji
         if 'code_name' not in validated_data:
             validated_data['code_name'] = code_name
 
-        team = Team.objects.create(**validated_data)
-        team.break_categories.set(team.tournament.breakcategory_set.filter(
-            Q(is_general=True) | Q(name__in=break_categories)
-        ))
+        team = super().create(validated_data)
+        team.break_categories.set(BreakCategory.objects.filter(tournament=team.tournament, is_general=True))
+        team.break_categories.add(*break_categories)
 
         speakers = SpeakerSerializer(many=True, data=speakers_data, context={'tournament': team.tournament})
         if speakers.is_valid():
@@ -197,3 +211,17 @@ class TeamSerializer(serializers.ModelSerializer):
             team.teaminstitutionconflict_set.create(institution=team.institution)
 
         return team
+
+
+class InstitutionSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api-global-institution-detail')
+    teams = TournamentHyperlinkedRelatedField(
+        source='team_set',
+        many=True,
+        read_only=True,
+        view_name='api-team-detail',
+    )
+
+    class Meta:
+        model = Institution
+        fields = ('url', 'id', 'name', 'code', 'teams')

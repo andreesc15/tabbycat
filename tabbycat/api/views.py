@@ -13,6 +13,10 @@ from participants.models import Speaker
 from tournaments.models import Tournament
 from tournaments.mixins import TournamentFromUrlMixin
 
+from participants.models import Institution
+
+from django.db.models import Prefetch
+
 from . import serializers
 
 
@@ -42,8 +46,12 @@ class APIRootView(AdministratorAPIMixin, GenericAPIView):
 
     def get(self, request, format=None):
         tournaments_create_url = reverse('api-tournament-list', request=request, format=format)
+        institution_create_url = reverse('api-global-institution-list', request=request, format=format)
         return Response({
-            "_links": {"tournaments": tournaments_create_url}
+            "_links": {
+                "tournaments": tournaments_create_url,
+                "institutions": institution_create_url
+            }
         })
 
 
@@ -85,15 +93,34 @@ class SpeakerEligibilityView(TournamentAPIMixin, AdministratorAPIMixin, Retrieve
         return super().get_queryset().prefetch_related('speaker_set')
 
 
-class AdjudicatorViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
-    serializer_class = serializers.AdjudicatorSerializer
+class InstitutionViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
+    serializer_class = serializers.InstitutionSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def get_queryset(self):
+        return Institution.objects.all().prefetch_related(Prefetch('team_set', queryset=self.tournament.team_set.all()))
 
 
 class TeamViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
     serializer_class = serializers.TeamSerializer
 
+
+class AdjudicatorViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
+    serializer_class = serializers.AdjudicatorSerializer
+
+
+class GlobalInstitutionViewSet(AdministratorAPIMixin, ModelViewSet):
+    serializer_class = serializers.InstitutionSerializer
+
     def get_queryset(self):
-        return super().get_queryset().prefetch_related(
-            'break_categories',
-            Prefetch('speaker_set', queryset=Speaker.objects.all().prefetch_related('categories'))
-        )
+        return Institution.objects.all()
+
+
+class SpeakerViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
+    serializer_class = serializers.SpeakerSerializer
+    tournament_field = "team__tournament"
+
+    def perform_create(self, serializer):
+        serializer.save()
