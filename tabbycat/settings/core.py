@@ -62,6 +62,11 @@ FORMAT_MODULE_PATH = [
 # Django-specific Modules
 # ==============================================================================
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2'
+]
+
 MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -110,6 +115,7 @@ INSTALLED_APPS = (
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
+    'social_django',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'channels', # For Websockets / real-time connections (above whitenoise)
@@ -150,7 +156,9 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.template.context_processors.request',  # for Jet
                 'utils.context_processors.debate_context',  # for tournament config vars
-                'django.template.context_processors.i18n'  # for serving static language translations
+                'django.template.context_processors.i18n',  # for serving static language translations
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect'
             ],
             'loaders': [
                 ('django.template.loaders.cached.Loader', [
@@ -310,6 +318,13 @@ REST_FRAMEWORK = {
 # LiDUC
 # ==============================================================================
 
+# Square
 SQUARE_TOKEN = os.environ.get('SQUARE_ACCESS_TOKEN')
 SQUARE_LOCATION = os.environ.get('SQUARE_LOCATION')
 ADHESION_AMOUNT = 2500 # 25$ CAD (sous)
+
+# OAuth2
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('GOOGLE_OAUTH2_SECRET')

@@ -66,6 +66,7 @@ urlpatterns = [
         name='logout'),
     path('accounts/',
         include('django.contrib.auth.urls')),
+    url('oauth/', include('social_django.urls', namespace='social')),
 
     # Paiements
     path('paiements/',

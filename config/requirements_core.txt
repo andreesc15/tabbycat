@@ -38,3 +38,4 @@ defusedxml==0.6.0                       # Protection against XML vulnerabilities
 
 # LiDUC
 squareup==3.20191120.0                  # Paiements
+social-auth-app-django==3.1.0           # OAuth2
