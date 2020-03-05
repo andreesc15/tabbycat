@@ -28,7 +28,6 @@
         <debate-or-panel-adjudicators slot="adjudicators" :debate-or-panel="debate"
                                       :handle-debate-or-panel-drop="moveAdjudicator">
         </debate-or-panel-adjudicators>
-        <template slot="venue"><span></span></template><!--Hide Venues-->
       </drag-and-drop-debate>
       <div class="text-center lead mx-5 p-5" v-if="sortedDebatesOrPanels.length === 0">
         <p class="mx-5 lead mt-2 px-5" v-text="gettext(noDebatesInline)"></p>

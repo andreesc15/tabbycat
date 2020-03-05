@@ -185,6 +185,8 @@ export default new Vuex.Store({
         }
       } else if (state.sortType === 'importance') {
         return debatesOrPanels.sort((a, b) => a.importance - b.importance).reverse()
+      } else if (state.sortType === 'venue') {
+        return debatesOrPanels.sort((a, b) => a.venue.display_name.localeCompare(b.venue.display_name))
       }
       return debatesOrPanels
     },
