@@ -44,12 +44,19 @@ LOCALE_PATHS = [
 # Languages that should be available in the switcher
 LANGUAGES = [
     ('ar', _('Arabic')),
+    ('bn', _('Bengali')),
+    ('de', _('German')),
     ('en', _('English')),
     ('es', _('Spanish')),
     ('fr', _('French')),
+    ('he', _('Hebrew')),
+    ('hi', _('Hindi')),
     ('ja', _('Japanese')),
     ('pt', _('Portuguese')),
+    ('ro', _('Romanian')),
     ('ru', _('Russian')),
+    ('tr', _('Turkish')),
+    ('zh-hans', _('Chinese (Simplified)')),
 ]
 
 STATICI18N_ROOT = os.path.join(BASE_DIR, "locale")
