@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-03-12 13:36\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,31 +18,31 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:5
 msgid "Draw Generation (BP)"
-msgstr ""
+msgstr "Génération de tirage (PB)"
 
 #: ../../features/draw-generation-bp.rst:7
 msgid "The draw generator for British Parliamentary tournaments tries to rotate teams through positions by assigning them positions they've been in less often before the current round."
-msgstr ""
+msgstr "Le générateur de tirage pour les tournois en Parlementaire Britannique tente de pivoter les positions des équipes par position en les attribuant des positions dont ils ont été le moins souvent avant la joute actuelle."
 
 #: ../../features/draw-generation-bp.rst:10
 msgid "Summary of options"
-msgstr ""
+msgstr "Sommaire des options"
 
 #: ../../features/draw-generation-bp.rst:12
 msgid "Options are set in the **Configuration** page as described in :ref:`starting a tournament <starting-a-tournament>`. Options in `italics` with an asterisk are not WUDC-compliant. The recommended options are shown in **bold**."
-msgstr ""
+msgstr "Les options sont définis dans la page de **Configuration** comme décrit dans :ref:`commencer un tournoi <starting-a-tournament>`. Les options en `italique` avec un astérisque sont incompatible avec les règles du WUDC. Les options recommandées sont affichées en **gras**."
 
 #: ../../features/draw-generation-bp.rst:19
 msgid "Option"
-msgstr ""
+msgstr "Option"
 
 #: ../../features/draw-generation-bp.rst:20
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: ../../features/draw-generation-bp.rst:21
 msgid "Allowable values"
-msgstr ""
+msgstr "Valeurs autorisées"
 
 #: ../../features/draw-generation-bp.rst:22
 msgid ":ref:`Pullup distribution <draw-bp-pullup-distribution>`"
@@ -50,19 +50,19 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:23
 msgid "Where pullup teams get placed"
-msgstr ""
+msgstr "Où les équipes promues sont placées"
 
 #: ../../features/draw-generation-bp.rst:24
 msgid "**Anywhere in bracket**"
-msgstr ""
+msgstr "**N’importe où dans la tranche**"
 
 #: ../../features/draw-generation-bp.rst:25
 msgid "*All in the same room*\\*"
-msgstr ""
+msgstr "*Tous dans la même salle*\\*"
 
 #: ../../features/draw-generation-bp.rst:26
 msgid ":ref:`Position cost <draw-bp-position-cost>`"
-msgstr ""
+msgstr ":ref:`Coût de position <draw-bp-position-cost>`"
 
 #: ../../features/draw-generation-bp.rst:27
 msgid "Which cost function to use to indicate which position profiles are preferred"
@@ -75,7 +75,7 @@ msgstr "Simple"
 
 #: ../../features/draw-generation-bp.rst:29
 msgid "**Rényi entropy**"
-msgstr ""
+msgstr "**Entropie de Rényi**"
 
 #: ../../features/draw-generation-bp.rst:30
 #: ../../features/draw-generation-bp.rst:254
@@ -84,15 +84,15 @@ msgstr "Variance d’une population"
 
 #: ../../features/draw-generation-bp.rst:31
 msgid ":ref:`Rényi order <draw-bp-renyi-order>`"
-msgstr ""
+msgstr ":ref:`Ordre de Rényi <draw-bp-renyi-order>`"
 
 #: ../../features/draw-generation-bp.rst:32
 msgid "Order of Rényi entropy"
-msgstr ""
+msgstr "Ordre de l'entropie de Rényi"
 
 #: ../../features/draw-generation-bp.rst:33
 msgid "Any non-negative number (default: **1**, *i.e.* Shannon entropy)"
-msgstr ""
+msgstr "N'importe nombre non-négatif (par défaut : **1**, *i.e.* entropie de Shannon)"
 
 #: ../../features/draw-generation-bp.rst:34
 msgid ":ref:`Position cost exponent <draw-bp-position-cost-exponent>`"
@@ -116,11 +116,11 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:39
 msgid "*Hungarian*\\*"
-msgstr ""
+msgstr "*Hongrois*\\*"
 
 #: ../../features/draw-generation-bp.rst:40
 msgid "**Hungarian with preshuffling**"
-msgstr ""
+msgstr "**Hongrois avec battement**"
 
 #: ../../features/draw-generation-bp.rst:45
 msgid "The big picture"
@@ -140,27 +140,27 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:61
 msgid "Room"
-msgstr ""
+msgstr "Salle"
 
 #: ../../features/draw-generation-bp.rst:61
 msgid "Top"
-msgstr ""
+msgstr "Meilleur"
 
 #: ../../features/draw-generation-bp.rst:61
 msgid "Second"
-msgstr ""
+msgstr "Deuxième"
 
 #: ../../features/draw-generation-bp.rst:61
 msgid "Third"
-msgstr ""
+msgstr "Troisième"
 
 #: ../../features/draw-generation-bp.rst:61
 msgid "Bottom"
-msgstr ""
+msgstr "Pire"
 
 #: ../../features/draw-generation-bp.rst:63
 msgid "Position"
-msgstr ""
+msgstr "Position"
 
 #: ../../features/draw-generation-bp.rst:63
 msgid "OG"
@@ -180,7 +180,7 @@ msgstr "2O"
 
 #: ../../features/draw-generation-bp.rst:65
 msgid "**A (8)**"
-msgstr ""
+msgstr "**A (8)**"
 
 #: ../../features/draw-generation-bp.rst:65
 #: ../../features/draw-generation-bp.rst:67
@@ -199,7 +199,7 @@ msgstr ""
 #: ../../features/draw-generation-bp.rst:93
 #: ../../features/draw-generation-bp.rst:95
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: ../../features/draw-generation-bp.rst:65
 #: ../../features/draw-generation-bp.rst:67
@@ -214,7 +214,7 @@ msgstr ""
 #: ../../features/draw-generation-bp.rst:91
 #: ../../features/draw-generation-bp.rst:93
 msgid ":q:`0`"
-msgstr ""
+msgstr ":q:`0`"
 
 #: ../../features/draw-generation-bp.rst:65
 #: ../../features/draw-generation-bp.rst:67
@@ -233,19 +233,19 @@ msgstr ""
 #: ../../features/draw-generation-bp.rst:93
 #: ../../features/draw-generation-bp.rst:95
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: ../../features/draw-generation-bp.rst:67
 msgid "**B (7)**"
-msgstr ""
+msgstr "**B (7)**"
 
 #: ../../features/draw-generation-bp.rst:69
 msgid "**C (7)**"
-msgstr ""
+msgstr "**C (7)**"
 
 #: ../../features/draw-generation-bp.rst:71
 msgid "**D (6)**"
-msgstr ""
+msgstr "**D (6)**"
 
 #: ../../features/draw-generation-bp.rst:71
 #: ../../features/draw-generation-bp.rst:73
@@ -336,7 +336,7 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:112
 msgid "Pullup distribution"
-msgstr ""
+msgstr "Distribution de promotion"
 
 #: ../../features/draw-generation-bp.rst:114
 msgid "If the number of teams in a bracket is not a multiple of four, it pulls up teams from the next bracket down. The pullup distribution then governs how those teams are paired into the upper bracket."
@@ -372,7 +372,7 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:135
 msgid "More formally:"
-msgstr ""
+msgstr "Plus formellement :"
 
 #: ../../features/draw-generation-bp.rst:139
 msgid "A `position history` or just `history` :math:`\\mathbf{h}` is a 4-tuple where each element is the number of times a team has already been in the corresponding position. For example, :math:`\\mathbf{h} = (0, 2, 1, 1)` means that a team has been in OO twice, CG and CO once each, and hasn't been in OG."
@@ -396,7 +396,7 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:153
 msgid "Position cost exponent"
-msgstr ""
+msgstr "Puissance de coût de position"
 
 #: ../../features/draw-generation-bp.rst:155
 msgid "The **position cost exponent** :math:`\\beta` controls how different teams trade off with each other."
@@ -468,7 +468,7 @@ msgstr ""
 
 #: ../../features/draw-generation-bp.rst:202
 msgid "where"
-msgstr ""
+msgstr "où"
 
 #: ../../features/draw-generation-bp.rst:206
 msgid ":math:`n_\\mathbf{h} = \\sum_{s'} \\mathbf{h}[s']` is the number of rounds the team has competed in so far."

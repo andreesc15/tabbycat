@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-03-12 13:35\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../../features/breaks.rst:5
 msgid "Breaks and Break Rounds"
-msgstr ""
+msgstr "Qualifications et joutes éliminatoires"
 
 #: ../../features/breaks.rst:7
 msgid "In Tabbycat, elimination rounds (sometimes called *outrounds* or the *final series*) are called \"break rounds\", and the qualification of teams to compete in the elimination phase of a tournament is called the \"break\"."
@@ -50,11 +50,11 @@ msgstr ""
 
 #: ../../features/breaks.rst:39
 msgid "Descrption"
-msgstr ""
+msgstr "Description"
 
 #: ../../features/breaks.rst:41
 msgid "Standard (``standard``)"
-msgstr ""
+msgstr "Standard (``standard``)"
 
 #: ../../features/breaks.rst:42
 msgid "The top *n* teams break. This is the default, and most tournaments use this rule."
@@ -114,7 +114,7 @@ msgstr ""
 
 #: ../../features/breaks.rst:80
 msgid "Create break rounds for the category"
-msgstr ""
+msgstr "Créer des joutes éliminatoires pour la catégorie"
 
 #: ../../features/breaks.rst:81
 msgid "Set the eligibility of teams to compete in the category"
@@ -146,7 +146,7 @@ msgstr ""
 
 #: ../../features/breaks.rst:114
 msgid "2. Creating break rounds"
-msgstr ""
+msgstr "2. Créer des joutes éliminatoires"
 
 #: ../../features/breaks.rst:116
 msgid "You should create a round for every break round you intend to hold, including it in *rounds.csv* if using `importtournament`, or adding them under **Tournaments > Rounds** if using **Edit Database**. Be careful to set the following fields correctly:"

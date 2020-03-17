@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"PO-Revision-Date: 2020-03-06 19:18\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: ../../features/draw-generation.rst:10
 msgid "Summary of options"
-msgstr ""
+msgstr "Sommaire des options"
 
 #: ../../features/draw-generation.rst:11
 msgid "Options are set in the **Configuration** page as described in :ref:`starting a tournament <starting-a-tournament>`."
@@ -34,15 +34,15 @@ msgstr ""
 
 #: ../../features/draw-generation.rst:18
 msgid "Option"
-msgstr ""
+msgstr "Option"
 
 #: ../../features/draw-generation.rst:19
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: ../../features/draw-generation.rst:20
 msgid "Allowable values"
-msgstr ""
+msgstr "Valeurs autorisées"
 
 #: ../../features/draw-generation.rst:22
 msgid ":ref:`Odd bracket resolution method <draw-odd-bracket>`"

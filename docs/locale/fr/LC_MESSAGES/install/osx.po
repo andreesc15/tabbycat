@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-01-02 01:50\n"
+"PO-Revision-Date: 2020-03-12 13:38\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: ../../install/osx.rst:21 ../../install/osx.rst:42 ../../install/osx.rst:68
 msgid "Advanced users"
-msgstr ""
+msgstr "Utilisateurs avancés"
 
 #: ../../install/osx.rst:24
 msgid "If you wish to use an SQL engine other that PostgreSQL, most of Tabbycat should work, but a few features rely on SQL functions that aren't supported by all engines. To configure Tabbycat to use a different engine, set the ``DATABASES`` `Django setting <https://docs.djangoproject.com/en/2.2/ref/settings/#databases>`_ accordingly."
@@ -54,7 +54,7 @@ msgstr ""
 
 #: ../../install/osx.rst:27
 msgid "1. Install dependencies"
-msgstr ""
+msgstr "1. Installation des dépendances"
 
 #: ../../install/osx.rst:29
 msgid "First, you need to install all of the software on which Tabbycat depends, if you don't already have it installed."
@@ -102,7 +102,7 @@ msgstr ""
 
 #: ../../install/osx.rst:62
 msgid "2. Get the source code"
-msgstr ""
+msgstr "2. Obtenir le code source"
 
 #: ../../install/osx.rst:64
 msgid "`Go to the page for our latest release <https://github.com/TabbycatDebate/tabbycat/releases/latest>`_."
@@ -126,7 +126,7 @@ msgstr ""
 
 #: ../../install/osx.rst:76
 msgid "3. Set up a new database"
-msgstr ""
+msgstr "3. Créer une nouvelle base de données"
 
 #: ../../install/osx.rst:78
 msgid "You can skip steps 1--3 if this is not your first installation. Every Tabbycat installation requires its own database, but they can use the same login role if you like."
@@ -154,7 +154,7 @@ msgstr ""
 
 #: ../../install/osx.rst:101
 msgid "4. Install Tabbycat"
-msgstr ""
+msgstr "4. Installer Tabbycat"
 
 #: ../../install/osx.rst:102
 msgid "Almost there!"
@@ -190,7 +190,7 @@ msgstr ""
 
 #: ../../install/osx.rst:149
 msgid "Start Tabbycat!"
-msgstr ""
+msgstr "Démarrez Tabbycat !"
 
 #: ../../install/osx.rst:155
 msgid "It should show something like this::"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-31 10:38-0400\n"
-"PO-Revision-Date: 2020-02-03 16:21\n"
+"PO-Revision-Date: 2020-03-12 18:42\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -250,7 +250,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:105
 msgid "The consequences of having incorrect or missing ballots are much more severe than for feedback. As such major tournaments use paper ballots in some form as the final stage in a checking process to ensure that the results of a debate are definitely correct — adjudicators will always make mistakes and while digital ballots can catch/prevent some types of error (i.e. a low point win) they can't catch others (assigning the wrong scores to the wrong speaker, nominating the wrong winning team, etc.). Assuming your software supports both options, the choice is thus whether to use a hybrid approach (online submission followed by paper verification) or to rely entirely on paper. A fully-paper based approach will be simpler for both yourself and adjudicators, and can be almost as efficient if you have a sufficient number of volunteers. In contrast, a hybrid approach will be potentially much faster if you are short of volunteers and if you expect that almost all adjudicators will have access to the internet, a smartphone, and are capable of following instructions."
-msgstr ""
+msgstr "Les conséquences d'avoir des feuilles de jugement incorrectes ou absentes est beaucoup plus sévère que pour les évaluations. Comme de tournois majeurs utilisent des feuilles papier dans une forme comme dernière étape de vérification pour s'assurer que les résultats du débat sont corrects, les juges feront toujours des fautes et tandis que les feuilles en ligne peuvent avertir/corriger certaines types de faute (comme une victoire avec moins de points), ils ne peuvent pas avertir pour d'autres (comme les scores aux mauvais orateurs, le mauvais gagnant, etc.) En présumant que votre logiciel offre les deux options, le choix est donc entre un format hybride (saisie en ligne puis par papier) ou entièrement sur papier. La méthode exclusivement papier sera plus simple pour vous et les juges et peut être efficace avec un bon nombre de bénévoles. Par contre, une approche hybride sera potentiellement beaucoup plus rapide si vous n'avez pas assez de bénévoles et attendez que presque tous les juges auront accès à l'internet, un téléphone intelligent, et peuvent suivre des instructions."
 
 #: ../../guide/tournament-logistics.rst:107
 msgid "In some circuits, and when using some particular tab software, tournaments might run a 'dual tab' where there is a second, independent, version of the tab software and database into which all data is *also* entered. From what we understand this performs a dual role, as both a backup system that can take over from the main one (say if internet access drops) and as a way of verifying ballot data (by comparing draws or databases between software rather than having a two-step entry process operating for a single tab). This practice seems obsolete when working with modern web-based tab software that is capable of backing up and restoring to an offline system, but we would like to hear your feedback if you think that is not the case."
@@ -1032,7 +1032,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:382
 msgid "Managing Rounds"
-msgstr ""
+msgstr "Gestion des joutes"
 
 #: ../../guide/tournament-logistics.rst:384
 msgid "Once everything has been setup and everyone knows what they should do, the actual process of running each round should go smoothly. It probably won't though. The earlier sections should have laid out what the ideal process for managing data entry and allocations, so this section will instead focus on what can go wrong and what to keep an eye out for."
@@ -1152,7 +1152,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:440
 msgid "Breaks and Break Rounds"
-msgstr ""
+msgstr "Qualifications et joutes éliminatoires"
 
 #: ../../guide/tournament-logistics.rst:443
 msgid "Generating the adjudicator's break"
@@ -1212,7 +1212,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:471
 msgid "Managing the out-rounds"
-msgstr ""
+msgstr "Gérer les joutes éliminatoires"
 
 #: ../../guide/tournament-logistics.rst:473
 msgid "Out-rounds are generally under less time pressure and can be managed by just one or two members of the tab team. However, they tend to be run in a more haphazard fashion, so there are a couple of things to keep on top of:"
@@ -1380,7 +1380,7 @@ msgstr ""
 
 #: ../../guide/tournament-logistics.rst:549
 msgid "Misc"
-msgstr ""
+msgstr "Divers"
 
 #: ../../guide/tournament-logistics.rst:551
 msgid "Now is a good time to encourage people to consider getting involved with tabbing and tab-development. Emphasize that both do not necessarily require technical skills and that tabbers are (or should be) open to feedback and ideas from the wider community. Tell people to come find you and chat if they are interested and put up a link to the `Facebook tabbing group <https://www.facebook.com/groups/1681761898801915/?ref=bookmarks>`_."
