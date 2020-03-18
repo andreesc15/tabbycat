@@ -42,13 +42,13 @@ class BaseScoresheet:
     # Winners may be declared by the form as validation; by default do nothing.
 
     def set_declared_winners(self, winners):
-        pass
+        raise NotImplementedError
 
     def add_declared_winner(self, winner):
-        pass
+        raise NotImplementedError
 
     def get_declared_winners(self):
-        pass
+        raise NotImplementedError
 
 
 class ScoresMixin:
