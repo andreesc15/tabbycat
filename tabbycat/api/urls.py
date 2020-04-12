@@ -29,7 +29,14 @@ urlpatterns = [
                 name='api-tournament-detail'),
 
             path('rounds/', include([
+                path('',
+                    views.RoundViewSet.as_view(list_methods),
+                    name='api-round-list'),
+
                 path('<int:round_seq>/', include([
+                    path('',
+                        views.RoundViewSet.as_view(detail_methods),
+                        name='api-round-detail'),
                 ])),
             ])),
 
@@ -80,6 +87,9 @@ urlpatterns = [
                 path('<int:pk>/',
                      views.TeamViewSet.as_view(detail_methods),
                      name='api-team-detail'),
+                path('standings/',
+                     views.TeamStandingsView.as_view(),
+                     name='api-team-standings'),
             ])),
             path('adjudicators/', include([
                 path('',
@@ -96,6 +106,25 @@ urlpatterns = [
                 path('<int:pk>/',
                      views.SpeakerViewSet.as_view(detail_methods),
                      name='api-speaker-detail'),
+                path('standings/',
+                     views.SpeakerStandingsView.as_view(),
+                     name='api-speaker-standings'),
+            ])),
+            path('venues/', include([
+                path('',
+                    views.VenueViewSet.as_view(list_methods),
+                    name='api-venue-list'),
+                path('<int:pk>/',
+                    views.VenueViewSet.as_view(detail_methods),
+                    name='api-venue-detail'),
+            ])),
+            path('venue-categories/', include([
+                path('',
+                    views.VenueCategoryViewSet.as_view(list_methods),
+                    name='api-venuecategory-list'),
+                path('<int:pk>/',
+                    views.VenueCategoryViewSet.as_view(detail_methods),
+                    name='api-venuecategory-detail'),
             ])),
 
             url('', include(pref_router.urls)),  # Preferences

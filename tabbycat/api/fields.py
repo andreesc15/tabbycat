@@ -5,6 +5,9 @@ from rest_framework.reverse import reverse
 class TournamentHyperlinkedRelatedField(HyperlinkedRelatedField):
     tournament_field = 'tournament'
 
+    def use_pk_only_optimization(self):
+        return False
+
     def get_tournament(self, obj):
         return obj.tournament
 
@@ -36,3 +39,15 @@ class SpeakerHyperlinkedIdentityField(TournamentHyperlinkedRelatedField, Hyperli
 
     def get_tournament(self, obj):
         return obj.team.tournament
+
+
+class AnonymisingHyperlinkedTournamentRelatedField(TournamentHyperlinkedRelatedField):
+
+    def __init__(self, view_name=None, **kwargs):
+        self.null_when = kwargs.pop('anonymous_source')
+        super().__init__(view_name=view_name, **kwargs)
+
+    def to_representation(self, value):
+        if getattr(value, self.null_when, True):
+            return None
+        return super().to_representation(value)

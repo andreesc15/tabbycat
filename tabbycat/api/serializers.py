@@ -3,9 +3,11 @@ from rest_framework import serializers
 from breakqual.models import BreakCategory
 from participants.emoji import pick_unused_emoji
 from participants.models import Adjudicator, Institution, Speaker, SpeakerCategory, Team
-from tournaments.models import Tournament
+from tournaments.models import Round, Tournament
+from venues.models import Venue, VenueCategory
 
-from .fields import SpeakerHyperlinkedIdentityField, TournamentHyperlinkedIdentityField, TournamentHyperlinkedRelatedField
+from .fields import (AnonymisingHyperlinkedTournamentRelatedField, SpeakerHyperlinkedIdentityField,
+    TournamentHyperlinkedIdentityField, TournamentHyperlinkedRelatedField)
 
 
 class TournamentSerializer(serializers.ModelSerializer):
@@ -15,6 +17,9 @@ class TournamentSerializer(serializers.ModelSerializer):
         lookup_field='slug', lookup_url_kwarg='tournament_slug')
 
     class TournamentLinksSerializer(serializers.Serializer):
+        rounds = serializers.HyperlinkedIdentityField(
+            view_name='api-round-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
         break_categories = serializers.HyperlinkedIdentityField(
             view_name='api-breakcategory-list',
             lookup_field='slug', lookup_url_kwarg='tournament_slug')
@@ -33,12 +38,41 @@ class TournamentSerializer(serializers.ModelSerializer):
         speakers = serializers.HyperlinkedIdentityField(
             view_name='api-speaker-list',
             lookup_field='slug', lookup_url_kwarg='tournament_slug')
+        venues = serializers.HyperlinkedIdentityField(
+            view_name='api-venue-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
+        venue_categories = serializers.HyperlinkedIdentityField(
+            view_name='api-venuecategory-list',
+            lookup_field='slug', lookup_url_kwarg='tournament_slug')
 
     _links = TournamentLinksSerializer(source='*', read_only=True)
 
     class Meta:
         model = Tournament
-        fields = ('name', 'short_name', 'slug', 'seq', 'active', 'url', '_links')
+        fields = '__all__'
+
+
+class RoundSerializer(serializers.ModelSerializer):
+    tournament = serializers.HyperlinkedRelatedField(
+        view_name='api-tournament-detail',
+        lookup_field='slug', lookup_url_kwarg='tournament_slug',
+        queryset=Tournament.objects.all(),
+    )
+    url = TournamentHyperlinkedIdentityField(
+        view_name='api-round-detail',
+        lookup_field='seq', lookup_url_kwarg='round_seq')
+    break_category = TournamentHyperlinkedRelatedField(
+        view_name='api-breakcategory-detail',
+        queryset=BreakCategory.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not kwargs['context']['request'].user.is_staff:
+            self.fields.pop('feedback_weight')
+
+    class Meta:
+        model = Round
+        fields = '__all__'
 
 
 class BreakCategorySerializer(serializers.ModelSerializer):
@@ -128,6 +162,16 @@ class SpeakerSerializer(serializers.ModelSerializer):
         view_name='api-speakercategory-detail',
         queryset=SpeakerCategory.objects.all(),
     )
+    team = TournamentHyperlinkedRelatedField(view_name='api-team-detail')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
+        if not kwargs['context']['request'].user.is_staff:
+            self.fields.pop('gender')
+            self.fields.pop('email')
+            self.fields.pop('phone')
+            self.fields.pop('pronoun')
+            self.fields.pop('anonymous')
 
     class Meta:
         model = Speaker
@@ -149,6 +193,23 @@ class AdjudicatorSerializer(serializers.ModelSerializer):
         queryset=Institution.objects.all(),
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Remove private fields in the public endpoint if needed
+        if not kwargs['context']['request'].user.is_staff:
+            t = kwargs['context']['tournament']
+            if not t.pref('show_adjudicator_institutions'):
+                self.fields.pop('institution')
+
+            self.fields.pop('base_score')
+            self.fields.pop('trainee')
+            self.fields.pop('gender')
+            self.fields.pop('email')
+            self.fields.pop('phone')
+            self.fields.pop('pronoun')
+            self.fields.pop('anonymous')
+
     class Meta:
         model = Adjudicator
         fields = ('url', 'id', 'name', 'gender', 'email', 'phone', 'anonymous', 'pronoun',
@@ -164,7 +225,6 @@ class AdjudicatorSerializer(serializers.ModelSerializer):
 
 
 class TeamSerializer(serializers.ModelSerializer):
-    speakers = SpeakerSerializer(many=True, required=False)
     url = TournamentHyperlinkedIdentityField(view_name='api-team-detail')
     institution = serializers.HyperlinkedRelatedField(
         allow_null=True,
@@ -182,6 +242,24 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = ('url', 'id', 'reference', 'code_name', 'emoji',
                   'institution', 'speakers', 'use_institution_prefix', 'break_categories')
 
+    def __init__(self, *args, **kwargs):
+        self.fields['speakers'] = SpeakerSerializer(*args, many=True, required=False, **kwargs)
+
+        super().__init__(*args, **kwargs)
+
+        # Remove private fields in the public endpoint if needed
+        if not kwargs['context']['request'].user.is_staff:
+            t = kwargs['context']['tournament']
+            if t.pref('team_code_names') in ('admin-tooltips-code', 'admin-tooltips-real', 'everywhere'):
+                self.fields.pop('institution')
+                self.fields.pop('use_institution_prefix')
+                self.fields.pop('reference')
+            elif not t.pref('show_team_institutions'):
+                self.fields.pop('institution')
+                self.fields.pop('use_institution_prefix')
+            if not t.pref('public_break_categories'):
+                self.fields.pop('break_categories')
+
     def create(self, validated_data):
         """Four things must be done, excluding saving the Team object:
         1. Create the short_reference based on 'reference',
@@ -192,18 +270,20 @@ class TeamSerializer(serializers.ModelSerializer):
         speakers_data = validated_data.pop('speakers')
         break_categories = validated_data.pop('break_categories')
         emoji, code_name = pick_unused_emoji()
-        if 'emoji' not in validated_data or validated_data['emoji'] is None:
+        if 'emoji' not in validated_data:
             validated_data['emoji'] = emoji
-        if 'code_name' not in validated_data or validated_data['code_name'] == '':
+        if 'code_name' not in validated_data:
             validated_data['code_name'] = code_name
 
         team = super().create(validated_data)
-        team.break_categories.set(BreakCategory.objects.filter(tournament=team.tournament, is_general=True), *break_categories)
+        team.break_categories.set(
+            list(BreakCategory.objects.filter(tournament=team.tournament, is_general=True)) + break_categories,
+        )
 
-        for speaker in speakers_data:
-            categories = speaker.pop("categories")
-            s = Speaker.objects.create(team=team, **speaker)
-            s.categories.set(categories)
+        # The data is passed to the sub-serializer so that it handles categories
+        speakers = SpeakerSerializer(many=True, context={'tournament': team.tournament})
+        speakers._validated_data = speakers_data  # Data was already validated
+        speakers.save(team=team)
 
         if team.institution is not None:
             team.teaminstitutionconflict_set.create(institution=team.institution)
@@ -216,10 +296,73 @@ class InstitutionSerializer(serializers.ModelSerializer):
     teams = TournamentHyperlinkedRelatedField(
         source='team_set',
         many=True,
-        read_only=True,
         view_name='api-team-detail',
+    )
+    adjudicators = TournamentHyperlinkedRelatedField(
+        source='adjudicator_set',
+        many=True,
+        view_name='api-adjudicator-detail',
     )
 
     class Meta:
         model = Institution
-        fields = ('url', 'id', 'name', 'code', 'teams')
+        fields = ('url', 'id', 'name', 'code', 'teams', 'adjudicators')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not kwargs['context']['request'].user.is_staff:
+            self.fields.pop('teams')
+            self.fields.pop('adjudicators')
+
+
+class VenueSerializer(serializers.ModelSerializer):
+    url = TournamentHyperlinkedIdentityField(view_name='api-venue-detail')
+    categories = TournamentHyperlinkedRelatedField(
+        source='venuecategory_set',
+        many=True,
+        view_name='api-venuecategory-detail',
+    )
+    display_name = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Venue
+        fields = '__all__'
+
+
+class VenueCategorySerializer(serializers.ModelSerializer):
+    url = TournamentHyperlinkedIdentityField(view_name='api-venuecategory-detail')
+    venues = TournamentHyperlinkedRelatedField(
+        many=True,
+        view_name='api-venue-detail',
+    )
+
+    class Meta:
+        model = VenueCategory
+        fields = '__all__'
+
+
+class BaseStandingsSerializer(serializers.Serializer):
+    rank = serializers.SerializerMethodField()
+    tied = serializers.SerializerMethodField()
+    metrics = serializers.SerializerMethodField()
+
+    def get_rank(self, obj):
+        return obj.rankings['rank'][0]
+
+    def get_tied(self, obj):
+        return obj.rankings['rank'][1]
+
+    def get_metrics(self, obj):
+        return [{'metric': s, 'value': v} for s, v in obj.metrics.items()]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class TeamStandingsSerializer(BaseStandingsSerializer):
+    team = TournamentHyperlinkedRelatedField(view_name='api-team-detail')
+
+
+class SpeakerStandingsSerializer(BaseStandingsSerializer):
+    speaker = AnonymisingHyperlinkedTournamentRelatedField(view_name='api-speaker-detail', anonymous_source='anonymous')
