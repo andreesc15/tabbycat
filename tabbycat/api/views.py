@@ -1,4 +1,5 @@
 from django.db.models import Prefetch, Q
+from dynamic_preferences.api.serializers import PreferenceSerializer
 from dynamic_preferences.api.viewsets import PerInstancePreferenceViewSet
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
@@ -41,7 +42,7 @@ class TournamentViewSet(PublicAPIMixin, ModelViewSet):
 
 class TournamentPreferenceViewSet(TournamentFromUrlMixin, AdministratorAPIMixin, PerInstancePreferenceViewSet):
     queryset = TournamentPreferenceModel.objects.all()
-    serializer_class = serializers.PreferenceSerializer
+    serializer_class = PreferenceSerializer
 
     def get_related_instance(self):
         return self.tournament
