@@ -6,12 +6,12 @@ from django_summernote.widgets import SummernoteWidget
 from dynamic_preferences.preferences import Section
 from dynamic_preferences.types import BooleanPreference, ChoicePreference, FloatPreference, IntegerPreference, LongStringPreference, StringPreference
 
-from standings.teams import TeamStandingsGenerator
 from standings.speakers import SpeakerStandingsGenerator
+from standings.teams import TeamStandingsGenerator
 from tournaments.utils import get_side_name_choices
 
-from .types import MultiValueChoicePreference
 from .models import tournament_preferences_registry
+from .types import MultiValueChoicePreference
 
 
 # ==============================================================================
@@ -90,6 +90,7 @@ class MarginIncludesDissent(BooleanPreference):
     section = scoring
     name = 'margin_includes_dissenters'
     default = False
+
 
 # ==============================================================================
 draw_rules = Section('draw_rules', verbose_name=_("Draw Rules"))
@@ -339,6 +340,7 @@ class HideTraineePosition(BooleanPreference):
     name = 'no_trainee_position'
     default = False
 
+
 # ==============================================================================
 feedback = Section('feedback', verbose_name=_("Feedback"))
 # ==============================================================================
@@ -485,7 +487,7 @@ class BallotUsesScores(ChoicePreference):
     choices = (
         ('always', _("Always require speaker scores")),
         ('prelim', _("Only require speaker scores in preliminary rounds")),
-        ('never', _("Never require speaker scores"))
+        ('never', _("Never require speaker scores")),
     )
     default = 'always'
 

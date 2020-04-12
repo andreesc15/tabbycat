@@ -1,18 +1,15 @@
 from django.db.models import Prefetch
-
 from dynamic_preferences.api.viewsets import PerInstancePreferenceViewSet
-from dynamic_preferences.api.serializers import PreferenceSerializer
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
-from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework.viewsets import ModelViewSet
 
 from options.models import TournamentPreferenceModel
-from tournaments.models import Tournament
-from tournaments.mixins import TournamentFromUrlMixin
-
 from participants.models import Institution
+from tournaments.mixins import TournamentFromUrlMixin
+from tournaments.models import Tournament
 
 from . import serializers
 
@@ -47,8 +44,8 @@ class APIRootView(AdministratorAPIMixin, GenericAPIView):
         return Response({
             "_links": {
                 "tournaments": tournaments_create_url,
-                "institutions": institution_create_url
-            }
+                "institutions": institution_create_url,
+            },
         })
 
 
@@ -62,7 +59,7 @@ class TournamentViewSet(AdministratorAPIMixin, ModelViewSet):
 
 class TournamentPreferenceViewSet(TournamentFromUrlMixin, AdministratorAPIMixin, PerInstancePreferenceViewSet):
     queryset = TournamentPreferenceModel.objects.all()
-    serializer_class = PreferenceSerializer
+    serializer_class = serializers.PreferenceSerializer
 
     def get_related_instance(self):
         return self.tournament

@@ -7,12 +7,12 @@ from threading import Lock
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
-from django.urls import reverse_lazy
 from django.db.models import Count, DateTimeField, Min, Q
 from django.db.models.functions import Cast, Extract
 from django.shortcuts import redirect, resolve_url
-from django.utils.http import is_safe_url
+from django.urls import reverse_lazy
 from django.utils.html import format_html_join
+from django.utils.http import is_safe_url
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView, UpdateView
@@ -98,7 +98,7 @@ class BaseTournamentDashboardHomeView(TournamentMixin, WarnAboutDatabaseUseMixin
         kwargs["initialActions"] = json.dumps([a.serialize for a in actions])
 
         subs = t.current_round.debate_set.filter(
-            ballotsubmission__confirmed=True
+            ballotsubmission__confirmed=True,
         ).order_by('-ballotsubmission__timestamp')[:updates]
         populate_confirmed_ballots(subs, results=True)
         subs = [d._confirmed_ballot.serialize_like_actionlog for d in subs]
@@ -132,14 +132,14 @@ class CompleteRoundCheckView(AdministratorMixin, RoundMixin, TemplateView):
     def get_context_data(self, **kwargs):
         prior_rounds_not_completed = self.tournament.round_set.filter(
             Q(break_category=self.round.break_category) | Q(break_category__isnull=True),
-            completed=False, seq__lt=self.round.seq
+            completed=False, seq__lt=self.round.seq,
         )
         kwargs['number_of_prior_rounds_not_completed'] = prior_rounds_not_completed.count()
         kwargs['prior_rounds_not_completed'] = format_html_join(
             ", ",
             "<a href=\"{}\" class=\"alert-link\">{}</a>",
             ((reverse_round('tournament-complete-round-check', r), r.name)
-                for r in prior_rounds_not_completed)
+                for r in prior_rounds_not_completed),
         )
 
         kwargs['num_unconfirmed'] = self.round.debate_set.filter(
@@ -291,7 +291,7 @@ class SetCurrentRoundView(AdministratorMixin, TournamentMixin, FormView):
     def get_redirect_to(self, use_default=True):
         redirect_to = self.request.POST.get(
             self.redirect_field_name,
-            self.request.GET.get(self.redirect_field_name, '')
+            self.request.GET.get(self.redirect_field_name, ''),
         )
         if not redirect_to and use_default:
             return reverse_tournament('tournament-admin-home', tournament=self.tournament)

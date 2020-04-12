@@ -248,7 +248,11 @@ class BaseDebateResult:
         if not self.debate.sides_confirmed:
             return  # don't load if sides aren't confirmed
 
-        for dt in self.debate.debateteam_set.select_related('team').all():
+        d_teams = self.debate.debateteam_set.select_related('team').all()
+        if set(dt.side for dt in d_teams) != set(self.sides):
+            raise ResultError("Debate has invalid sides.")
+
+        for dt in d_teams:
             self.debateteams[dt.side] = dt
 
     def load_scoresheets(self, **kwargs):
@@ -414,7 +418,7 @@ class DebateResultByAdjudicator(BaseDebateResult):
         teamscorebyadjs = self.ballotsub.teamscorebyadj_set.filter(
             debate_adjudicator__in=self.debateadjs_query,
             debate_team__side__in=self.sides,
-            win=True
+            win=True,
         ).select_related('debate_adjudicator__adjudicator', 'debate_team')
 
         for tsba in teamscorebyadjs:
@@ -441,7 +445,7 @@ class DebateResultByAdjudicator(BaseDebateResult):
     def add_winner(self, adjudicator, winner):
         self.scoresheets[adjudicator].add_declared_winner(winner)
 
-    def set_winner(self, adjudicator, winners):
+    def set_winners(self, adjudicator, winners):
         self.scoresheets[adjudicator].set_declared_winners(winners)
 
     # --------------------------------------------------------------------------
@@ -576,7 +580,7 @@ class DebateResultByAdjudicator(BaseDebateResult):
         for adj in self.debate.adjudicators.voting():
             sheet_dict = {
                 "adjudicator": adj,
-                "teams": self.sheet_as_dicts(self.scoresheets[adj])
+                "teams": self.sheet_as_dicts(self.scoresheets[adj]),
             }
             yield sheet_dict
 
@@ -779,7 +783,7 @@ class ConsensusDebateResult(BaseDebateResult):
     def add_winner(self, winner):
         self.scoresheet.add_declared_winner(winner)
 
-    def set_winner(self, winners):
+    def set_winners(self, winners):
         self.scoresheet.set_declared_winners(winners)
 
     def winning_side(self):
