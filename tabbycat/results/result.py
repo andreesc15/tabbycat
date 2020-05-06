@@ -415,6 +415,9 @@ class DebateResultByAdjudicator(BaseDebateResult):
             positions=getattr(self, 'positions', None)) for adj in self.debateadjs.keys()
         }
 
+        if not self.get_scoresheet_class().uses_declared_winners:
+            return  # No need to add winners when already determined through scores
+
         teamscorebyadjs = self.ballotsub.teamscorebyadj_set.filter(
             debate_adjudicator__in=self.debateadjs_query,
             debate_team__side__in=self.sides,
@@ -773,9 +776,11 @@ class ConsensusDebateResult(BaseDebateResult):
     def load_scoresheets(self):
         super().load_scoresheets()
 
-        for team in self.ballotsub.teamscore_set.select_related('debate_team').all():
-            if team.win:
-                self.add_winner(team.debate_team.side)
+        if not self.scoresheet.uses_declared_winners:
+            return
+
+        winners = self.ballotsub.teamscore_set.filter(win=True).select_related('debate_team').values_list('debate_team__side', flat=True)
+        self.set_winners(set(winners))
 
     def get_winner(self):
         return self.scoresheet.winners()
