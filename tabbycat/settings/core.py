@@ -22,8 +22,8 @@ SECRET_KEY = r'#2q43u&tp4((4&m3i8v%w-6z6pp7m(v0-6@w@i!j5n)n15epwc'
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.4.0a-L'
-TABBYCAT_CODENAME = 'Maine - LiDUC'
+TABBYCAT_VERSION = '2.4.0a'
+TABBYCAT_CODENAME = 'Maine Coon - LiDUC'
 READTHEDOCS_VERSION = 'v2.4.0'
 
 # ==============================================================================
