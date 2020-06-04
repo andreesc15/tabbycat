@@ -63,21 +63,19 @@ urlpatterns = [
         admin.site.urls),
 
     # Accounts
-    path('accounts/logout/',
-        auth_views.LogoutView.as_view(),
-        {'next_page': '/'},  # override to specify next_page
-        name='logout'),
-    path('accounts/',
-        include('django.contrib.auth.urls')),
+    path('accounts/', include([
+        path('logout/',
+            auth_views.LogoutView.as_view(),
+            {'next_page': '/'},  # override to specify next_page
+            name='logout'),
+        path('',
+            include('django.contrib.auth.urls')),
+    ])),
     path('oauth/', include('social_django.urls', namespace='social')),
 
     # Paiements
     path('paiements/',
         include('paiements.urls.urls')),
-
-    # Tournament URLs
-    path('<slug:tournament_slug>/',
-        include('tournaments.urls')),
 
     # Notifications
     path('notifications/',
@@ -88,18 +86,12 @@ urlpatterns = [
         include('importer.urls_archive')),
 
     # API
-    path('api/v1/',
+    path('api',
         include('api.urls')),
 
-    # Old tournaments
-    path('vieux/', include([
-        path('',
-            tournaments.views.PublicSiteArchiveIndexView.as_view(),
-            name='tournament-archive-index'),
-        path('<int:annee>/',
-            tournaments.views.PublicSiteArchiveByYearIndexView.as_view(),
-            name='tournament-by-year-index'),
-    ])),
+    # Tournament URLs
+    path('<slug:tournament_slug>/',
+        include('tournaments.urls')),
 ]
 
 if settings.DEBUG and settings.ENABLE_DEBUG_TOOLBAR:  # Only serve debug toolbar when on DEBUG

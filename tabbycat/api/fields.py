@@ -1,9 +1,14 @@
+from django.db.models import Q
 from rest_framework.relations import HyperlinkedIdentityField, HyperlinkedRelatedField
 from rest_framework.reverse import reverse
 
 
 class TournamentHyperlinkedRelatedField(HyperlinkedRelatedField):
-    tournament_field = 'tournament'
+    default_tournament_field = 'tournament'
+
+    def __init__(self, *args, **kwargs):
+        self.tournament_field = kwargs.pop('tournament_field', self.default_tournament_field)
+        super().__init__(*args, **kwargs)
 
     def use_pk_only_optimization(self):
         return False
@@ -11,13 +16,16 @@ class TournamentHyperlinkedRelatedField(HyperlinkedRelatedField):
     def get_tournament(self, obj):
         return obj.tournament
 
-    def get_url(self, obj, view_name, request, format):
+    def get_url_kwargs(self, obj):
         lookup_value = getattr(obj, self.lookup_field)
         kwargs = {
             'tournament_slug': self.get_tournament(obj).slug,
             self.lookup_url_kwarg: lookup_value,
         }
-        return reverse(view_name, kwargs=kwargs, request=request, format=format)
+        return kwargs
+
+    def get_url(self, obj, view_name, request, format):
+        return reverse(view_name, kwargs=self.get_url_kwargs(obj), request=request, format=format)
 
     def get_object(self, view_name, view_args, view_kwargs):
         lookup_value = view_kwargs[self.lookup_url_kwarg]
@@ -26,8 +34,11 @@ class TournamentHyperlinkedRelatedField(HyperlinkedRelatedField):
         }
         return self.get_queryset().get(**lookup_kwargs)
 
+    def lookup_kwargs(self):
+        return {self.tournament_field: self.context['tournament']}
+
     def get_queryset(self):
-        return self.queryset.filter(**{self.tournament_field: self.context['tournament']})
+        return self.queryset.filter(**self.lookup_kwargs()).select_related(self.tournament_field)
 
 
 class TournamentHyperlinkedIdentityField(TournamentHyperlinkedRelatedField, HyperlinkedIdentityField):
@@ -35,34 +46,29 @@ class TournamentHyperlinkedIdentityField(TournamentHyperlinkedRelatedField, Hype
 
 
 class RoundHyperlinkedRelatedField(TournamentHyperlinkedRelatedField):
+    default_tournament_field = 'round__tournament'
     round_field = 'round'
+
+    def get_tournament(self, obj):
+        return self.get_round(obj).tournament
 
     def get_round(self, obj):
         return obj.round
 
-    def get_url(self, obj, view_name, request, format):
-        lookup_value = getattr(obj, self.lookup_field)
-        round = self.get_round(obj)
-        kwargs = {
-            'tournament_slug': round.tournament.slug,
-            'round_seq': round.seq,
-            self.lookup_url_kwarg: lookup_value,
-        }
-        return reverse(view_name, kwargs=kwargs, request=request, format=format)
+    def get_url_kwargs(self, obj):
+        kwargs = super().get_url_kwargs(obj)
+        kwargs['round_seq'] = self.get_round(obj).seq
+        return kwargs
+
+    def lookup_kwargs(self):
+        return {self.round_field: self.context['round']}
 
     def get_queryset(self):
-        return self.queryset.filter(**{self.round_field: self.context['round']})
+        return super().get_queryset().select_related(self.round_field)
 
 
 class RoundHyperlinkedIdentityField(RoundHyperlinkedRelatedField, HyperlinkedIdentityField):
     pass
-
-
-class SpeakerHyperlinkedIdentityField(TournamentHyperlinkedRelatedField, HyperlinkedIdentityField):
-    tournament_field = 'team__tournament'
-
-    def get_tournament(self, obj):
-        return obj.team.tournament
 
 
 class AnonymisingHyperlinkedTournamentRelatedField(TournamentHyperlinkedRelatedField):
@@ -75,3 +81,28 @@ class AnonymisingHyperlinkedTournamentRelatedField(TournamentHyperlinkedRelatedF
         if getattr(value, self.null_when, True):
             return None
         return super().to_representation(value)
+
+
+class MotionHyperlinkedIdentityField(RoundHyperlinkedIdentityField):
+
+    def get_url_kwargs(self, obj):
+        kwargs = super().get_url_kwargs(obj)
+        kwargs.pop('round_seq')
+        return kwargs
+
+
+class AdjudicatorFeedbackIdentityField(RoundHyperlinkedIdentityField):
+    default_tournament_field = None
+    round_field = None
+
+    def get_url_kwargs(self, obj):
+        kwargs = super().get_url_kwargs(obj)
+        kwargs.pop('round_seq')
+        return kwargs
+
+    def lookup_kwargs(self):
+        return {}  # More complicated lookup than with kwargs
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            Q(source_adjudicator__debate__round=self.context['round']) | Q(source_team__debate__round=self.context['round']))
