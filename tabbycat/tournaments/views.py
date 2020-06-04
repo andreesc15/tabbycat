@@ -1,14 +1,12 @@
 import json
 import logging
 from collections import OrderedDict
-from datetime import timedelta
 from threading import Lock
 
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
-from django.db.models import Count, DateTimeField, Min, Q
-from django.db.models.functions import Cast, Extract
+from django.db.models import Count, Q
 from django.shortcuts import redirect, resolve_url
 from django.urls import reverse_lazy
 from django.utils.html import format_html_join
@@ -59,23 +57,14 @@ class PublicSiteIndexView(WarnAboutDatabaseUseMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         kwargs['tournaments'] = Tournament.objects.filter(active=True)
+        kwargs['has_inactive'] = Tournament.objects.filter(active=False).exists()
         return super().get_context_data(**kwargs)
 
 
-class PublicSiteArchiveIndexView(ListView):
-    context_object_name = 'tournaments'
-    template_name = 'site_index.html'
-    model = Tournament
-
-    def get_queryset(self):
-        return super().get_queryset().annotate(
-            annee=Extract(Cast(Min('actionlogentry__timestamp') - timedelta(days=270), output_field=DateTimeField()), 'year'))
-
-
-class PublicSiteArchiveByYearIndexView(PublicSiteArchiveIndexView):
-
-    def get_queryset(self):
-        return super().get_queryset().filter(annee=self.kwargs['annee'])
+class PublicSiteInactiveTournamentsView(ListView):
+    template_name = 'site_inactive_tournaments.html'
+    queryset = Tournament.objects.filter(active=False)
+    allow_empty = False
 
 
 class TournamentPublicHomeView(CacheMixin, TournamentMixin, TemplateView):
