@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-24 04:15-0300\n"
-"PO-Revision-Date: 2020-06-16 23:15\n"
+"POT-Creation-Date: 2020-07-05 15:26-0300\n"
+"PO-Revision-Date: 2020-07-10 07:06\n"
 "Last-Translator: \n"
 "Language-Team: Bengali\n"
 "Language: bn_BD\n"
@@ -199,8 +199,8 @@ msgid "round"
 msgstr "পর্ব"
 
 #: draw/models.py:38
-msgid "venue"
-msgstr "কক্ষ"
+msgid "room"
+msgstr ""
 
 #: draw/models.py:41
 msgid "bracket"
