@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-24 04:15-0300\n"
-"PO-Revision-Date: 2020-05-25 00:36\n"
+"POT-Creation-Date: 2020-07-05 13:59-0300\n"
+"PO-Revision-Date: 2020-07-10 17:00\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -15,10 +15,12 @@ msgstr ""
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/utils/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-Project-ID: 364715\n"
+"X-Crowdin-File-ID: 954\n"
 
 #: utils/forms.py:25
-msgid "E-mail address"
-msgstr "E-mail адрес"
+msgid "Email address"
+msgstr ""
 
 #: utils/tables.py:43
 msgid "No Data Available"
@@ -156,6 +158,7 @@ msgid "%(team)s (%(side)s)"
 msgstr "%(team)s (%(side)s)"
 
 #: utils/tables.py:407 utils/tables.py:411 utils/tables.py:437
+#: utils/tables.py:630
 msgid "??"
 msgstr "??"
 
@@ -192,11 +195,11 @@ msgstr "Турнир"
 msgid "Round"
 msgstr "Раунд"
 
-#: utils/tables.py:497 utils/tables.py:683
+#: utils/tables.py:497 utils/tables.py:680
 msgid "Name"
 msgstr "Название"
 
-#: utils/tables.py:503 utils/tables.py:665
+#: utils/tables.py:503 utils/tables.py:662
 msgid "Institution"
 msgstr "Клуб"
 
@@ -212,57 +215,53 @@ msgstr "Независимый судья"
 msgid "Always Trainee"
 msgstr "Всегда винг без права голоса"
 
-#: utils/tables.py:562
+#: utils/tables.py:559
 msgid "in minority"
 msgstr "в меньшинстве"
 
-#: utils/tables.py:595
+#: utils/tables.py:592
 msgid "Debate Adjudicators"
 msgstr "Судьи дебатов"
 
-#: utils/tables.py:626
+#: utils/tables.py:623
 msgid "Order as listed"
 msgstr "Порядок как в списке"
 
 #: utils/tables.py:633
-msgid "?"
-msgstr "?"
-
-#: utils/tables.py:636
 msgid "Motion"
 msgstr "Тема"
 
-#: utils/tables.py:651
+#: utils/tables.py:648
 msgid "Team"
 msgstr "Команда"
 
-#: utils/tables.py:656 utils/tables.py:705
+#: utils/tables.py:653 utils/tables.py:702
 msgid "Categories"
 msgstr "Категории"
 
-#: utils/tables.py:676
+#: utils/tables.py:673
 msgid "Redacted"
 msgstr "Редактировано"
 
-#: utils/tables.py:703
+#: utils/tables.py:700
 msgid "Category"
 msgstr "Категория"
 
-#: utils/tables.py:730
+#: utils/tables.py:727
 #, python-format
 msgid "This room %(predicate)s."
 msgstr "Эта аудитория %(predicate)s."
 
-#: utils/tables.py:732
+#: utils/tables.py:729
 #, python-format
 msgid "This room %(predicates)s, and %(last_predicate)s."
 msgstr "Эта аудитория %(predicates)s, и %(last_predicate)s."
 
-#: utils/tables.py:747
+#: utils/tables.py:744
 msgid "Room"
-msgstr ""
+msgstr "Аудитория"
 
-#: utils/tables.py:763
+#: utils/tables.py:760
 #, python-format
 msgid "Teams have met once"
 msgid_plural "Teams have met %(count)d times"
@@ -271,60 +270,60 @@ msgstr[1] "Команды играли вместе %(count)d раз"
 msgstr[2] "Команды играли вместе %(count)d раз"
 msgstr[3] "Команды играли вместе %(count)d раз"
 
-#: utils/tables.py:769
+#: utils/tables.py:766
 msgid "Teams are from the same institution"
 msgstr "Команды из одного клуба"
 
-#: utils/tables.py:775
+#: utils/tables.py:772
 msgid "Conflicts/Flags"
 msgstr "Конфликты/отметки"
 
-#: utils/tables.py:829
+#: utils/tables.py:826
 msgid "The ballot you submitted"
 msgstr "Отправленный вами бэллот"
 
-#: utils/tables.py:833
+#: utils/tables.py:830
 msgid "View/Edit Ballot"
 msgstr "Смотреть/изменить бэллот"
 
-#: utils/tables.py:842
+#: utils/tables.py:839
 msgid "No ballot"
 msgstr "Нет бэллота"
 
-#: utils/tables.py:844
+#: utils/tables.py:841
 msgid "Elimination"
 msgstr "Брейковый"
 
-#: utils/tables.py:847 utils/tables.py:859
+#: utils/tables.py:844 utils/tables.py:856
 msgid "View Ballot"
 msgstr "Просмотреть бэллот"
 
-#: utils/tables.py:867
+#: utils/tables.py:864
 msgid "Result"
 msgstr "Результат"
 
 #. Translators: "TBC" stands for "to be confirmed".
-#: utils/tables.py:873
+#: utils/tables.py:870
 msgid "TBC"
 msgstr "TBC"
 
-#: utils/tables.py:874
+#: utils/tables.py:871
 msgid "Side"
 msgstr "Сторона"
 
-#: utils/tables.py:912
+#: utils/tables.py:909
 msgid "Team iron-manned this round and the last."
 msgstr "Команда играла этот раунд и последний раунд айронменом."
 
-#: utils/tables.py:915
+#: utils/tables.py:912
 msgid "Team iron-manned this round."
 msgstr "Команда играла этот раунд айронменом."
 
-#: utils/tables.py:918
+#: utils/tables.py:915
 msgid "Team iron-manned last round."
 msgstr "Команда играла последний раунд айронменом."
 
-#: utils/tables.py:935 utils/tables.py:936
+#: utils/tables.py:932 utils/tables.py:933
 #, python-format
 msgid "Team %(num)d"
 msgstr "Команда %(num)d"
