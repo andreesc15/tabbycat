@@ -79,6 +79,7 @@
     "Now": "\u73b0\u5728",
     "October": "\u5341\u6708",
     "Panellist": "\u6210\u5458",
+    "Rank": "\u6392\u540d",
     "Region": "\u5730\u533a",
     "Remove": "\u5220\u9664",
     "Remove all": "\u5220\u9664\u5168\u90e8",

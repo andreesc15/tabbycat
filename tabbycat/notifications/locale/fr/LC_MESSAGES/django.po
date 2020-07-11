@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 15:10-0400\n"
-"PO-Revision-Date: 2019-11-21 04:28\n"
+"POT-Creation-Date: 2020-07-05 13:59-0300\n"
+"PO-Revision-Date: 2020-07-05 17:45\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -15,17 +15,19 @@ msgstr ""
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: /develop/tabbycat/notifications/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-Project-ID: 364715\n"
+"X-Crowdin-File-ID: 938\n"
 
 #: notifications/apps.py:7
 msgid "Notifications"
 msgstr "Notifications"
 
 #: notifications/consumers.py:37
-msgid "Failed to send e-mails."
+msgid "Failed to send emails."
 msgstr "L’envoie des courriels a échoué."
 
 #: notifications/consumers.py:40
-msgid "Connection error sending e-mails."
+msgid "Connection error sending emails."
 msgstr "Faute de connexion en envoyant les courriels."
 
 #: notifications/forms.py:11
@@ -252,55 +254,55 @@ msgstr "Vous pouvez utiliser cette formulaire pour envoyer un courriel d’essai
 msgid "Go back to the site home page"
 msgstr "Retour à la page d’accueil"
 
-#: notifications/utils.py:28
+#: notifications/utils.py:29
 msgid "the chair"
 msgstr "le président"
 
-#: notifications/utils.py:29
+#: notifications/utils.py:30
 msgid "the only"
 msgstr "le(a) seul(e)"
 
-#: notifications/utils.py:30
+#: notifications/utils.py:31
 msgid "a panellist"
 msgstr "un(e) membre"
 
-#: notifications/utils.py:31
+#: notifications/utils.py:32
 msgid "a trainee"
 msgstr "un(e) stagiaire"
 
-#: notifications/utils.py:54
+#: notifications/utils.py:55
 msgid "TBA"
 msgstr "ÀA"
 
-#: notifications/utils.py:100
+#: notifications/utils.py:101
 #, python-format
 msgid "%(tournament)s %(round)s @ %(room)s"
 msgstr "%(tournament)s %(round)s @ %(room)s"
 
-#: notifications/utils.py:111
+#: notifications/utils.py:112
 #, python-format
-msgid "<li>%(side)s: %(team)s (%(points)d points with %(speaks)d total speaks)"
-msgstr "<li>%(side)s: %(team)s (%(points)d points avec %(speaks)d points d'orateur)"
-
-#: notifications/utils.py:114
-#, python-format
-msgid "<li>%(side)s: %(team)s (%(points)s - %(speaks)d total speaks)"
-msgstr "<li>%(side)s: %(team)s (%(points)s - %(speaks)d points d'orateur)"
+msgid "<li>%(side)s: %(team)s (%(points)d points with %(speaks)s total speaks)"
+msgstr "<li>%(side)s: %(team)s (%(points)d points avec %(speaks)s points d'orateur)"
 
 #: notifications/utils.py:115
+#, python-format
+msgid "<li>%(side)s: %(team)s (%(points)s - %(speaks)s total speaks)"
+msgstr "<li>%(side)s: %(team)s (%(points)s - %(speaks)s points d'orateur)"
+
+#: notifications/utils.py:116
 msgid "Win"
 msgstr "Victoire"
 
-#: notifications/utils.py:115
+#: notifications/utils.py:116
 msgid "Loss"
 msgstr "Perte"
 
-#: notifications/utils.py:127
+#: notifications/utils.py:128
 #, python-format
 msgid "<li>%(pos)s: %(speaker)s (%(score)s)</li>"
 msgstr "<li>%(pos)s: %(speaker)s (%(score)s)</li>"
 
-#: notifications/utils.py:201
+#: notifications/utils.py:202
 #, python-format
 msgid "<li>%(text)s (%(ref)s)</li>"
 msgstr "<li>%(text)s (%(ref)s)</li>"
@@ -373,8 +375,8 @@ msgid "Send Email"
 msgstr "Envoyer des courriels"
 
 #: notifications/views.py:225
-msgid "Email Address"
-msgstr "Adresse courriel"
+msgid "Email address"
+msgstr ""
 
 #: notifications/views.py:226
 msgid "Not Provided"

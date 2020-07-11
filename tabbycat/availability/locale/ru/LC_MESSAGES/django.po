@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-04 13:37-0500\n"
-"PO-Revision-Date: 2019-12-24 02:25\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-05-24 04:15-0300\n"
+"PO-Revision-Date: 2020-07-05 17:07\n"
+"Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: tabbycat\n"
+"X-Crowdin-Project-ID: 364715\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/availability/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-File-ID: 926\n"
 
 #: availability/apps.py:7 availability/views.py:36
 msgid "Availability"
@@ -58,8 +60,8 @@ msgstr "Посмотреть сетку"
 
 #: availability/templates/availability_index.html:45
 #, python-format
-msgid "%(previous_unconfirmed)s debates from %(round_name)s do not have a completed ballot — this may lead to a draw that fails or is incorrect"
-msgstr "%(previous_unconfirmed)s дебаты из %(round_name)s не имею заполненного бэллота - это может привести к сбоям или неправильной сетке"
+msgid "%(previous_unconfirmed)s debates from %(round)s do not have a completed ballot — this may lead to a draw that fails or is incorrect"
+msgstr "%(previous_unconfirmed)s дебаты из %(round)s не имею заполненного бэллота - это может привести к сбоям или неправильной сетке"
 
 #: availability/templates/availability_index.html:47
 #: availability/templates/availability_index.html:52
@@ -82,11 +84,11 @@ msgid "The draw cannot be generated until some adjudicators have been marked as 
 msgstr "Сетка не может быть сгенерирована, пока какие-то судьи не отмечены как доступные."
 
 #: availability/templates/availability_index.html:61
-msgid "The draw cannot be generated until some venues have been marked as available."
+msgid "The draw cannot be generated until some rooms have been marked as available."
 msgstr "Сетка не может быть сгенерирована, пока какие-то аудитории не отмечены как доступные."
 
 #: availability/templates/availability_index.html:66
-msgid "There aren't enough venues marked as available for the number of debates — the draw may not generate properly."
+msgid "There aren't enough rooms marked as available for the number of debates — the draw may not generate properly."
 msgstr "Недостаточно аудиторий, отмеченных как доступные - сетка не может быть сгенерирована."
 
 #: availability/templates/availability_index.html:71
@@ -112,8 +114,8 @@ msgstr[3] "%(previous_unconfirmed)s Дебаты %(prev_round)s <strong> не и
 
 #: availability/templates/availability_index.html:121
 #, python-format
-msgid "This is a page for <strong>%(round_name)s</strong>, but the previous round is still not marked as completed. Did you forget to <a href=\"%(complete_prev_round_url)s\" class=\"alert-link\"> mark %(prev_round_name)s as completed? </a>"
-msgstr "Эта страница для <strong>%(round_name)s</strong>, но предыдущий раунд ещё не отмечен как завершенный. Возможно, вы забыли <a href=\"%(complete_prev_round_url)s\" class=\"alert-link\"> отметить %(prev_round_name)s как законченный?</a>"
+msgid "This is a page for <strong>%(round)s</strong>, but the previous round is still not marked as completed. Did you forget to <a href=\"%(complete_prev_round_url)s\" class=\"alert-link\"> mark %(prev_round)s as completed? </a>"
+msgstr "Эта страница для <strong>%(round)s</strong>, но предыдущий раунд ещё не отмечен как завершенный. Возможно, вы забыли <a href=\"%(complete_prev_round_url)s\" class=\"alert-link\"> отметить %(prev_round)s как законченный?</a>"
 
 #: availability/templates/availability_index.html:137
 #, python-format
@@ -178,7 +180,7 @@ msgid "Adjudicators"
 msgstr "Судьи"
 
 #: availability/templates/checkin_progress.html:9
-msgid "Venues"
+msgid "Rooms"
 msgstr "Аудитории"
 
 #: availability/templates/checkin_progress.html:43
@@ -266,8 +268,8 @@ msgstr "Редактировать доступность судей"
 
 #: availability/templates/checkin_progress.html:130
 #, python-format
-msgid "%(count)s venue that was not available last round, is available this round."
-msgid_plural "%(count)s venues that were not available last round, are available this round."
+msgid "%(count)s room that was not available last round, is available this round."
+msgid_plural "%(count)s rooms that were not available last round, are available this round."
 msgstr[0] "%(count)s аудитория, которая была недоступна в прошлом раунде, доступна для этого раунда."
 msgstr[1] "%(count)s аудитории, которые были недоступны в прошлом раунде, доступны для этого раунда."
 msgstr[2] "%(count)s аудитории, которые были недоступны в прошлом раунде, доступны для этого раунда."
@@ -275,17 +277,17 @@ msgstr[3] "%(count)s аудитории, которые были недосту�
 
 #: availability/templates/checkin_progress.html:137
 #, python-format
-msgid "The following %(count)s venue, which was not available last round, is available this round: %(venues_list)s"
-msgid_plural "The following %(count)s venues, which were not available last round, are available this round: %(venues_list)s"
-msgstr[0] "Следующая %(count)s аудитория, которая была недоступна в прошлом раунде, доступна для этого раунда: %(venues_list)s"
-msgstr[1] "Следующие %(count)s аудитории, которая была недоступны в прошлом раунде, доступны для этого раунда: %(venues_list)s"
-msgstr[2] "Следующие %(count)s аудитории, которая была недоступны в прошлом раунде, доступны для этого раунда: %(venues_list)s"
-msgstr[3] "Следующие %(count)s аудитории, которая была недоступны в прошлом раунде, доступны для этого раунда: %(venues_list)s"
+msgid "The following %(count)s room, which was not available last round, is available this round: %(rooms_list)s"
+msgid_plural "The following %(count)s rooms, which were not available last round, are available this round: %(rooms_list)s"
+msgstr[0] "Следующая %(count)s аудитория, которая была недоступна в прошлом раунде, доступна для этого раунда: %(rooms_list)s"
+msgstr[1] "Следующие %(count)s аудитории, которая была недоступны в прошлом раунде, доступны для этого раунда: %(rooms_list)s"
+msgstr[2] "Следующие %(count)s аудитории, которая была недоступны в прошлом раунде, доступны для этого раунда: %(rooms_list)s"
+msgstr[3] "Следующие %(count)s аудитории, которая была недоступны в прошлом раунде, доступны для этого раунда: %(rooms_list)s"
 
 #: availability/templates/checkin_progress.html:146
 #, python-format
-msgid "%(count)s venue that was available last round, is not available this round."
-msgid_plural "%(count)s venues that were available last round, are not available this round."
+msgid "%(count)s room that was available last round, is not available this round."
+msgid_plural "%(count)s rooms that were available last round, are not available this round."
 msgstr[0] "%(count)s аудитория, которая была доступна в прошлом раунде, недоступна для этого раунда."
 msgstr[1] "%(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда."
 msgstr[2] "%(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда."
@@ -293,38 +295,38 @@ msgstr[3] "%(count)s аудитории, которые были доступн�
 
 #: availability/templates/checkin_progress.html:153
 #, python-format
-msgid "The following %(count)s venue, which was available last round, is not available this round: %(venues_list)s"
-msgid_plural "The following %(count)s venues, which were available last round, are not available this round: %(venues_list)s"
-msgstr[0] "Следующая %(count)s аудитория, которая была доступна в прошлом раунде, недоступна для этого раунда: %(venues_list)s"
-msgstr[1] "Следующие %(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда: %(venues_list)s"
-msgstr[2] "Следующие %(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда: %(venues_list)s"
-msgstr[3] "Следующие %(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда: %(venues_list)s"
+msgid "The following %(count)s room, which was available last round, is not available this round: %(rooms_list)s"
+msgid_plural "The following %(count)s rooms, which were available last round, are not available this round: %(rooms_list)s"
+msgstr[0] "Следующая %(count)s аудитория, которая была доступна в прошлом раунде, недоступна для этого раунда: %(rooms_list)s"
+msgstr[1] "Следующие %(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда: %(rooms_list)s"
+msgstr[2] "Следующие %(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда: %(rooms_list)s"
+msgstr[3] "Следующие %(count)s аудитории, которые были доступны в прошлом раунде, недоступны для этого раунда: %(rooms_list)s"
 
 #: availability/templates/checkin_progress.html:162
 #, python-format
-msgid "One venue does not have an associated tournament. Set its 'Tournament' field in the Edit Database area if you want it to be marked as available."
-msgid_plural "%(count)s venues do not have an associated tournament. Set their 'Tournament' field in the Edit Database area if you want them to be marked as available."
+msgid "One room does not have an associated tournament. Set its 'Tournament' field in the Edit Database area if you want it to be marked as available."
+msgid_plural "%(count)s rooms do not have an associated tournament. Set their 'Tournament' field in the Edit Database area if you want them to be marked as available."
 msgstr[0] "Одна аудитория не привязана к какому-либо турниру. Укажите турнир в поле \"Турнир\" в области Редактировать базу данных, если вы хотите отметить эту аудиторию как доступную."
 msgstr[1] "%(count)s аудитории не привязаны какому-либо турниру. Укажите турнир в поле \"Турнир\" в области Редактировать базу данных, если вы хотите отметить эти аудитории как доступные."
 msgstr[2] "%(count)s аудитории не привязаны какому-либо турниру. Укажите турнир в поле \"Турнир\" в области Редактировать базу данных, если вы хотите отметить эти аудитории как доступные."
 msgstr[3] "%(count)s аудитории не привязаны какому-либо турниру. Укажите турнир в поле \"Турнир\" в области Редактировать базу данных, если вы хотите отметить эти аудитории как доступные."
 
 #: availability/templates/checkin_progress.html:170
-msgid "Mark venues as available"
+msgid "Mark rooms as available"
 msgstr "Отметить аудитории как доступные"
 
 #. Translators: required_count is a word for a number (e.g. "two", "three", etc.)
 #: availability/templates/checkin_progress.html:173
 #, python-format
-msgid "There needs to be at least one venue marked as available, given the number of debates."
-msgid_plural "There need to be at least %(required_count)s venues marked as available, given the number of debates."
+msgid "There needs to be at least one room marked as available, given the number of debates."
+msgid_plural "There need to be at least %(required_count)s rooms marked as available, given the number of debates."
 msgstr[0] "Должна быть хотя бы одна аудитория, отмеченная как доступная, учитывая количество дебатов в этом раунде."
 msgstr[1] "Должно быть хотя бы %(required_count)s аудиторий, отмеченных как доступные учитывая количество дебатов в этом раунде."
 msgstr[2] "Должно быть хотя бы %(required_count)s аудиторий, отмеченных как доступные учитывая количество дебатов в этом раунде."
 msgstr[3] "Должно быть хотя бы %(required_count)s аудиторий, отмеченных как доступные учитывая количество дебатов в этом раунде."
 
 #: availability/templates/checkin_progress.html:185
-msgid "Edit venue availability"
+msgid "Edit room availability"
 msgstr "Редактировать доступность аудиторий"
 
 #: availability/views.py:95
@@ -395,11 +397,11 @@ msgid "Adjudicator Availability"
 msgstr "Доступность судей"
 
 #: availability/views.py:246
-msgid "Venue Availability"
+msgid "Room Availability"
 msgstr "Доступность аудиторий"
 
 #: availability/views.py:260
-msgid "Venue"
+msgid "Room"
 msgstr "Аудитория"
 
 #: availability/views.py:262
@@ -419,7 +421,7 @@ msgid "Failed to update some or all availabilities due to an integrityerror. You
 msgstr "Не удалось обновить некоторые или все доступные возможности из-за ошибки интегрированности. Вы должны повторить это действие или сделать индивидуальные обновления."
 
 #: availability/views.py:294
-msgid "Checked in all teams, adjudicators and venues."
+msgid "Checked in all teams, adjudicators and rooms."
 msgstr "Зарегистрированы все команды, судьи и аудитории."
 
 #: availability/views.py:301
@@ -427,6 +429,6 @@ msgid "Checked in all breaking adjudicators."
 msgstr "Зарегистрированы все брейкающиеся судьи."
 
 #: availability/views.py:309
-msgid "Checked in all teams, adjudicators and venues from previous round."
+msgid "Checked in all teams, adjudicators and rooms from previous round."
 msgstr "Зарегистрированы все команды, судьи и аудитории из предыдущего раунда."
 

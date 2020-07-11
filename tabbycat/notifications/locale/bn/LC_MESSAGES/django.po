@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 15:10-0400\n"
-"PO-Revision-Date: 2020-03-12 00:26\n"
+"POT-Creation-Date: 2020-07-05 13:59-0300\n"
+"PO-Revision-Date: 2020-07-05 17:04\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Bengali\n"
 "Language: bn_BD\n"
@@ -15,17 +15,19 @@ msgstr ""
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: bn\n"
 "X-Crowdin-File: /develop/tabbycat/notifications/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-Project-ID: 364715\n"
+"X-Crowdin-File-ID: 938\n"
 
 #: notifications/apps.py:7
 msgid "Notifications"
 msgstr ""
 
 #: notifications/consumers.py:37
-msgid "Failed to send e-mails."
+msgid "Failed to send emails."
 msgstr ""
 
 #: notifications/consumers.py:40
-msgid "Connection error sending e-mails."
+msgid "Connection error sending emails."
 msgstr ""
 
 #: notifications/forms.py:11
@@ -81,7 +83,7 @@ msgstr ""
 #: notifications/models.py:36 notifications/models.py:75
 #: notifications/models.py:126
 msgid "timestamp"
-msgstr ""
+msgstr "টাইমস্ট্যাম্প"
 
 #: notifications/models.py:39
 msgid "sent message"
@@ -137,11 +139,11 @@ msgstr ""
 
 #: notifications/models.py:78
 msgid "tournament"
-msgstr ""
+msgstr "প্রতিযোগিতা"
 
 #: notifications/models.py:80
 msgid "round"
-msgstr ""
+msgstr "পর্ব"
 
 #: notifications/models.py:83
 msgid "bulk notification"
@@ -252,60 +254,60 @@ msgstr ""
 msgid "Go back to the site home page"
 msgstr ""
 
-#: notifications/utils.py:28
+#: notifications/utils.py:29
 msgid "the chair"
 msgstr ""
 
-#: notifications/utils.py:29
+#: notifications/utils.py:30
 msgid "the only"
 msgstr ""
 
-#: notifications/utils.py:30
+#: notifications/utils.py:31
 msgid "a panellist"
 msgstr ""
 
-#: notifications/utils.py:31
+#: notifications/utils.py:32
 msgid "a trainee"
 msgstr ""
 
-#: notifications/utils.py:54
+#: notifications/utils.py:55
 msgid "TBA"
 msgstr ""
 
-#: notifications/utils.py:100
+#: notifications/utils.py:101
 #, python-format
 msgid "%(tournament)s %(round)s @ %(room)s"
 msgstr ""
 
-#: notifications/utils.py:111
+#: notifications/utils.py:112
 #, python-format
-msgid "<li>%(side)s: %(team)s (%(points)d points with %(speaks)d total speaks)"
-msgstr ""
-
-#: notifications/utils.py:114
-#, python-format
-msgid "<li>%(side)s: %(team)s (%(points)s - %(speaks)d total speaks)"
+msgid "<li>%(side)s: %(team)s (%(points)d points with %(speaks)s total speaks)"
 msgstr ""
 
 #: notifications/utils.py:115
+#, python-format
+msgid "<li>%(side)s: %(team)s (%(points)s - %(speaks)s total speaks)"
+msgstr ""
+
+#: notifications/utils.py:116
 msgid "Win"
 msgstr ""
 
-#: notifications/utils.py:115
+#: notifications/utils.py:116
 msgid "Loss"
 msgstr ""
 
-#: notifications/utils.py:127
+#: notifications/utils.py:128
 #, python-format
 msgid "<li>%(pos)s: %(speaker)s (%(score)s)</li>"
 msgstr ""
 
-#: notifications/utils.py:201
+#: notifications/utils.py:202
 #, python-format
 msgid "<li>%(text)s (%(ref)s)</li>"
 msgstr ""
 
-#: notifications/utils.py:236 notifications/utils.py:237
+#: notifications/utils.py:237 notifications/utils.py:238
 msgid ", "
 msgstr ""
 
@@ -373,7 +375,7 @@ msgid "Send Email"
 msgstr ""
 
 #: notifications/views.py:225
-msgid "Email Address"
+msgid "Email address"
 msgstr ""
 
 #: notifications/views.py:226
@@ -386,11 +388,11 @@ msgstr ""
 
 #: notifications/views.py:240
 msgid "Adjudicator"
-msgstr ""
+msgstr "বিচারক"
 
 #: notifications/views.py:240
 msgid "Speaker"
-msgstr ""
+msgstr "বক্তা"
 
 #: notifications/views.py:248
 msgid "Speakers"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 15:10-0400\n"
-"PO-Revision-Date: 2020-01-02 01:51\n"
+"POT-Creation-Date: 2020-05-24 04:15-0300\n"
+"PO-Revision-Date: 2020-07-05 17:06\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -15,6 +15,8 @@ msgstr ""
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: /develop/tabbycat/privateurls/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-Project-ID: 364715\n"
+"X-Crowdin-File-ID: 946\n"
 
 #: privateurls/apps.py:7
 msgid "Private URL Management"
@@ -55,27 +57,31 @@ msgid "View URLs"
 msgstr "Voir les URLs"
 
 #: privateurls/templates/private_urls_nav.html:11
-msgid "Print URLs"
-msgstr "Imprimer les URLs"
+msgid "Print Teams' URLs"
+msgstr "Imprimer les URL des équipes"
 
-#: privateurls/templates/private_urls_nav.html:18
+#: privateurls/templates/private_urls_nav.html:15
+msgid "Print Adjudicators' URLs"
+msgstr "Imprimer les URL des juges"
+
+#: privateurls/templates/private_urls_nav.html:22
 msgid "All reachable participants have already been sent their private URLs."
 msgstr "Tous les participants ont déjà été envoyés leurs URLs privées."
 
-#: privateurls/templates/private_urls_nav.html:20
+#: privateurls/templates/private_urls_nav.html:24
 msgid "Email URLs"
 msgstr "Envoyer les URLs"
 
-#: privateurls/templates/private_urls_nav.html:27
+#: privateurls/templates/private_urls_nav.html:31
 msgid "This button only generates private URLs for participants who do not already have one."
 msgstr "Ce bouton ne générera les URLs privées que pour les participants qui n'en ont pas déjà un."
 
-#: privateurls/templates/private_urls_nav.html:28
-#: privateurls/templates/private_urls_nav.html:35
+#: privateurls/templates/private_urls_nav.html:32
+#: privateurls/templates/private_urls_nav.html:39
 msgid "Generate URLs"
 msgstr "Générer URLs"
 
-#: privateurls/templates/private_urls_nav.html:34
+#: privateurls/templates/private_urls_nav.html:38
 msgid "All participants already have private URLs."
 msgstr "Tous les participants ont déjà leurs URLs privées."
 
@@ -94,39 +100,40 @@ msgstr "pour %(name)s"
 msgid "(%(team)s)"
 msgstr "(%(team)s)"
 
-#: privateurls/templates/public_url_landing.html:21
+#: privateurls/templates/public_url_landing.html:18
 #, python-format
 msgid "The URL of this page is personalised to you, %(name)s. <strong>Do not share it with anyone;</strong> anyone who knows this URL can submit results and/or feedback for your debates. You may bookmark this page and return here after each debate for the available actions."
 msgstr "Cette URL est personnalisée pour vous, %(name)s. <strong>Ne le partagez pas avec qui que se soit ;</strong> n’importe qui connait cette URL peut saisir des feuilles et des évaluations de débats en votre nom. Vous pouvez ajouter cette page à vos favoris et y retourner après chaque débat pour les options disponibles."
 
-#: privateurls/templates/public_url_landing.html:40
+#: privateurls/templates/public_url_landing.html:37
 #, python-format
 msgid "Revoke check-in from %(check_time)s"
 msgstr "Révoquer l’enregistrement de %(check_time)s"
 
-#: privateurls/templates/public_url_landing.html:45
+#: privateurls/templates/public_url_landing.html:42
 msgid "Check in"
 msgstr "Enregistrer"
 
-#: privateurls/templates/public_url_landing.html:53
+#. Translators: Include the full-stop; English doesn't because "a.m." already has a full stop.
+#: privateurls/templates/public_url_landing.html:49
 #, python-format
-msgid "You have been checked-in at %(check_time)s"
+msgid "You have been checked in at %(check_time)s"
 msgstr "Vous vous êtes enregistré à %(check_time)s"
 
-#: privateurls/templates/public_url_landing.html:58
-msgid "You are not currently checked-in"
-msgstr "Vous n’êtes pas actuellement enregistré"
+#: privateurls/templates/public_url_landing.html:54
+msgid "You are not currently checked in."
+msgstr "Vous n’êtes pas actuellement enregistré."
 
-#: privateurls/templates/public_url_landing.html:67
+#: privateurls/templates/public_url_landing.html:61
 msgid "Submit Ballot"
 msgstr "Saisir feuille"
 
+#: privateurls/templates/public_url_landing.html:67
 #: privateurls/templates/public_url_landing.html:73
-#: privateurls/templates/public_url_landing.html:79
 msgid "Submit Feedback"
 msgstr "Saisir Évaluations"
 
-#: privateurls/templates/public_url_landing.html:88
+#: privateurls/templates/public_url_landing.html:82
 #, python-format
 msgid "Registration (%(name)s)"
 msgstr "Enregistrement (%(name)s)"

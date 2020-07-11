@@ -2,6 +2,8 @@ from django.db.models import Q
 from rest_framework.relations import HyperlinkedIdentityField, HyperlinkedRelatedField
 from rest_framework.reverse import reverse
 
+from participants.models import Speaker
+
 
 class TournamentHyperlinkedRelatedField(HyperlinkedRelatedField):
     default_tournament_field = 'tournament'
@@ -38,7 +40,7 @@ class TournamentHyperlinkedRelatedField(HyperlinkedRelatedField):
         return {self.tournament_field: self.context['tournament']}
 
     def get_queryset(self):
-        return self.queryset.filter(**self.lookup_kwargs()).select_related(self.tournament_field)
+        return super().get_queryset().filter(**self.lookup_kwargs()).select_related(self.tournament_field)
 
 
 class TournamentHyperlinkedIdentityField(TournamentHyperlinkedRelatedField, HyperlinkedIdentityField):
@@ -72,10 +74,11 @@ class RoundHyperlinkedIdentityField(RoundHyperlinkedRelatedField, HyperlinkedIde
 
 
 class AnonymisingHyperlinkedTournamentRelatedField(TournamentHyperlinkedRelatedField):
+    default_tournament_field = 'team__tournament'
 
-    def __init__(self, view_name=None, **kwargs):
+    def __init__(self, view_name=None, queryset=Speaker.objects.all(), **kwargs):
         self.null_when = kwargs.pop('anonymous_source')
-        super().__init__(view_name=view_name, **kwargs)
+        super().__init__(view_name=view_name, queryset=queryset, **kwargs)
 
     def to_representation(self, value):
         if getattr(value, self.null_when, True):

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 15:10-0400\n"
-"PO-Revision-Date: 2020-01-01 04:55\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-05-24 04:15-0300\n"
+"PO-Revision-Date: 2020-07-05 17:04\n"
+"Last-Translator: \n"
 "Language-Team: Malay\n"
 "Language: ms_MY\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: tabbycat\n"
+"X-Crowdin-Project-ID: 364715\n"
 "X-Crowdin-Language: ms\n"
 "X-Crowdin-File: /develop/tabbycat/motions/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-File-ID: 936\n"
 
 #: motions/apps.py:7 motions/templates/public_motions.html:4
 #: motions/templates/public_motions.html:5
@@ -30,7 +32,7 @@ msgstr "Urutan usul yang akan terpapar"
 
 #: motions/models.py:12
 msgid "text"
-msgstr ""
+msgstr "teks"
 
 #: motions/models.py:13
 msgid "The full motion e.g., \"This House would straighten all bananas\""
@@ -46,11 +48,11 @@ msgstr "Nama pendek untuk usul, cth., \"Tomato\""
 
 #: motions/models.py:18
 msgid "info slide"
-msgstr ""
+msgstr "maklumat tambahan"
 
 #: motions/models.py:19
 msgid "The information slide for this topic; if it has one"
-msgstr ""
+msgstr "Maklumat tambahan untuk usul ini, jika ada"
 
 #: motions/models.py:21
 msgid "round"
@@ -70,11 +72,11 @@ msgstr "pasukan"
 
 #: motions/models.py:39
 msgid "preferences"
-msgstr ""
+msgstr "pilihan"
 
 #: motions/models.py:41
 msgid "ballot submission"
-msgstr ""
+msgstr "penyerahan keputusan"
 
 #: motions/models.py:45
 msgid "debate team motion preference"
@@ -178,12 +180,12 @@ msgstr ""
 
 #: motions/templates/motion_statistics_bp_elim.html:50
 msgid "eliminated"
-msgstr ""
+msgstr "disingkir"
 
 #: motions/templates/motion_statistics_bp_elim.html:52
 msgctxt "abbreviation for 'eliminated', used when not enough space"
 msgid "elim."
-msgstr ""
+msgstr "disingkir"
 
 #: motions/templates/motion_statistics_bp_elim.html:58
 #, python-format
@@ -197,33 +199,33 @@ msgstr ""
 
 #: motions/templates/motion_statistics_bp_prelim.html:13
 msgid "Government"
-msgstr ""
+msgstr "Kerajaan"
 
 #: motions/templates/motion_statistics_bp_prelim.html:17
 msgid "Opposition"
-msgstr ""
+msgstr "Pembangkang"
 
 #: motions/templates/motion_statistics_bp_prelim.html:21
 msgid "Average Points per bench"
-msgstr ""
+msgstr "Markah Purata setiap pihak"
 
 #: motions/templates/motion_statistics_bp_prelim.html:29
 msgid "Opening"
-msgstr ""
+msgstr "Pembuka"
 
 #: motions/templates/motion_statistics_bp_prelim.html:33
 msgid "Closing"
-msgstr ""
+msgstr "Penutup"
 
 #: motions/templates/motion_statistics_bp_prelim.html:37
 msgid "Average Points per half"
-msgstr ""
+msgstr "Markah Purata setiap belah"
 
 #: motions/templates/motion_statistics_bp_prelim.html:60
 #, python-format
 msgid "average points per position (%(ndebates)s debate)"
 msgid_plural "average points per position (%(ndebates)s debates)"
-msgstr[0] ""
+msgstr[0] "markah purata untuk setiap kedudukan (%(ndebates)s perdebatan)"
 
 #: motions/templates/motion_statistics_bp_prelim.html:78
 #, python-format
@@ -245,7 +247,7 @@ msgstr[0] ""
 
 #: motions/templates/motion_statistics_twoteam.html:53
 msgid "No teams debated this motion"
-msgstr ""
+msgstr "Tiada pasukan berdebat usul ini"
 
 #: motions/templates/motion_statistics_twoteam.html:91
 #: motions/templates/motion_statistics_twoteam.html:98
@@ -256,79 +258,79 @@ msgstr[0] ""
 
 #: motions/templates/motion_statistics_twoteam.html:113
 msgid "No teams vetoed this motion"
-msgstr ""
+msgstr "Tiada pasukan tolak usul ini"
 
 #: motions/templates/motions_edit.html:4 motions/templates/motions_edit.html:10
 msgid "Edit Motion"
 msgid_plural "Edit Motions"
-msgstr[0] ""
+msgstr[0] "Ubah suai Usul"
 
 #: motions/templates/motions_edit.html:18
 msgid "Display Draw"
-msgstr ""
+msgstr "Tunjuk usul"
 
 #: motions/templates/motions_edit.html:55
 msgid "Save Motion"
 msgid_plural "Save Motions"
-msgstr[0] ""
+msgstr[0] "Simpan usul"
 
 #: motions/templates/motions_info.html:8
 msgid "Info Slide"
-msgstr ""
+msgstr "Maklumat tambahan"
 
 #: motions/templates/public_motions.html:39
 msgid "There are no motions available for this round."
-msgstr ""
+msgstr "Tiada usul wujud untuk pusingan ini."
 
 #: motions/templates/public_motions.html:45
 msgid "The motions for this round have not been released."
-msgstr ""
+msgstr "Usul untuk pusingan ini belum lagi disiarkan."
 
 #: motions/templates/public_motions.html:50
 msgid "The motion for this round has not been released."
-msgstr ""
+msgstr "Usul untuk pusingan ini belum lagi disiarkan."
 
 #: motions/templates/show.html:16
 #, python-format
-msgid "Reveal Info Slide for %(round_name)s"
-msgid_plural "Reveal Info Slides for %(round_name)s"
-msgstr[0] ""
+msgid "Reveal Info Slide for %(round)s"
+msgid_plural "Reveal Info Slides for %(round)s"
+msgstr[0] "Tunjukkan Maklumat Tambahan untuk %(round)s"
 
 #: motions/templates/show.html:24
 #, python-format
-msgid "Reveal Motion for %(round_name)s"
-msgid_plural "Reveal Motions for %(round_name)s"
-msgstr[0] ""
+msgid "Reveal Motion for %(round)s"
+msgid_plural "Reveal Motions for %(round)s"
+msgstr[0] "Tunjukkan usul untuk %(round)s"
 
 #: motions/templates/show.html:41
 msgid "There are no motions for this round entered into Tabbycat."
-msgstr ""
+msgstr "Tiada usul dimasukkan dalam Tabbycat untuk pusingan ini."
 
 #: motions/views.py:87
 msgid "The motion has been saved."
-msgstr ""
+msgstr "Usul telah disimpan."
 
 #: motions/views.py:89
 #, python-format
 msgid "%(count)d motion has been saved."
 msgid_plural "%(count)d motions have been saved."
-msgstr[0] ""
+msgstr[0] "%(count)d usul telah disimpan."
 
 #: motions/views.py:94
 #, python-format
 msgid "%(count)d motion has been deleted."
 msgid_plural "%(count)d motions have been deleted."
-msgstr[0] ""
+msgstr[0] "%(count)d usul telah dibuang."
 
 #: motions/views.py:118
 msgid "Released the motion(s)."
-msgstr ""
+msgstr "Usul disiarkan."
 
 #: motions/views.py:125
 msgid "Unreleased the motion(s)."
-msgstr ""
+msgstr "Siaran usul ditarik balik."
 
 #: motions/views.py:149
 msgid "Round Motions"
-msgstr ""
+msgstr "Usul Pusingan"
 

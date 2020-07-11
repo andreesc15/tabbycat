@@ -4,6 +4,7 @@ from django.db.models import Count, Prefetch, Q
 from django.http.response import Http404
 from dynamic_preferences.api.serializers import PreferenceSerializer
 from dynamic_preferences.api.viewsets import PerInstancePreferenceViewSet
+from rest_framework.exceptions import NotFound
 from rest_framework.generics import GenericAPIView, get_object_or_404, RetrieveUpdateAPIView
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -12,6 +13,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from adjfeedback.models import AdjudicatorFeedbackQuestion
 from checkins.consumers import CheckInEventConsumer
+from checkins.models import Event
 from checkins.utils import create_identifiers, get_unexpired_checkins
 from options.models import TournamentPreferenceModel
 from participants.models import Adjudicator, Institution, Speaker, Team
@@ -58,7 +60,7 @@ class TournamentViewSet(PublicAPIMixin, ModelViewSet):
     queryset = Tournament.objects.all().prefetch_related(
         'breakcategory_set',
         Prefetch('round_set',
-            queryset=Round.objects.filter(completed=False).annotate(Count('debate')),
+            queryset=Round.objects.filter(completed=False).annotate(Count('debate')).order_by('seq'),
             to_attr='current_round_set'),
     )
     serializer_class = serializers.TournamentSerializer
@@ -170,6 +172,9 @@ class SpeakerViewSet(TournamentAPIMixin, TournamentPublicAPIMixin, ModelViewSet)
     def perform_create(self, serializer):
         serializer.save()
 
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related('categories')
+
 
 class VenueViewSet(TournamentAPIMixin, PublicAPIMixin, ModelViewSet):
     serializer_class = serializers.VenueSerializer
@@ -203,22 +208,27 @@ class BaseCheckinsView(AdministratorAPIMixin, TournamentAPIMixin, APIView):
         self.check_object_permissions(self.request, obj)
 
         if not hasattr(obj, 'checkin_identifier'):
-            raise Http404('No identifier')
+            raise NotFound(detail='No identifier. Use POST to generate.')
         return obj
 
-    def get_barcodes(self, obj):
-        return [obj.checkin_identifier.barcode]
-
     def broadcast_checkin(self, obj, check):
+        # Send result to websocket for treatment when opened; but perform the action here
+        if check:
+            checkin = Event.objects.create(identifier=obj.checkin_identifier,
+                                           tournament=self.tournament)
+            checkin_dict = checkin.serialize()
+            checkin_dict['owner_name'] = obj.name
+        else:
+            checkins = get_unexpired_checkins(self.tournament, self.window_preference_pref)
+            checkins.filter(identifier=obj.checkin_identifier).delete()
+            checkin_dict = {'identifier': obj.checkin_identifier.barcode}
+
         group_name = CheckInEventConsumer.group_prefix + "_" + self.tournament.slug
         async_to_sync(get_channel_layer().group_send)(
             group_name, {
-                'type': 'broadcast_checkin',
-                'content': {
-                    'barcodes': self.get_barcodes(obj),
-                    'status': check,
-                    'type': obj.checkin_identifier.instance_attr,
-                    'component_id': None,
+                'type': 'send_json',
+                'data': {
+                    'checkins': [checkin_dict],
                 },
             },
         )
@@ -260,12 +270,14 @@ class BaseCheckinsView(AdministratorAPIMixin, TournamentAPIMixin, APIView):
         """Toggles the check-in status"""
         obj = self.get_object()
         check = get_unexpired_checkins(self.tournament, self.window_preference_pref).filter(identifier=obj.checkin_identifier).exists()
-        self.broadcast_checkin(obj.checkin_identifier, not check)
+        self.broadcast_checkin(obj, not check)
         return Response(self.get_response_dict(request, obj, not check))
 
     def post(self, request, *args, **kwargs):
         """Creates an identifier"""
-        obj = self.get_object_queryset()
+        obj = self.get_object_queryset()  # Don't .get() as create_identifiers expects a queryset
+        if not obj.exists():
+            raise Http404
         create_identifiers(self.model.checkin_identifier.related.related_model, obj)
         return Response(self.get_response_dict(request, obj.get(), False))
 
@@ -385,6 +397,9 @@ class FeedbackViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
     serializer_class = serializers.FeedbackSerializer
     tournament_field = 'adjudicator__tournament'
 
+    def perform_create(self, serializer):
+        serializer.save()
+
     def get_queryset(self):
         query_params = self.request.query_params
         filters = Q()
@@ -405,7 +420,6 @@ class FeedbackViewSet(TournamentAPIMixin, AdministratorAPIMixin, ModelViewSet):
             Prefetch(
                 typ.__name__.lower() + "_set",
                 queryset=typ.objects.all().select_related('question', 'question__tournament'),
-                to_attr=typ.__name__,
             )
             for typ in AdjudicatorFeedbackQuestion.ANSWER_TYPE_CLASSES_REVERSE.keys()
         ]

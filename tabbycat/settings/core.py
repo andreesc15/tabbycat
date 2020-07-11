@@ -22,9 +22,9 @@ SECRET_KEY = r'#2q43u&tp4((4&m3i8v%w-6z6pp7m(v0-6@w@i!j5n)n15epwc'
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.4.0a'
-TABBYCAT_CODENAME = 'Maine Coon - LiDUC'
-READTHEDOCS_VERSION = 'v2.4.0'
+TABBYCAT_VERSION = '2.5.0-dev.liduc'
+TABBYCAT_CODENAME = 'Nebelung (LiDUC)'
+READTHEDOCS_VERSION = 'v2.5.0-dev'
 
 # ==============================================================================
 # Internationalization and Localization
@@ -41,21 +41,34 @@ LOCALE_PATHS = [
 ]
 
 # Languages that should be available in the switcher
+EXTRA_LANG_INFO = {
+    'ms': {
+        'bidi': False,
+        'code': 'ms',
+        'name': 'Malay',
+        'name_local': 'Bahasa Melayu', #unicode codepoints here
+    },
+}
+
+# Add custom languages not provided by Django
+import django.conf.locale
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
+
 LANGUAGES = [
     ('ar', _('Arabic')),
     ('bn', _('Bengali')),
-    ('de', _('German')),
     ('en', _('English')),
     ('es', _('Spanish')),
     ('fr', _('French')),
     ('he', _('Hebrew')),
     ('hi', _('Hindi')),
     ('ja', _('Japanese')),
+    ('ms', _('Malay')),
     ('pt', _('Portuguese')),
     ('ro', _('Romanian')),
     ('ru', _('Russian')),
-    ('tr', _('Turkish')),
-    ('zh-hans', _('Chinese (Simplified)')),
+    ('zh-hans', _('Simplified Chinese')),
 ]
 
 STATICI18N_ROOT = os.path.join(BASE_DIR, "locale")
@@ -321,6 +334,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }

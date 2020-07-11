@@ -243,7 +243,7 @@ class Tournament(models.Model):
         # For something this complicated it's easier just to get the entire
         # round set from the database, and process it in Python.
         rounds = getattr(self, 'current_round_set',
-            self.round_set.filter(completed=False).annotate(Count('debate')))
+            self.round_set.filter(completed=False).annotate(Count('debate')).order_by('seq'))
         current_elim_rounds = {}
         for r in rounds:
             if not r.is_break_round:
@@ -252,8 +252,8 @@ class Tournament(models.Model):
                 current_elim_rounds.setdefault(r.break_category_id, r)
         return [
             current_elim_rounds.get(category.pk)
-            for category in self.breakcategory_set.all()
-            if category in current_elim_rounds
+            for category in self.breakcategory_set.order_by('seq')  # Order by break, then seq
+            if category.pk in current_elim_rounds
         ]
 
     @cached_property
@@ -321,7 +321,7 @@ class Round(models.Model):
     objects = RoundManager()
 
     tournament = models.ForeignKey(Tournament, models.CASCADE, verbose_name=_("tournament"))
-    seq = models.IntegerField(verbose_name=_("sequence number"),
+    seq = models.PositiveIntegerField(verbose_name=_("sequence number"),
         help_text=_("A number that determines the order of the round, should count consecutively from 1 for the first round"))
     completed = models.BooleanField(default=False,
         verbose_name=_("completed"),

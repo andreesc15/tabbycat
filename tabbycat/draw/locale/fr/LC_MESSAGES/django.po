@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2020-01-01 04:54\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-07-05 15:26-0300\n"
+"PO-Revision-Date: 2020-07-10 07:03\n"
+"Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Crowdin-Project: tabbycat\n"
+"X-Crowdin-Project-ID: 364715\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: /develop/tabbycat/draw/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-File-ID: 930\n"
 
 #: draw/admin.py:67
 #, python-format
@@ -192,132 +194,132 @@ msgstr "brouillon"
 msgid "confirmed"
 msgstr "confirmé"
 
-#: draw/models.py:35 draw/models.py:388
+#: draw/models.py:36 draw/models.py:389
 msgid "round"
 msgstr "tour"
 
-#: draw/models.py:37
-msgid "venue"
+#: draw/models.py:38
+msgid "room"
 msgstr "salle"
 
-#: draw/models.py:40
+#: draw/models.py:41
 msgid "bracket"
 msgstr "tranche"
 
-#: draw/models.py:42
+#: draw/models.py:43
 msgid "room rank"
 msgstr "rang de salle"
 
-#: draw/models.py:48
+#: draw/models.py:49
 msgid "importance"
 msgstr "importance"
 
-#: draw/models.py:50
+#: draw/models.py:51
 msgid "result status"
 msgstr "état de résultat"
 
-#: draw/models.py:52
+#: draw/models.py:53
 msgid "sides confirmed"
 msgstr "côtés confirmés"
 
-#: draw/models.py:53
+#: draw/models.py:54
 msgid "If unchecked, the sides assigned to teams in this debate are just placeholders."
 msgstr "Si non coché, les côtés assignés aux équipes à ce débat sont génériques."
 
-#: draw/models.py:56 draw/models.py:271
+#: draw/models.py:57 draw/models.py:272
 msgid "debate"
 msgstr "débat"
 
-#: draw/models.py:57
+#: draw/models.py:58
 msgid "debates"
 msgstr "débats"
 
 #. Translators: This is appended to a list of teams, e.g. "Auckland
 #. 1, Vic Wellington 1 (sides not confirmed)". Mind the leading
 #. space.
-#: draw/models.py:76 draw/models.py:101
+#: draw/models.py:77 draw/models.py:102
 msgid " (sides not confirmed)"
 msgstr " (côtés non-confirmés)"
 
 #. Translators: This goes between teams in a debate, e.g. "Auckland 1
 #. vs Vic Wellington 1". Mind the leading and trailing spaces.
-#: draw/models.py:88 draw/models.py:105
+#: draw/models.py:89 draw/models.py:106
 msgid " vs "
 msgstr " vs "
 
-#: draw/models.py:261
+#: draw/models.py:262
 msgid "affirmative"
 msgstr "affirmatif"
 
-#: draw/models.py:262
+#: draw/models.py:263
 msgid "negative"
 msgstr "négatif"
 
-#: draw/models.py:263
+#: draw/models.py:264
 msgid "opening government"
 msgstr "premier gouvernement"
 
-#: draw/models.py:264
+#: draw/models.py:265
 msgid "opening opposition"
 msgstr "première opposition"
 
-#: draw/models.py:265
+#: draw/models.py:266
 msgid "closing government"
 msgstr "second gouvernement"
 
-#: draw/models.py:266
+#: draw/models.py:267
 msgid "closing opposition"
 msgstr "seconde opposition"
 
-#: draw/models.py:273 draw/models.py:390
+#: draw/models.py:274 draw/models.py:391
 msgid "team"
 msgstr "équipe"
 
-#: draw/models.py:275 draw/models.py:392
+#: draw/models.py:276 draw/models.py:393
 msgid "side"
 msgstr "côté"
 
-#: draw/models.py:281
+#: draw/models.py:282
 msgid "debate team"
 msgstr "débat-équipe"
 
-#: draw/models.py:282
+#: draw/models.py:283
 msgid "debate teams"
 msgstr "débat-équipes"
 
-#: draw/models.py:310
+#: draw/models.py:311
 msgid "placed 1st"
 msgstr "arrivé 1er"
 
-#: draw/models.py:312
+#: draw/models.py:313
 msgid "placed 2nd"
 msgstr "arrivé 2e"
 
-#: draw/models.py:314
+#: draw/models.py:315
 msgid "placed 3rd"
 msgstr "arrivé 3e"
 
-#: draw/models.py:316
+#: draw/models.py:317
 msgid "placed 4th"
 msgstr "arrivé 4e"
 
-#: draw/models.py:318 draw/models.py:325
+#: draw/models.py:319 draw/models.py:326
 msgid "result unknown"
 msgstr "résultat inconnu"
 
-#: draw/models.py:321
+#: draw/models.py:322
 msgid "won"
 msgstr "gagné"
 
-#: draw/models.py:323
+#: draw/models.py:324
 msgid "lost"
 msgstr "perdu"
 
-#: draw/models.py:396
+#: draw/models.py:397
 msgid "team side allocation"
 msgstr "répartition des côté aux équipes"
 
-#: draw/models.py:397
+#: draw/models.py:398
 msgid "team side allocations"
 msgstr "répartitions des côtés aux équipes"
 
@@ -325,8 +327,8 @@ msgstr "répartitions des côtés aux équipes"
 #. "Opening government: Total speaker score", "Closing opposition: Number of firsts"
 #: draw/tables.py:32
 #, python-format
-msgid "%(side_name)s: %(metric_name)s"
-msgstr "%(side_name)s : %(metric_name)s"
+msgid "%(side)s: %(metric)s"
+msgstr "%(side)s: %(metric)s"
 
 #: draw/tables.py:75
 #, python-format
@@ -341,93 +343,93 @@ msgstr "Rang de salle de ce débat"
 msgid "Bracket of this debate"
 msgstr "Tranche de ce débat"
 
-#: draw/tables.py:164
+#: draw/tables.py:165
 msgid "side history<br>\n"
 "(number of times the team has been on each side before this round)"
 msgstr "historique des côtés<br>\n"
 "(nombre de fois que l'équipe a été sur chaque côté avant ce tour)"
 
 #. Translators: Abbreviation for "side history"
-#: draw/tables.py:166
+#: draw/tables.py:167
 msgid "SH"
 msgstr "HC"
 
-#: draw/tables.py:231
+#: draw/tables.py:232
 msgid "Went from balanced to imbalanced"
 msgstr "D'équilibré à déséquilibré"
 
-#: draw/tables.py:232
+#: draw/tables.py:233
 msgid "Went from imbalanced to balanced"
 msgstr "De déséquilibré à équilibré"
 
-#: draw/tables.py:233
+#: draw/tables.py:234
 msgid "Best improvement possible, still imbalanced"
 msgstr "Meilleur amélioration possible, encore déséquilibré"
 
-#: draw/tables.py:234
+#: draw/tables.py:235
 msgid "Was imbalanced and still imbalanced"
 msgstr "Était déséquilibré et est encore déséquilibré"
 
-#: draw/tables.py:255 draw/tables.py:377
+#: draw/tables.py:256 draw/tables.py:378
 msgid "No metrics in the team standings precedence"
 msgstr "Aucune métrique dans la préséance de classement d'équipe"
 
-#: draw/tables.py:281
+#: draw/tables.py:282
 msgid "Side"
 msgstr "Côté"
 
-#: draw/tables.py:282
+#: draw/tables.py:283
 msgid "Position this round"
 msgstr "Position dans ce tour"
 
-#: draw/tables.py:286
+#: draw/tables.py:287
 msgid "Before"
 msgstr "Avant"
 
-#: draw/tables.py:287
+#: draw/tables.py:288
 msgid "Side history before this round"
 msgstr "Historique de côté avant ce tour"
 
-#: draw/tables.py:291
+#: draw/tables.py:292
 msgid "After"
 msgstr "Après"
 
-#: draw/tables.py:292
+#: draw/tables.py:293
 msgid "Side history after this round"
 msgstr "Historique de côté après ce tour"
 
-#: draw/tables.py:302 draw/tables.py:397
+#: draw/tables.py:303 draw/tables.py:398
 msgid "Cost"
 msgstr "Coût"
 
-#: draw/tables.py:302
+#: draw/tables.py:303
 msgid "Position cost"
 msgstr "Coût de position"
 
-#: draw/tables.py:315
+#: draw/tables.py:316
 msgid "Status"
 msgstr "État"
 
-#: draw/tables.py:359
+#: draw/tables.py:360
 msgid "Teams with this many points are permitted in this debate<br>\n"
 "(bracket in bold)"
 msgstr "Les équipes qui ont ce nombre de points sont permises dans ce débat<br>\n"
 "(tranche en caractères gras)"
 
-#: draw/tables.py:385
+#: draw/tables.py:386
 #, python-format
 msgid "%(team)s: %(metric)s"
 msgstr "%(team)s : %(metric)s"
 
-#: draw/tables.py:392
+#: draw/tables.py:393
 msgid "side history before this round"
 msgstr "historique de côté avant ce tour"
 
-#: draw/tables.py:392
+#: draw/tables.py:393
 msgid "Sides"
 msgstr "Côtés"
 
-#: draw/tables.py:397
+#: draw/tables.py:398
 msgid "position cost"
 msgstr "coût de position"
 
@@ -503,22 +505,22 @@ msgstr[1] "Les <strong>%(nteams)s</strong> équipes suivantes se figurent dans p
 
 #: draw/templates/draw_alerts_venues.html:5
 #, python-format
-msgid "1 debate does not have a venue."
-msgid_plural "%(ndebates)s debates do not have a venue."
-msgstr[0] "1 débat n’a pas de salle."
-msgstr[1] "%(ndebates)s débats n’ont pas de salle."
+msgid "1 debate does not have a room."
+msgid_plural "%(ndebates)s debates do not have a room."
+msgstr[0] "1 débat n'a pas de salle."
+msgstr[1] "%(ndebates)s débats n'ont pas de salle."
 
 #: draw/templates/draw_alerts_venues.html:14
 #, python-format
-msgid "There are multiple debates in <strong>%(venues)s</strong>."
-msgid_plural "The following <strong>%(ndebates)s</strong> venues have multiple debates in them: <strong>%(venues)s</strong>"
-msgstr[0] "Il y a plusieurs débats dans <strong>%(venues)s</strong>."
-msgstr[1] "Dans les <strong>%(ndebates)s</strong> salles suivantes, il y a plusieurs débats : <strong>%(venues)s</strong>"
+msgid "There are multiple debates in <strong>%(rooms)s</strong>."
+msgid_plural "The following <strong>%(ndebates)s</strong> rooms have multiple debates in them: <strong>%(rooms)s</strong>"
+msgstr[0] "Il y a plusieurs débats dans <strong>%(rooms)s</strong>."
+msgstr[1] "Les <strong>%(ndebates)s</strong> salles suivantes ont plusieurs débats : <strong>%(rooms)s</strong>"
 
 #: draw/templates/draw_alerts_venues.html:23
 #, python-format
-msgid "1 debate has a venue constraint violation."
-msgid_plural "%(ndebates)s debates have venue constraint violations."
+msgid "1 debate has a room constraint violation."
+msgid_plural "%(ndebates)s debates have room constraint violations."
 msgstr[0] "Un débat viole une contrainte de salle."
 msgstr[1] "%(ndebates)s débats violent des contraintes de salle."
 
@@ -560,18 +562,18 @@ msgstr "Retour au tirage"
 
 #: draw/templates/draw_confirm_regeneration.html:16
 #, python-format
-msgid "Confirm Draw Deletion for %(name)s"
-msgstr "Confirmer suppression de tirage pour %(name)s"
+msgid "Confirm Draw Deletion for %(round)s"
+msgstr "Confirmer la suppression du tirage pour %(round)s"
 
 #: draw/templates/draw_confirm_regeneration.html:22
 #, python-format
-msgid "Do you really want to regenerate the draw for %(name)s? This will delete <strong>all the debates in the current draw</strong> —  including their ballots and adjudicator allocations — and cannot be undone. You probably don't want to do this if any results have been entered!"
-msgstr "Voulez-vous vraiment régénérer le tirage pour %(name)s ? Cela supprimera <strong>tous les débats dans le tirage actuel</strong> y compris leurs feuilles de jugement et les attributions de juge, ce qui ne peut pas être annulé. Vous ne voulez probablement pas le faire si des résultats ont été saisis !"
+msgid "Do you really want to regenerate the draw for %(round)s? This will delete <strong>all the debates in the current draw</strong> —  including their ballots and adjudicator allocations — and cannot be undone. You probably don't want to do this if any results have been entered!"
+msgstr "Voulez-vous vraiment régénérer le tirage pour %(round)s ? Cela supprimera <strong>tous les débats dans le tirage actuel</strong> y compris leurs feuilles de jugement et les attributions de juge, ce qui ne peut pas être annulé. Vous ne voulez probablement pas le faire si des résultats ont été saisis !"
 
 #: draw/templates/draw_confirm_regeneration.html:33
 #, python-format
-msgid "Yes, I want to delete the current draw for %(name)s"
-msgstr "Oui, je veux supprimer le tirage actuelle pour %(name)s"
+msgid "Yes, I want to delete the current draw for %(round)s"
+msgstr "Oui, je veux supprimer le tirage actuelle pour %(round)s"
 
 #: draw/templates/draw_display_admin.html:17
 msgid "View Draw"
@@ -753,7 +755,7 @@ msgstr "(pour la salle d'instructions)"
 
 #: draw/templates/draw_display_admin.html:277
 #: draw/templates/draw_display_assistant.html:18
-msgid "Display Draw ordered by Venue"
+msgid "Display Draw ordered by Room"
 msgstr "Afficher le Tirage rangé par Salle"
 
 #: draw/templates/draw_display_admin.html:281
@@ -763,7 +765,7 @@ msgstr "Afficher le Tirage rangé par Équipe"
 
 #: draw/templates/draw_display_admin.html:287
 #: draw/templates/draw_display_assistant.html:28
-msgid "Display Draws for <strong>All Current Rounds</strong> ordered by Venue"
+msgid "Display Draws for <strong>All Current Rounds</strong> ordered by Room"
 msgstr "Afficher tirages pour <strong>Tout les joutes actuelles</strong> ordonné par salle"
 
 #: draw/templates/draw_display_admin.html:291
@@ -774,14 +776,14 @@ msgstr "Afficher tirages pour <strong>tout les joutes actuelles</strong> ordonn�
 #: draw/templates/draw_display_admin.html:295
 #: draw/templates/draw_display_assistant.html:38
 #, python-format
-msgid "Display Draw for <strong>%(round_name)s</strong> ordered by Venue"
-msgstr "Afficher tirage pour <strong>%(round_name)s</strong> ordonné par salle"
+msgid "Display Draw for <strong>%(round)s</strong> ordered by Room"
+msgstr "Afficher tirage pour <strong>%(round)s</strong> ordonné par salle"
 
 #: draw/templates/draw_display_admin.html:301
 #: draw/templates/draw_display_assistant.html:44
 #, python-format
-msgid "Display Draw for <strong>%(round_name)s</strong> ordered by Team"
-msgstr "Afficher tirage pour <strong>%(round_name)s</strong> ordonné par équipe"
+msgid "Display Draw for <strong>%(round)s</strong> ordered by Team"
+msgstr "Afficher tirage pour <strong>%(round)s</strong> ordonné par équipe"
 
 #: draw/templates/draw_display_admin.html:309
 #: draw/templates/draw_display_assistant.html:55
@@ -821,7 +823,7 @@ msgid "Fast"
 msgstr "Vite"
 
 #: draw/templates/draw_display_by.html:23
-#: draw/templates/draw_display_by.html:44
+#: draw/templates/draw_display_by.html:53
 msgid "Medium"
 msgstr "Moyen"
 
@@ -834,33 +836,41 @@ msgid "Extra Slow"
 msgstr "Très Lent"
 
 #: draw/templates/draw_display_by.html:35
+msgid "Hide Adjudicators"
+msgstr "Cacher Juges"
+
+#: draw/templates/draw_display_by.html:38
+msgid "Show Adjudicators"
+msgstr "Montrer Juges"
+
+#: draw/templates/draw_display_by.html:44
 msgid "Text Size"
 msgstr "Taille de Texte"
 
-#: draw/templates/draw_display_by.html:38
+#: draw/templates/draw_display_by.html:47
 msgid "Tiny"
 msgstr "Minuscule"
 
-#: draw/templates/draw_display_by.html:41
+#: draw/templates/draw_display_by.html:50
 msgid "Small"
 msgstr "Petit"
 
-#: draw/templates/draw_display_by.html:47
+#: draw/templates/draw_display_by.html:56
 msgid "Large"
 msgstr "Grand"
 
-#: draw/templates/draw_display_by.html:50
+#: draw/templates/draw_display_by.html:59
 msgid "Huge"
 msgstr "Énorme"
 
-#: draw/templates/draw_display_by.html:56
+#: draw/templates/draw_display_by.html:65
 msgid "Stop Scroll"
 msgstr "Arrête le Défilé"
 
 #: draw/templates/draw_not_released.html:7
 #, python-format
-msgid "The draw for %(round_name)s has yet to be released."
-msgstr "Le tirage de %(round_name)s n'a pas encore été publié."
+msgid "The draw for %(round)s has yet to be released."
+msgstr "Le tirage de %(round)s n'a pas encore été publié."
 
 #: draw/templates/draw_not_released.html:11
 msgid "The draw for the next round has yet to be released."
@@ -883,15 +893,15 @@ msgid "Edit adjudicator allocation"
 msgstr "Modifier les attributions de juges"
 
 #: draw/templates/draw_status_confirmed.html:54
-msgid "Venue Allocations"
+msgid "Room Allocations"
 msgstr "Attribution de salles"
 
 #: draw/templates/draw_status_confirmed.html:62
-msgid "Allocate venues"
-msgstr "Attribuer les salles"
+msgid "Allocate rooms"
+msgstr "Repartir les salles"
 
 #: draw/templates/draw_status_confirmed.html:65
-msgid "Edit venue allocation"
+msgid "Edit room allocation"
 msgstr "Modifier attribution de salles"
 
 #: draw/templates/draw_status_confirmed.html:78
@@ -912,8 +922,8 @@ msgstr "Il n'y a pas de jury préformé disponible pour cette joute"
 #: draw/templates/draw_status_confirmed.html:96
 #: draw/templates/draw_status_confirmed.html:103
 #, python-format
-msgid "Edit preformed panels for %(r_name)s"
-msgstr "Modifier jurys préformés pour %(r_name)s"
+msgid "Edit preformed panels for %(round)s"
+msgstr "Modifier jurys préformés pour %(round)s"
 
 #: draw/templates/draw_status_confirmed.html:120
 msgid "Side Allocations"
@@ -964,8 +974,8 @@ msgstr "Les cellules soulignés concerne des changements dans l'équilibre des p
 
 #: draw/templates/draw_status_none.html:6
 #, python-format
-msgid "A draw for %(round_name)s hasn't yet been generated. To generate one, go to the <a href=\"%(availability_url)s\" class=\"alert-link\">Availability section</a>."
-msgstr "Un tirage pour %(round_name)s n'a pas encore été généré. Pour en générer, allez au <a href=\"%(availability_url)s\" class=\"alert-link\">section des disponibilités</a>."
+msgid "A draw for %(round)s hasn't yet been generated. To generate one, go to the <a href=\"%(availability_url)s\" class=\"alert-link\">Availability section</a>."
+msgstr "Un tirage pour %(round)s n'a pas encore été généré. Pour en générer, allez à la <a href=\"%(availability_url)s\" class=\"alert-link\">section des disponibilités</a>."
 
 #: draw/templates/position_balance.html:6
 msgid "It looks like sides aren't confirmed for some debates in this round. This position balance report is generated using the \"unconfirmed sides\" in the database, and as a consequence, may not make much sense. It's best to confirm sides in all debates before looking at this report."
@@ -1046,8 +1056,8 @@ msgstr "Tirage brouillon"
 #. Translators: e.g. "Affirmative: Break rank"
 #: draw/views.py:518
 #, python-format
-msgid "%(side_name)s: Break rank"
-msgstr "%(side_name)s : rang dans la qualification"
+msgid "%(side)s: Break rank"
+msgstr "%(side)s: Rang de qualification"
 
 #. Translators: "BR" stands for "Break rank"
 #: draw/views.py:523
@@ -1111,7 +1121,7 @@ msgstr "<p>Le classement d'équipe ne pouvait pas être généré parce que l'er
 "<p>Parce que la génération de tirage utilise le classement d'équipe actuel, ceci empêche le tirage d'être généré.</p>"
 
 #: draw/views.py:676
-msgid "Venues were not auto-allocated because there are one or more adjudicator venue constraints. You should run venue allocations after allocating adjudicators."
+msgid "Rooms were not auto-allocated because there are one or more adjudicator room constraints. You should run room allocations after allocating adjudicators."
 msgstr "Les salles n'ont pas été automatiquement attribués car il y a des juges avec des contraintes de salle. Vous devriez allouer les salles après d'avoir assigné les juges."
 
 #: draw/views.py:703

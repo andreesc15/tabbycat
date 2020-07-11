@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-11-26 04:06\n"
+"POT-Creation-Date: 2020-07-05 13:59-0300\n"
+"PO-Revision-Date: 2020-07-10 17:00\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -15,22 +15,24 @@ msgstr ""
 "X-Crowdin-Project: tabbycat\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/utils/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-Project-ID: 364715\n"
+"X-Crowdin-File-ID: 954\n"
 
 #: utils/forms.py:25
-msgid "E-mail address"
-msgstr "E-mail адрес"
+msgid "Email address"
+msgstr ""
 
 #: utils/tables.py:43
 msgid "No Data Available"
 msgstr "Нет доступной информации"
 
 #: utils/tables.py:151 utils/tables.py:152
-msgid "ⓒ"
-msgstr "ⓒ"
+msgid "Ⓒ"
+msgstr "Ⓒ"
 
 #: utils/tables.py:153
-msgid "ⓣ"
-msgstr "ⓣ"
+msgid "Ⓣ"
+msgstr "Ⓣ"
 
 #: utils/tables.py:157
 msgid "chair"
@@ -156,6 +158,7 @@ msgid "%(team)s (%(side)s)"
 msgstr "%(team)s (%(side)s)"
 
 #: utils/tables.py:407 utils/tables.py:411 utils/tables.py:437
+#: utils/tables.py:630
 msgid "??"
 msgstr "??"
 
@@ -192,11 +195,11 @@ msgstr "Турнир"
 msgid "Round"
 msgstr "Раунд"
 
-#: utils/tables.py:497 utils/tables.py:677
+#: utils/tables.py:497 utils/tables.py:680
 msgid "Name"
 msgstr "Название"
 
-#: utils/tables.py:503 utils/tables.py:659
+#: utils/tables.py:503 utils/tables.py:662
 msgid "Institution"
 msgstr "Клуб"
 
@@ -212,57 +215,53 @@ msgstr "Независимый судья"
 msgid "Always Trainee"
 msgstr "Всегда винг без права голоса"
 
-#: utils/tables.py:557
+#: utils/tables.py:559
 msgid "in minority"
 msgstr "в меньшинстве"
 
-#: utils/tables.py:589
+#: utils/tables.py:592
 msgid "Debate Adjudicators"
 msgstr "Судьи дебатов"
 
-#: utils/tables.py:620
+#: utils/tables.py:623
 msgid "Order as listed"
 msgstr "Порядок как в списке"
 
-#: utils/tables.py:627
-msgid "?"
-msgstr "?"
-
-#: utils/tables.py:630
+#: utils/tables.py:633
 msgid "Motion"
 msgstr "Тема"
 
-#: utils/tables.py:645
+#: utils/tables.py:648
 msgid "Team"
 msgstr "Команда"
 
-#: utils/tables.py:650 utils/tables.py:699
+#: utils/tables.py:653 utils/tables.py:702
 msgid "Categories"
 msgstr "Категории"
 
-#: utils/tables.py:670
+#: utils/tables.py:673
 msgid "Redacted"
 msgstr "Редактировано"
 
-#: utils/tables.py:697
+#: utils/tables.py:700
 msgid "Category"
 msgstr "Категория"
 
-#: utils/tables.py:724
+#: utils/tables.py:727
 #, python-format
-msgid "This venue %(predicate)s."
+msgid "This room %(predicate)s."
 msgstr "Эта аудитория %(predicate)s."
 
-#: utils/tables.py:726
+#: utils/tables.py:729
 #, python-format
-msgid "This venue %(predicates)s, and %(last_predicate)s."
+msgid "This room %(predicates)s, and %(last_predicate)s."
 msgstr "Эта аудитория %(predicates)s, и %(last_predicate)s."
 
-#: utils/tables.py:741
-msgid "Venue"
+#: utils/tables.py:744
+msgid "Room"
 msgstr "Аудитория"
 
-#: utils/tables.py:757
+#: utils/tables.py:760
 #, python-format
 msgid "Teams have met once"
 msgid_plural "Teams have met %(count)d times"
@@ -271,72 +270,63 @@ msgstr[1] "Команды играли вместе %(count)d раз"
 msgstr[2] "Команды играли вместе %(count)d раз"
 msgstr[3] "Команды играли вместе %(count)d раз"
 
-#: utils/tables.py:763
+#: utils/tables.py:766
 msgid "Teams are from the same institution"
 msgstr "Команды из одного клуба"
 
-#: utils/tables.py:769
+#: utils/tables.py:772
 msgid "Conflicts/Flags"
 msgstr "Конфликты/отметки"
 
-#: utils/tables.py:823
+#: utils/tables.py:826
 msgid "The ballot you submitted"
 msgstr "Отправленный вами бэллот"
 
-#: utils/tables.py:827
+#: utils/tables.py:830
 msgid "View/Edit Ballot"
 msgstr "Смотреть/изменить бэллот"
 
-#: utils/tables.py:836
+#: utils/tables.py:839
 msgid "No ballot"
 msgstr "Нет бэллота"
 
-#: utils/tables.py:838
+#: utils/tables.py:841
 msgid "Elimination"
 msgstr "Брейковый"
 
-#: utils/tables.py:841 utils/tables.py:853
+#: utils/tables.py:844 utils/tables.py:856
 msgid "View Ballot"
 msgstr "Просмотреть бэллот"
 
-#: utils/tables.py:861
+#: utils/tables.py:864
 msgid "Result"
 msgstr "Результат"
 
 #. Translators: "TBC" stands for "to be confirmed".
-#: utils/tables.py:867
+#: utils/tables.py:870
 msgid "TBC"
 msgstr "TBC"
 
-#: utils/tables.py:868
+#: utils/tables.py:871
 msgid "Side"
 msgstr "Сторона"
 
-#: utils/tables.py:906
+#: utils/tables.py:909
 msgid "Team iron-manned this round and the last."
 msgstr "Команда играла этот раунд и последний раунд айронменом."
 
-#: utils/tables.py:909
+#: utils/tables.py:912
 msgid "Team iron-manned this round."
 msgstr "Команда играла этот раунд айронменом."
 
-#: utils/tables.py:912
+#: utils/tables.py:915
 msgid "Team iron-manned last round."
 msgstr "Команда играла последний раунд айронменом."
 
-#: utils/tables.py:929 utils/tables.py:930
+#: utils/tables.py:932 utils/tables.py:933
 #, python-format
 msgid "Team %(num)d"
 msgstr "Команда %(num)d"
-
-#: utils/templates/database_limit_warning.html:9
-#, python-format
-msgid "You're currently using %(nrows)s row in your database. If you haven't already upgraded your Heroku database to a paid tier, it's limited to a maximum of 10,000 rows. As you're close to this limit, you should <strong>not create new tournaments</strong> on this site unless and until you've <a href=\"https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases\">upgraded your database</a> to a paid tier."
-msgid_plural "You're currently using %(nrows)s rows in your database. If you haven't already upgraded your Heroku database to a paid tier, it's limited to a maximum of 10,000 rows. As you're close to this limit, you should <strong>not create new tournaments</strong> on this site unless and until you've <a href=\"https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases\">upgraded your database</a> to a paid tier."
-msgstr[0] "На данный момент вы используете %(nrows)s строку в вашей базе данных. Если вы не обновили вашу базу данных Heroky до платного уровня, вы можете использовать до 10 000 строк. Если вы близки к этому лимиту, вам не стоит <strong> создавать новые урниры</strong> на этом сайте пока вы <a href=\"https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases\"> не обновите вашу базу данных </a> до платного уровня."
-msgstr[1] "На данный момент вы используете %(nrows)s строк в вашей базе данных. Если вы не обновили вашу базу данных Heroky до платного уровня, вы можете использовать до 10 000 строк. Если вы близки к этому лимиту, вам не стоит <strong> создавать новые урниры</strong> на этом сайте пока вы <a href=\"https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases\"> не обновите вашу базу данных </a> до платного уровня."
-msgstr[2] "На данный момент вы используете %(nrows)s строк в вашей базе данных. Если вы не обновили вашу базу данных Heroky до платного уровня, вы можете использовать до 10 000 строк. Если вы близки к этому лимиту, вам не стоит <strong> создавать новые урниры</strong> на этом сайте пока вы <a href=\"https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases\"> не обновите вашу базу данных </a> до платного уровня."
-msgstr[3] "На данный момент вы используете %(nrows)s строк в вашей базе данных. Если вы не обновили вашу базу данных Heroky до платного уровня, вы можете использовать до 10 000 строк. Если вы близки к этому лимиту, вам не стоит <strong> создавать новые урниры</strong> на этом сайте пока вы <a href=\"https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases\"> не обновите вашу базу данных </a> до платного уровня."
 
 #: utils/views.py:38
 msgid "Whoops! You're not meant to type that URL into your browser."

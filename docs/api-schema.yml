@@ -325,6 +325,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - adjudicators
@@ -353,6 +355,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - adjudicators
@@ -367,6 +371,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - adjudicators
@@ -377,6 +383,8 @@ paths:
       responses:
         '204':
           description: ''
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - adjudicators
@@ -1555,6 +1563,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - speakers
@@ -1583,6 +1593,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - speakers
@@ -1597,6 +1609,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - speakers
@@ -1607,6 +1621,8 @@ paths:
       responses:
         '204':
           description: ''
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - speakers
@@ -1970,6 +1986,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - venues
@@ -1998,6 +2016,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - venues
@@ -2012,6 +2032,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Checkin'
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - venues
@@ -2022,6 +2044,8 @@ paths:
       responses:
         '204':
           description: ''
+        '404':
+          description: 'No identifier. Use POST to generate.'
       tags:
         - v1
         - venues
@@ -2460,6 +2484,7 @@ components:
           type: string
           format: email
           maxLength: 254
+          nullable: true
         phone:
           title: Phone
           type: string
@@ -2522,6 +2547,7 @@ components:
           format: slug
           pattern: '^[-a-zA-Z0-9_]+$'
           maxLength: 24
+          nullable: true
         _links:
           title: links
           type: object
@@ -3161,6 +3187,7 @@ components:
           type: string
           format: email
           maxLength: 254
+          nullable: true
         phone:
           title: Phone
           type: string
@@ -3190,6 +3217,7 @@ components:
           format: slug
           pattern: '^[-a-zA-Z0-9_]+$'
           maxLength: 24
+          nullable: true
         _links:
           title: links
           type: object
@@ -3223,6 +3251,13 @@ components:
             below)
           type: string
           maxLength: 150
+        short_reference:
+          title: Short name/suffix
+          description: >-
+            The name shown in the draw. Do not include institution name (see
+            "uses institutional prefix" below)
+          type: string
+          maxLength: 35
         code_name:
           title: Code name
           description: Name used to obscure institutional identity on public-facing pages
@@ -3232,6 +3267,7 @@ components:
           title: Emoji
           type: string
           maxLength: 2
+          nullable: true
         short_name:
           title: Short name
           description: >-

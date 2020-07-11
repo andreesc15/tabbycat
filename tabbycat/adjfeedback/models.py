@@ -7,15 +7,6 @@ from adjallocation.models import DebateAdjudicator
 from results.models import Submission
 
 
-class NumericalValueMixin:
-    def clean(self):
-        min = self.question.min_value
-        max = self.question.max_value
-        if (self.answer < min and min is not None) or (self.answer > max and max is not None):
-            raise ValidationError(gettext("Value is outside the range of allowed values."))
-        return super().clean()
-
-
 class AdjudicatorBaseScoreHistory(models.Model):
     adjudicator = models.ForeignKey('participants.Adjudicator', models.CASCADE,
         verbose_name=_("adjudicator"))
@@ -57,7 +48,7 @@ class AdjudicatorFeedbackBooleanAnswer(AdjudicatorFeedbackAnswer):
         verbose_name_plural = _("adjudicator feedback boolean answers")
 
 
-class AdjudicatorFeedbackIntegerAnswer(NumericalValueMixin, AdjudicatorFeedbackAnswer):
+class AdjudicatorFeedbackIntegerAnswer(AdjudicatorFeedbackAnswer):
     ANSWER_TYPE = int
 
     answer = models.IntegerField(verbose_name=_("answer"))
@@ -67,7 +58,7 @@ class AdjudicatorFeedbackIntegerAnswer(NumericalValueMixin, AdjudicatorFeedbackA
         verbose_name_plural = _("adjudicator feedback integer answers")
 
 
-class AdjudicatorFeedbackFloatAnswer(NumericalValueMixin, AdjudicatorFeedbackAnswer):
+class AdjudicatorFeedbackFloatAnswer(AdjudicatorFeedbackAnswer):
     ANSWER_TYPE = float
 
     answer = models.FloatField(verbose_name=_("answer"))
@@ -84,16 +75,6 @@ class AdjudicatorFeedbackStringAnswer(AdjudicatorFeedbackAnswer):
     class Meta(AdjudicatorFeedbackAnswer.Meta):
         verbose_name = _("adjudicator feedback string answer")
         verbose_name_plural = _("adjudicator feedback string answers")
-
-    def clean(self):
-        if self.question.answer_type in [
-            AdjudicatorFeedbackQuestion.ANSWER_TYPE_SINGLE_SELECT,
-            AdjudicatorFeedbackQuestion.ANSWER_TYPE_MULTIPLE_SELECT,
-        ]:
-            sep = AdjudicatorFeedbackQuestion.CHOICE_SEPARATOR
-            if not set(self.answer.split(sep)).issubset(set(self.question.choices.split(sep))):
-                raise ValidationError(gettext("Value(s) not found in allowed choices"))
-        return super().clean()
 
 
 class AdjudicatorFeedbackQuestion(models.Model):
@@ -303,7 +284,7 @@ class AdjudicatorFeedback(Submission):
         return [
             {'question': q.question, 'answer': q.answer}
             for typ in AdjudicatorFeedbackQuestion.ANSWER_TYPE_CLASSES_REVERSE.keys()
-            for q in getattr(self, typ.__name__)
+            for q in getattr(self, typ.__name__.lower() + '_set').all()
         ]
 
     def clean(self):

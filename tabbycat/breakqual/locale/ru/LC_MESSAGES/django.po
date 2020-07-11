@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 23:12-0500\n"
-"PO-Revision-Date: 2019-12-24 02:25\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-05-24 04:15-0300\n"
+"PO-Revision-Date: 2020-07-05 17:09\n"
+"Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: tabbycat\n"
+"X-Crowdin-Project-ID: 364715\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /develop/tabbycat/breakqual/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-File-ID: 928\n"
 
 #: breakqual/apps.py:7
 msgid "Break Qualification"
@@ -24,153 +26,173 @@ msgstr "Квалификация в брейк"
 msgid "The break qualification rule %(rule)s requires the following metric(s) to be in the team standings precedence in order to work: %(required)s; and the following are missing: %(missing)s."
 msgstr "Правило квалификации в брейк %(rule)s требует, чтобы следующие метрики были использованы при определении первенства положения команд: %(required)s а следующие метрики отсутствовали %(missing)s."
 
-#: breakqual/models.py:8
+#: breakqual/models.py:10
 msgid "tournament"
 msgstr "турнир"
 
-#: breakqual/models.py:10
+#: breakqual/models.py:12
 msgid "name"
 msgstr "название"
 
-#: breakqual/models.py:11
+#: breakqual/models.py:13
 msgid "Name to be displayed, e.g., \"ESL\""
 msgstr "Отображаемое название, например, \"ESL\""
 
-#: breakqual/models.py:13
+#: breakqual/models.py:15
 msgid "slug"
 msgstr "краткое название"
 
-#: breakqual/models.py:14
+#: breakqual/models.py:16
 msgid "Slug for URLs, e.g., \"esl\""
 msgstr "Краткое название для URL, например, \"esl\""
 
-#: breakqual/models.py:16
+#: breakqual/models.py:18
 msgid "sequence number"
 msgstr "порядковый номер"
 
-#: breakqual/models.py:17
+#: breakqual/models.py:19
 msgid "The order in which the categories are displayed"
 msgstr "Порядок, в котором демонстрируются категории"
 
-#: breakqual/models.py:19
+#: breakqual/models.py:21
 msgid "break size"
 msgstr "размер брейка"
 
-#: breakqual/models.py:20
+#: breakqual/models.py:22
 msgid "Number of breaking teams in this category"
 msgstr "Количество брейкающихся команд в этой категории"
 
-#: breakqual/models.py:22
+#: breakqual/models.py:24
 msgid "is general"
 msgstr "общий"
 
-#: breakqual/models.py:23
+#: breakqual/models.py:25
 msgid "True if most teams eligible for this category, e.g. Open, False otherwise"
 msgstr "Верно, если большинство команд имеют право на брейк в этой категории, например, основной брейк, неверно, если наоборот"
 
-#: breakqual/models.py:25
+#: breakqual/models.py:27
 msgid "priority"
 msgstr "приоритет"
 
-#: breakqual/models.py:26
+#: breakqual/models.py:28
 msgid "If a team breaks in multiple categories, higher priority numbers take precedence; teams can break into multiple categories if and only if they all have the same priority"
 msgstr "Если команда брейкается в нескольких категориях, более высокие цифры приоритета категории дают этой категории приоритет; команда может брейкнуться в нескольких категориях, если и только если у всех категорий одинаковый приоритет"
 
-#: breakqual/models.py:30
+#: breakqual/models.py:32
 msgid "limit"
 msgstr "лимит"
 
-#: breakqual/models.py:31
+#: breakqual/models.py:33
 msgid "At most this many teams will be shown on the public tab for this category, or use 0 for no limit"
 msgstr "Такое максимальное количество команд будут показаны в публичном тэбе для этой категории или используйте 0 для отсутствия лимита"
 
-#: breakqual/models.py:34
+#: breakqual/models.py:36
 msgid "Standard"
 msgstr "Стандарт"
 
-#: breakqual/models.py:35
+#: breakqual/models.py:37
 msgid "AIDA 1996"
 msgstr "AIDA 1996"
 
-#: breakqual/models.py:36
+#: breakqual/models.py:38
 msgid "AIDA 2016 (Easters)"
 msgstr "AIDA 2016 (Восточный)"
 
-#: breakqual/models.py:37
+#: breakqual/models.py:39
 msgid "AIDA 2016 (Australs)"
 msgstr "AIDA 2016 (Австралийский)"
 
-#: breakqual/models.py:38
+#: breakqual/models.py:40
 msgid "AIDA 2019 (Australs, Dynamic Cap)"
 msgstr "AIDA 2019 (Австралийский, Динамичное ограничение)"
 
-#: breakqual/models.py:42
+#: breakqual/models.py:44
 msgid "rule"
 msgstr "правило"
 
-#: breakqual/models.py:43
+#: breakqual/models.py:45
 msgid "Rule for how the break is calculated (most tournaments should use \"Standard\")"
 msgstr "Правило для расчета брейка (большинство турниров должны использовать \"Стандарт\")"
 
-#: breakqual/models.py:46 breakqual/models.py:96
+#: breakqual/models.py:48 breakqual/models.py:105
 msgid "breaking teams"
 msgstr "брейкающиеся команды"
 
-#: breakqual/models.py:55 breakqual/models.py:67
+#: breakqual/models.py:57 breakqual/models.py:76
 msgid "break category"
 msgstr "категория брейка"
 
-#: breakqual/models.py:56
+#: breakqual/models.py:58
 msgid "break categories"
 msgstr "категории брейка"
 
-#: breakqual/models.py:69
+#: breakqual/models.py:78
 msgid "team"
 msgstr "команда"
 
-#: breakqual/models.py:71
+#: breakqual/models.py:80
 msgid "rank"
 msgstr "место"
 
-#: breakqual/models.py:73
+#: breakqual/models.py:82
 msgid "break rank"
 msgstr "брейковый ранг"
 
-#: breakqual/models.py:82
+#: breakqual/models.py:91
 msgid "Capped"
 msgstr "Записано"
 
-#: breakqual/models.py:83
+#: breakqual/models.py:92
 msgid "Ineligible"
 msgstr "Недоступна"
 
-#: breakqual/models.py:84
+#: breakqual/models.py:93
 msgid "Different break"
 msgstr "Другой брейк"
 
-#: breakqual/models.py:85
+#: breakqual/models.py:94
 msgid "Disqualified"
 msgstr "Дисквалифицирована"
 
-#: breakqual/models.py:86
+#: breakqual/models.py:95
 msgid "Lost coin toss"
 msgstr "Проиграла по броску монетки"
 
-#: breakqual/models.py:87
+#: breakqual/models.py:96
 msgid "Withdrawn"
 msgstr "Отозвано"
 
-#: breakqual/models.py:90
+#: breakqual/models.py:99
 msgid "remark"
 msgstr "комментарий"
 
-#: breakqual/models.py:91
+#: breakqual/models.py:100
 msgid "Used to explain why an otherwise-qualified team didn't break"
 msgstr "Используется для объяснения того, почему не брейкнулась команда, набравшая необходимое количество очков"
 
-#: breakqual/models.py:95
+#: breakqual/models.py:104
 msgid "breaking team"
 msgstr "брейкающаяся команда"
+
+#: breakqual/templates/break_categories_edit.html:4
+#: breakqual/templates/break_categories_edit.html:5
+#: breakqual/templates/breaking_index.html:30
+msgid "Break Categories"
+msgstr ""
+
+#: breakqual/templates/break_categories_edit.html:17
+#, python-format
+msgid "Break categories allow category-specific break rounds, <i>e.g.</i>, for novice or ESL categories. On this page, you can define what break categories exist. After you've defined the categories, the break rounds will be automatically generated, and you can set team eligibility on the <a href=\"%(eligibility_url)s\">Eligibility</a> page."
+msgstr ""
+
+#: breakqual/templates/break_categories_edit.html:25
+#, python-format
+msgid "If you want to delete break categories, use the <a href=\"%(edit_db_url)s\" class=\"alert-link\">Edit Database</a> area."
+msgstr ""
+
+#: breakqual/templates/break_categories_edit.html:31
+msgid "Save Break Categories"
+msgstr ""
 
 #: breakqual/templates/breaking_adjs.html:8
 #, python-format
@@ -186,48 +208,49 @@ msgstr "Брейки"
 msgid "This tournament does not have any break categories set up. You can read about how to create breaks <a href=\"http://tabbycat.readthedocs.io/en/stable/features/breaks.html\" class=\"alert-link\" target=\"_blank\"> at our documentation. </a>"
 msgstr "У этого турнира не установлено никаких брейковых категорий. Вы можете почитать о том, как создавать брейк <a href=\"http://tabbycat.readthedocs.io/en/stable/features/breaks.html\" class=\"alert-link\" target=\"_blank\"> в нашей документации</a>"
 
-#: breakqual/templates/breaking_index.html:29
-msgid "Edit Teams' Eligibility"
-msgstr "Редактировать доступность команд"
+#: breakqual/templates/breaking_index.html:33
+msgid "Team Eligibility"
+msgstr "Доступность команд"
 
-#: breakqual/templates/breaking_index.html:44
+#: breakqual/templates/breaking_index.html:49
 #: breakqual/templates/breaking_teams.html:4
 #: breakqual/templates/breaking_teams.html:14
 #: breakqual/templates/breakqual_subnav.html:9
+#: breakqual/templates/public_break_index.html:15 breakqual/views.py:73
 #, python-format
-msgid "%(category_name)s Break"
-msgstr "%(category_name)s брейк"
+msgid "%(category)s Break"
+msgstr "%(category)s Брейк"
 
-#: breakqual/templates/breaking_index.html:47
+#: breakqual/templates/breaking_index.html:52
 #, python-format
 msgid "<span class=\"badge float-right badge-light\"> %(size)s Spots </span>"
 msgstr "<span class=\"badge float-right badge-light\"> %(size)s места </span>"
 
-#: breakqual/templates/breaking_index.html:59
+#: breakqual/templates/breaking_index.html:64
 msgid "Teams Eligible"
 msgstr "Доступные команды"
 
-#: breakqual/templates/breaking_index.html:71
+#: breakqual/templates/breaking_index.html:76
 msgid "Breaking"
 msgstr "Брейкаются"
 
-#: breakqual/templates/breaking_index.html:79
+#: breakqual/templates/breaking_index.html:84
 msgid "Excluded"
 msgstr "Исключены"
 
-#: breakqual/templates/breaking_index.html:87
+#: breakqual/templates/breaking_index.html:92
 msgid "Eligible"
 msgstr "Доступны"
 
-#: breakqual/templates/breaking_index.html:99
+#: breakqual/templates/breaking_index.html:104
 msgid "Mark teams as eligible"
 msgstr "Отметить команду как доступную"
 
-#: breakqual/templates/breaking_index.html:104
+#: breakqual/templates/breaking_index.html:109
 msgid "Generate this break"
 msgstr "Генерировать этот брейк"
 
-#: breakqual/templates/breaking_index.html:107
+#: breakqual/templates/breaking_index.html:112
 msgid "View this break"
 msgstr "Посмотреть этот брейк"
 
@@ -281,8 +304,8 @@ msgstr "Сохранить комментарии и обновить все б�
 
 #: breakqual/templates/breaking_teams.html:125
 #, python-format
-msgid "Save Remarks and Update the %(category_name)s Break"
-msgstr "Сохранить комментарии и обновить брейк %(category_name)s"
+msgid "Save Remarks and Update the %(category)s Break"
+msgstr "Сохранить комментарии и обновить брейк %(category)s"
 
 #: breakqual/templates/breaking_teams.html:137
 #, python-format
@@ -303,70 +326,199 @@ msgid "It looks like there aren't any break categories are defined. If you'd lik
 msgstr "Похоже что не определены категории брейка. Если вы хотите создать новые категории для брейка, вам нужно сначала <a href=\"%(categories_url)s\" class=\"alert-link\"> добавить их в область Редактировать базу данных, затем вернуться к этой странице, чтобы установить доступность команд."
 
 #: breakqual/templates/public_break_index.html:4
-#: breakqual/templates/public_break_index.html:5 breakqual/views.py:64
+#: breakqual/templates/public_break_index.html:5 breakqual/views.py:66
 msgid "Break"
 msgstr "Брейк"
-
-#: breakqual/templates/public_break_index.html:15
-#, python-format
-msgid "%(category.name)s Break"
-msgstr "%(category.name)s Брейк"
 
 #: breakqual/templates/public_break_index.html:23
 msgid "Adjudicators"
 msgstr "Судьи"
 
-#: breakqual/views.py:71
-#, python-format
-msgid "%(category)s Break"
-msgstr "%(category)s Брейк"
+#. Translators: abbreviation for "grand final"
+#: breakqual/utils.py:129
+msgid "Grand Final"
+msgstr "Основной финал"
 
-#: breakqual/views.py:95
+#: breakqual/utils.py:129
+msgid "GF"
+msgstr "Ф"
+
+#. Translators: abbreviation for "semifinals"
+#: breakqual/utils.py:131
+msgid "Semifinals"
+msgstr "Полуфиналы"
+
+#: breakqual/utils.py:131
+msgid "SF"
+msgstr "ПФ"
+
+#. Translators: abbreviation for "quarterfinals"
+#: breakqual/utils.py:133
+msgid "Quarterfinals"
+msgstr "Четвертьфиналы"
+
+#: breakqual/utils.py:133
+msgid "QF"
+msgstr "ЧФ"
+
+#. Translators: abbreviation for "octofinals"
+#: breakqual/utils.py:135
+msgid "Octofinals"
+msgstr "1/8 финала"
+
+#: breakqual/utils.py:135
+msgid "OF"
+msgstr "1/8"
+
+#. Translators: abbreviation for "double-octofinals"
+#: breakqual/utils.py:137
+msgid "Double-Octofinals"
+msgstr "1/16 финала"
+
+#: breakqual/utils.py:137
+msgid "DOF"
+msgstr "1/16"
+
+#. Translators: abbreviation for "triple-octofinals"
+#: breakqual/utils.py:139
+msgid "Triple-Octofinals"
+msgstr "1/32 финала"
+
+#: breakqual/utils.py:139
+msgid "TOF"
+msgstr "1/32"
+
+#. Translators: abbreviation for "finals" - first character of category name
+#: breakqual/utils.py:146
+#, python-format
+msgid "%s Finals"
+msgstr ""
+
+#: breakqual/utils.py:146
+#, python-format
+msgid "%sF"
+msgstr ""
+
+#. Translators: abbreviation for "semifinals" - first character of category name
+#: breakqual/utils.py:148
+#, python-format
+msgid "%s Semifinals"
+msgstr ""
+
+#: breakqual/utils.py:148
+#, python-format
+msgid "%sSF"
+msgstr ""
+
+#. Translators: abbreviation for "quarterfinals" - first character of category name
+#: breakqual/utils.py:150
+#, python-format
+msgid "%s Quarterfinals"
+msgstr ""
+
+#: breakqual/utils.py:150
+#, python-format
+msgid "%sQF"
+msgstr ""
+
+#. Translators: abbreviation for "octofinals" - first character of category name
+#: breakqual/utils.py:152
+#, python-format
+msgid "%s Octofinals"
+msgstr ""
+
+#: breakqual/utils.py:152
+#, python-format
+msgid "%sOF"
+msgstr ""
+
+#. Translators: abbreviation for "double-octofinals" - first character of category name
+#: breakqual/utils.py:154
+#, python-format
+msgid "%s Double-Octofinals"
+msgstr ""
+
+#: breakqual/utils.py:154
+#, python-format
+msgid "%sDOF"
+msgstr ""
+
+#. Translators: abbreviation for "triple-octofinals" - first character of category name
+#: breakqual/utils.py:156
+#, python-format
+msgid "%s Triple-Octofinals"
+msgstr ""
+
+#: breakqual/utils.py:156
+#, python-format
+msgid "%sTOF"
+msgstr ""
+
+#. Translators: "UBR" stands for "unknown break round" (used as a fallback when we don't know what it's called)
+#: breakqual/utils.py:168
+#, python-format
+msgid "Unknown %s break round"
+msgstr ""
+
+#: breakqual/utils.py:168
+#, python-format
+msgid "U%sBR"
+msgstr ""
+
+#: breakqual/utils.py:169
+msgid "Unknown break round"
+msgstr "Неизвестный брейковый раунд"
+
+#: breakqual/utils.py:169
+msgid "UBR"
+msgstr "UBR"
+
+#: breakqual/views.py:97
 #, python-format
 msgid "There was an error generating the break for category %(category)s: %(message)s"
 msgstr "Произошла ошибка при генерации брейка для категории %(category)s%(message)s"
 
-#: breakqual/views.py:138
+#: breakqual/views.py:140
 msgid "Eligible for"
 msgstr "Доступен для"
 
-#: breakqual/views.py:142
+#: breakqual/views.py:144
 msgid "Edit Remark"
 msgstr "Редактировать комментарий"
 
-#: breakqual/views.py:158
+#: breakqual/views.py:160
 #, python-format
 msgid "Changes to breaking team remarks saved and teams break updated for the following break categories: %(categories)s."
 msgstr "Изменения в комментариях к брейковым командам сохранены и командный брейк обновлен для следующих брейковых категорий: %(categories)s."
 
-#: breakqual/views.py:165
+#: breakqual/views.py:167
 #, python-format
 msgid "Changes to breaking team remarks saved and teams break updated for break category %(category)s."
 msgstr "Изменения в комментариях к брейковым командам сохранены и командный брейк обновлен для брейковой категории %(category)s."
 
-#: breakqual/views.py:170
+#: breakqual/views.py:172
 msgid "Changes to breaking team remarks saved."
 msgstr "Изменения в комментариях к брейковым командам сохранены."
 
-#: breakqual/views.py:194
+#: breakqual/views.py:196
 #, python-format
 msgid "Teams break generated for the following break categories: %(categories)s."
 msgstr "Брейк сгенерирован для следующих категорий команд: %(categories)s."
 
-#: breakqual/views.py:207
+#: breakqual/views.py:209
 msgid "Breaking Adjudicators"
 msgstr "Брейкающиеся судьи"
 
-#: breakqual/views.py:232
+#: breakqual/views.py:274
 msgid "Break Eligibility"
 msgstr "Доступность для брейка"
 
-#: breakqual/views.py:261
+#: breakqual/views.py:303
 #, python-format
 msgid "%s Speakers"
 msgstr "%s Спикеры"
 
-#: breakqual/views.py:264
+#: breakqual/views.py:306
 #, python-format
 msgid "Team has %(nspeakers)s speaker with the %(category)s speaker category assigned"
 msgid_plural "Team has %(nspeakers)s speakers with the %(category)s speaker category assigned"

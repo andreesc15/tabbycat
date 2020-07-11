@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-04 13:37-0500\n"
-"PO-Revision-Date: 2020-02-15 17:00\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-05-24 04:15-0300\n"
+"PO-Revision-Date: 2020-07-05 17:08\n"
+"Last-Translator: \n"
 "Language-Team: Malay\n"
 "Language: ms_MY\n"
 "MIME-Version: 1.0\n"
@@ -12,44 +12,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: tabbycat\n"
+"X-Crowdin-Project-ID: 364715\n"
 "X-Crowdin-Language: ms\n"
 "X-Crowdin-File: /develop/tabbycat/adjallocation/locale/en/LC_MESSAGES/django.po\n"
+"X-Crowdin-File-ID: 922\n"
 
 #: adjallocation/allocators/base.py:34
 msgid "There are no available adjudicators. Ensure there are adjudicators who have been marked as available for this round before auto-allocating."
 msgstr "Tiada hakim yang berkelapangan. Pastikan terdapat hakim yang ditanda 'ada' untuk pusingan ini sebelum ditetap secara auto."
 
-#: adjallocation/allocators/hungarian.py:51
+#: adjallocation/allocators/hungarian.py:50
 #, python-format
 msgid "%(count)s score is larger than the maximum permitted adjudicator score (%(score).1f)."
 msgid_plural "%(count)s scores are larger than the maximum permitted adjudicator score (%(score).1f)."
 msgstr[0] "Markah %(count)s lebih besar daripada markah maksima yang dibenarkan (%(score).1f)."
 
-#: adjallocation/allocators/hungarian.py:60
+#: adjallocation/allocators/hungarian.py:59
 #, python-format
 msgid "%(count)s score is smaller than the minimum permitted adjudicator score (%(score).1f)."
 msgid_plural "%(count)s scores are smaller than the minimum permitted adjudicator score (%(score).1f)."
 msgstr[0] "Markah %(count)s lebih kecil daripada markah minimum yang dibenarkan (%(score).1f)."
 
-#: adjallocation/allocators/hungarian.py:112
+#: adjallocation/allocators/hungarian.py:111
 msgid "There are no adjudicators eligible to be a chair or panellist. Try changing the \"Minimum feedback score required to be allocated as chair or panellist\" setting to something lower than at least some adjudicators' current scores, and try again."
 msgstr "Tiada hakim yang layak untuk menjadi Yang Di-Pertua Dewan dan ahli panel. Cuba ubah seting \"Markah minimum maklum balas hakim diperlukan untuk ditetapkan sebagai Yang Di-Pertuan Agung\" ke markah yang lebih rendah daripada markah para hakim terkini, dan cuba lagi."
 
-#: adjallocation/allocators/hungarian.py:120
+#: adjallocation/allocators/hungarian.py:119
 msgid "There are no debates for this round. Maybe you haven't created a draw yet?"
-msgstr ""
+msgstr "Tiada perdebatan untuk pusingan ini. Munkin match up belum dibuat?"
 
-#: adjallocation/allocators/hungarian.py:167
+#: adjallocation/allocators/hungarian.py:166
 #, python-format
 msgid "There are %(debate_count)s debates but only %(adj_count)s voting adjudicators."
 msgstr "Terdapat %(debate_count)s perdebatan, tetapi hanya %(adj_count)s hakim yang boleh undi."
 
-#: adjallocation/allocators/hungarian.py:173
+#: adjallocation/allocators/hungarian.py:172
 #, python-format
 msgid "There are %(panel_debates)s panel debates but only %(panellists)s available panellists (less than %(needed)s)."
 msgstr "Terdapat %(panel_debates)s panel hakim tetapi terdapat hanya %(panellists)s yang ada (kurang daripada %(needed)s)."
 
-#: adjallocation/allocators/hungarian.py:283
+#: adjallocation/allocators/hungarian.py:282
 #, python-format
 msgid "There are %(debates_count)s debates but only %(voting_count)s voting adjudicators."
 msgstr "Terdapat %(debates_count)s perdebatan, namun hanya %(voting_count)s hakim yang boleh undi."
@@ -221,19 +223,19 @@ msgstr "kepentingan"
 
 #: adjallocation/models.py:119
 msgid "minimum bracket"
-msgstr ""
+msgstr "braket minimum"
 
 #: adjallocation/models.py:120
 msgid "Estimate of the lowest bracket for which this panel might be"
-msgstr ""
+msgstr "Anggaran braket terendah untuk hakim ini"
 
 #: adjallocation/models.py:122
 msgid "maximum bracket"
-msgstr ""
+msgstr "braket maximum"
 
 #: adjallocation/models.py:123
 msgid "Estimate of the highest bracket for which this panel might be"
-msgstr ""
+msgstr "Anggaran braket tertinggi untuk hakim ini"
 
 #: adjallocation/models.py:125
 msgid "room rank"
@@ -245,7 +247,7 @@ msgstr ""
 
 #: adjallocation/models.py:128
 msgid "liveness"
-msgstr ""
+msgstr "layak break"
 
 #: adjallocation/models.py:129
 msgid "Number of categories this room is expected to be live for"
@@ -275,7 +277,7 @@ msgstr "panel hakim tetap"
 msgid "There are no preformed panels to use. Have you allocated preformed panels for this round? If not, try just auto-allocating adjudicators instead."
 msgstr "Tiada panel hakim tetap yang boleh digunakan. Adakah panel hakim tetap telah ditetapkan untuk pusingan ini? Jika tidak, cuba tetapkan hakim secara auto."
 
-#: adjallocation/templates/preformed_index.html:5 adjallocation/views.py:127
+#: adjallocation/templates/preformed_index.html:5 adjallocation/views.py:128
 msgid "Preformed Panels"
 msgstr "Panel hakim tetap"
 
@@ -285,31 +287,31 @@ msgstr ""
 
 #: adjallocation/templates/preformed_index.html:16
 msgid "Note that only adjudicators who have been marked as 'available' for that round will be able to be allocated for that round, so you may need to set their availability in advance."
-msgstr ""
+msgstr "Hanya hakim yang ditanda sebagai 'ada' untuk pusingan itu boleh ditetapkan untukp pusingan itu, jadi anda perlu tetapkan keberadaan hakim terlebih dahulu."
 
 #: adjallocation/templates/preformed_index.html:37
 #, python-format
-msgid "Edit Preformed Panels for %(round_name)s"
+msgid "Edit Preformed Panels for %(round)s"
 msgstr ""
 
 #: adjallocation/utils.py:28
 #, python-format
-msgid "Conflict: <strong>%(adj)s</strong> & <strong>%(team)s</strong> (personal)"
+msgid "Conflict: <strong>%(adjudicator)s</strong> & <strong>%(team)s</strong> (personal)"
 msgstr ""
 
 #: adjallocation/utils.py:34
 #, python-format
-msgid "Conflict: <strong>%(adj)s</strong> & <strong>%(team)s</strong> via institution <strong>%(inst)s</strong>"
+msgid "Conflict: <strong>%(adjudicator)s</strong> & <strong>%(team)s</strong> via institution <strong>%(institution)s</strong>"
 msgstr ""
 
 #: adjallocation/utils.py:46
 #, python-format
-msgid "Conflict: <strong>%(adj1)s</strong> & <strong>%(adj2)s</strong> (personal)"
+msgid "Conflict: <strong>%(adjudicator1)s</strong> & <strong>%(adjudicator2)s</strong> (personal)"
 msgstr ""
 
 #: adjallocation/utils.py:52
 #, python-format
-msgid "Conflict: <strong>%(adj1)s</strong> & <strong>%(adj2)s</strong> via institution <strong>%(inst)s</strong>"
+msgid "Conflict: <strong>%(adjudicator1)s</strong> & <strong>%(adjudicator2)s</strong> via institution <strong>%(institution)s</strong>"
 msgstr ""
 
 #: adjallocation/views.py:35
@@ -328,111 +330,111 @@ msgstr "Lain-lain"
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
-#: adjallocation/views.py:89
+#: adjallocation/views.py:90
 msgid "Edit Allocation"
 msgstr "Edit penetapan"
 
-#: adjallocation/views.py:104
+#: adjallocation/views.py:105
 msgid "Edit Panels"
 msgstr "Edit panel"
 
-#: adjallocation/views.py:110
+#: adjallocation/views.py:111
 msgid "Return to Panels Overview"
 msgstr "Kembali ke Gambaran Keseluruhan Panel"
 
-#: adjallocation/views.py:171
+#: adjallocation/views.py:172
 msgid "Adjudicator-Team Conflicts"
 msgstr "Konflik hakim-pasukan"
 
-#: adjallocation/views.py:172
+#: adjallocation/views.py:173
 msgid "Save Adjudicator-Team Conflicts"
 msgstr "Simpan konflik hakim-pasukan"
 
-#: adjallocation/views.py:197
+#: adjallocation/views.py:198
 #, python-format
 msgid "Saved %(count)d adjudicator-team conflict."
 msgid_plural "Saved %(count)d adjudicator-team conflicts."
 msgstr[0] "%(count)d konflik hakim-pasukan disimpan."
 
-#: adjallocation/views.py:203
+#: adjallocation/views.py:204
 #, python-format
 msgid "Deleted %(count)d adjudicator-team conflict."
 msgid_plural "Deleted %(count)d adjudicator-team conflicts."
 msgstr[0] "%(count)d konflik hakim-pasukan dibuang."
 
-#: adjallocation/views.py:208
+#: adjallocation/views.py:209
 msgid "No changes were made to adjudicator-team conflicts."
 msgstr "Tiada perubahan dibuat untuk konflik hakim-pasukan."
 
-#: adjallocation/views.py:215
+#: adjallocation/views.py:216
 msgid "Adjudicator-Adjudicator Conflicts"
 msgstr "Konflik hakim-hakim"
 
-#: adjallocation/views.py:216
+#: adjallocation/views.py:217
 msgid "Save Adjudicator-Adjudicator Conflicts"
 msgstr "Simpan konflik hakim-hakim"
 
-#: adjallocation/views.py:237
+#: adjallocation/views.py:238
 #, python-format
 msgid "Saved %(count)d adjudicator-adjudicator conflict."
 msgid_plural "Saved %(count)d adjudicator-adjudicator conflicts."
 msgstr[0] "%(count)d konflik hakim-hakim disimpan."
 
-#: adjallocation/views.py:243
+#: adjallocation/views.py:244
 #, python-format
 msgid "Deleted %(count)d adjudicator-adjudicator conflict."
 msgid_plural "Deleted %(count)d adjudicator-adjudicator conflicts."
 msgstr[0] "%(count)d konflik hakim-hakim dibuang."
 
-#: adjallocation/views.py:248
+#: adjallocation/views.py:249
 msgid "No changes were made to adjudicator-adjudicator conflicts."
 msgstr "Tiada perubahan dibuat untuk konflik hakim-hakim."
 
-#: adjallocation/views.py:255
+#: adjallocation/views.py:256
 msgid "Adjudicator-Institution Conflicts"
 msgstr "Konflik hakim-institusi"
 
-#: adjallocation/views.py:256
+#: adjallocation/views.py:257
 msgid "Save Adjudicator-Institution Conflicts"
 msgstr "Simpan konflik hakim-institusi"
 
-#: adjallocation/views.py:276
+#: adjallocation/views.py:277
 #, python-format
 msgid "Saved %(count)d adjudicator-institution conflict."
 msgid_plural "Saved %(count)d adjudicator-institution conflicts."
 msgstr[0] "%(count)d konflik hakim-institusi disimpan."
 
-#: adjallocation/views.py:282
+#: adjallocation/views.py:283
 #, python-format
 msgid "Deleted %(count)d adjudicator-institution conflict."
 msgid_plural "Deleted %(count)d adjudicator-institution conflicts."
 msgstr[0] "%(count)d konflik hakim-institusi dibuang."
 
-#: adjallocation/views.py:287
+#: adjallocation/views.py:288
 msgid "No changes were made to adjudicator-institution conflicts."
 msgstr "Tiada perubahan dibuat untuk konflik hakim-institusi."
 
-#: adjallocation/views.py:294
+#: adjallocation/views.py:295
 msgid "Team-Institution Conflicts"
 msgstr "Konflik pasukan-institusi"
 
-#: adjallocation/views.py:295
+#: adjallocation/views.py:296
 msgid "Save Team-Institution Conflicts"
 msgstr ""
 
-#: adjallocation/views.py:318
+#: adjallocation/views.py:319
 #, python-format
 msgid "Saved %(count)d team-institution conflict."
 msgid_plural "Saved %(count)d team-institution conflicts."
 msgstr[0] ""
 
-#: adjallocation/views.py:324
+#: adjallocation/views.py:325
 #, python-format
 msgid "Deleted %(count)d team-institution conflict."
 msgid_plural "Deleted %(count)d team-institution conflicts."
 msgstr[0] ""
 
-#: adjallocation/views.py:329
+#: adjallocation/views.py:330
 msgid "No changes were made to team-institution conflicts."
 msgstr ""
 
