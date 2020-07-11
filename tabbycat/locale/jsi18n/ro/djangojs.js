@@ -32,7 +32,7 @@
     "Available %s": "%s disponibil",
     "Cancel": "Anuleaz\u0103",
     "Choose": "Alege",
-    "Choose a Date": "Alege a dat\u0103",
+    "Choose a Date": "Alege o dat\u0103",
     "Choose a Time": "Alege o or\u0103",
     "Choose a time": "Alege o or\u0103",
     "Choose all": "Alege toate",

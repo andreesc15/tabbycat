@@ -663,28 +663,6 @@ msgstr "Feuille non-disponible"
 msgid "<a href=\"%(url)s\">Back to your private landing page.</a>"
 msgstr "<a href=\"%(url)s\">Retour vers votre page privée.</a>"
 
-#: results/templates/privateurl_ballot_set.html:7
-#, python-format
-msgid "The page is provided to allow you, <strong>%(name)s</strong>, to verify your own scoresheet. <strong>You must not share this URL with anyone.</strong> Sharing the URL will allow others to access <strong>all</strong> actions from your personal landing page. Also, allowing others to see your scoresheet may be a violation of tournament policies."
-msgstr "Cette page est fourni pour vous permettre, <strong>%(name)s</strong>, pour vérifier votre bulletin de note. <strong>Vous ne devez pas partager cette page avec qui que se soit.</strong> Partager cette URL permettra autres d'accéder à <strong>tous</strong> les actions de votre page privée."
-
-#: results/templates/privateurl_ballot_set_error.html:4
-#: results/templates/privateurl_ballot_set_error.html:6
-#: results/templates/public_ballot_set_error.html:4
-#: results/templates/public_ballot_set_error.html:6
-msgid "Ballot Not Available"
-msgstr "Feuille non-disponible"
-
-#: results/templates/privateurl_ballot_set_error.html:12
-#, python-format
-msgid "The page is provided to allow you, <strong>%(name)s</strong>, to verify your own scoresheet. <strong>You must not share this URL with anyone.</strong> Sharing the URL will allow others to access <strong>all</strong> actions from your personal landing page."
-msgstr "Cette page est fourni pour vous permettre, <strong>%(name)s</strong>, pour vérifier votre bulletin de note. <strong>Vous ne devez pas partager cette page avec qui que se soit.</strong> Partager cette URL permettra autres d'accéder à <strong>tous</strong> les actions de votre page privée."
-
-#: results/templates/privateurl_ballot_set_error.html:27
-#, python-format
-msgid "<a href=\"%(url)s\">Back to your private landing page.</a>"
-msgstr "<a href=\"%(url)s\">Retour vers votre page privée.</a>"
-
 #: results/templates/public_add_ballot.html:4
 #: results/templates/public_add_ballot_unreleased.html:4
 #: results/templates/public_add_ballot_unreleased.html:5

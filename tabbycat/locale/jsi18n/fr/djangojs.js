@@ -5,14 +5,7 @@
   var django = globals.django || (globals.django = {});
 
   
-  django.pluralidx = function(n) {
-    var v=(n > 1);
-    if (typeof(v) == 'boolean') {
-      return v ? 1 : 0;
-    } else {
-      return v;
-    }
-  };
+  django.pluralidx = function(count) { return (count == 1) ? 0 : 1; };
   
 
   /* gettext library */
@@ -131,7 +124,7 @@
     "No changes": "Aucun changement",
     "No code name set": "Aucun nom code d\u00e9fini",
     "No matching people found.": "Aucunes personnes correspondantes trouv\u00e9es.",
-    "No matching venues found.": "Aucunes salles correspondantes trouv\u00e9es.",
+    "No matching rooms found.": "Aucunes salles correspondantes trouv\u00e9es.",
     "No, I am submitting feedback on:": "Non, je donne un \u00e9valuation sur\u00a0:",
     "Noon": "Midi",
     "Not Checked-In": "Pas enregistr\u00e9",
@@ -157,6 +150,7 @@
     "Return ballots to %1.": "Soumettre feuilles de jugement \u00e0 %1.",
     "Return to Draw": "Retour au tirage",
     "Review": "R\u00e9viser",
+    "Room:": "Salle\u00a0:",
     "Scan Using Camera": "Num\u00e9riser avec l'appareil photo",
     "Score:": "Score\u00a0:",
     "September": "Septembre",
@@ -191,7 +185,6 @@
     "Unconfirmed": "Non-confirm\u00e9",
     "Unknown": "Inconnu",
     "Unsure": "Incertain",
-    "Venue:": "Salle\u00a0:",
     "Warning: you have unsaved changes": "Attention: vous avez des modifications non sauvegard\u00e9es",
     "Which team won the debate:": "Quelle \u00e9quipe \u00e0 gagn\u00e9 le d\u00e9bat\u00a0:",
     "Yes": "Oui",
