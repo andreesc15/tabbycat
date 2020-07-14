@@ -7,6 +7,19 @@ Change Log
 *Release date: ?*
 
 
+2.4.4
+-----
+*Release date: 13 July 2020*
+
+- Fixed colours associated with adjudicators' scores not showing
+- Showed validation errors when using API with invalid field names
+- Prevented Tabbycat from creating default conflicts with the API if already specified in the request
+- Fixed eligibility API endpoints when a list of participants is not present
+- Fixed speaker category eligibility API endpoint not accepting speakers
+- Allowed updating teams, excluding speakers, through the team detail API endpoint
+- Added date and time formats for Malay
+
+
 2.4.3
 -----
 *Release date: 4 July 2020*
