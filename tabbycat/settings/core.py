@@ -79,6 +79,7 @@ FORMAT_MODULE_PATH = [
 # ==============================================================================
 
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,6 +120,7 @@ TABBYCAT_APPS = (
     'standings',
     'notifications',
     'importer',
+    'global',
 )
 
 INSTALLED_APPS = (
@@ -140,6 +142,34 @@ INSTALLED_APPS = (
     'statici18n', # Compile js translations as static file; saving requests
     'polymorphic',
     'rest_framework',
+    'rest_framework.authtoken',
+)
+
+SHARED_APPS = (
+    'django_tenants',  # mandatory
+    'global', # you must list the app where your tenant model resides in
+    'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'channels', # For Websockets / real-time connections (above whitenoise)
+    'django_summernote',  # Keep above our apps; as we unregister an admin model
+    'django_extensions',  # For Secret Generation Command
+    'gfklookupwidget',
+    'formtools',
+    'statici18n', # Compile js translations as static file; saving requests
+    'polymorphic',
+    'rest_framework',
+)
+
+TENANT_APPS = (
+    'jet',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages') \
+    + TABBYCAT_APPS + (
+    'dynamic_preferences',
     'rest_framework.authtoken',
 )
 
@@ -165,7 +195,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
-                'django.template.context_processors.request',  # for Jet
+                'django.template.context_processors.request',  # for Jet/Tenants
                 'utils.context_processors.debate_context',  # for tournament config vars
                 'django.template.context_processors.i18n'  # for serving static language translations,
             ],
