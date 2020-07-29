@@ -22,7 +22,7 @@ SECRET_KEY = r'#2q43u&tp4((4&m3i8v%w-6z6pp7m(v0-6@w@i!j5n)n15epwc'
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.4.5'
+TABBYCAT_VERSION = '2.4.5-mt'
 TABBYCAT_CODENAME = 'Manx'
 READTHEDOCS_VERSION = 'v2.4.5'
 
@@ -129,7 +129,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'channels', # For Websockets / real-time connections (above whitenoise)
     'django.contrib.staticfiles',
     'django.contrib.humanize',
@@ -152,7 +151,9 @@ SHARED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'django.contrib.sites',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
     'channels', # For Websockets / real-time connections (above whitenoise)
     'django_summernote',  # Keep above our apps; as we unregister an admin model
     'django_extensions',  # For Secret Generation Command
@@ -161,6 +162,7 @@ SHARED_APPS = (
     'statici18n', # Compile js translations as static file; saving requests
     'polymorphic',
     'rest_framework',
+    'rest_framework.authtoken',
 )
 
 TENANT_APPS = (
@@ -168,8 +170,7 @@ TENANT_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages') \
+    'django.contrib.sessions') \
     + TABBYCAT_APPS + (
     'dynamic_preferences',
     'rest_framework.authtoken',
@@ -182,6 +183,8 @@ SILENCED_SYSTEM_CHECKS = ('urls.W002',)
 
 TENANT_MODEL = "global.Client"
 TENANT_DOMAIN_MODEL = "global.Instance"
+PUBLIC_SCHEMA_URLCONF = 'global.urls'
+AUTO_DROP_SCHEMA = True
 
 # ==============================================================================
 # Templates
