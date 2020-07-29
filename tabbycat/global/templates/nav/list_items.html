@@ -1,0 +1,13 @@
+{% load debate_tags i18n %}
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'own-tournaments-list' %}">
+    {% trans "Your Instances" %}
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'create-instance' %}">
+    {% trans "Create Instance" %}
+  </a>
+</li>
