@@ -16,8 +16,12 @@ from .forms import InstanceCreationForm, UserCreationForm
 from .models import Client
 
 
-def get_instance_url(scheme, instance):
-    return scheme + "://" + instance.domain + "/"
+def get_instance_url(request, instance):
+    link = request.scheme + "://" + instance.domain
+    server_port = request.META.get('SERVER_PORT', 443)
+    if server_port != 443 and server_port != 80:
+        link += ":" + str(server_port)
+    return link + "/"
 
 
 class CreateAccountView(FormView):
@@ -48,10 +52,11 @@ class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
         table = BaseTableBuilder(view=self, sort_key="date")
         table.add_column(
             {'key': 'name', 'title': _("Instance Name")},
-            [{'text': c.name, 'link': get_instance_url(self.request.scheme, c.domains.get())} for c in clients])
+            [{'text': c.name, 'link': get_instance_url(self.request, c.domains.get())} for c in clients])
         table.add_column(
             {'key': 'date', 'icon': 'clock', 'tooltip': _("When the instance was created")},
             [{'text': c.created_on} for c in clients])
+        return table
 
 
 class DeleteInstanceView(AssistantMixin, PostOnlyRedirectView):
@@ -91,4 +96,4 @@ class CreateInstanceFormView(AssistantMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return get_instance_url(self.request.scheme, self.object.domains.get())
+        return get_instance_url(self.request, self.object.domains.get())
