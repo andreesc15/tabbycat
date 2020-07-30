@@ -27,6 +27,7 @@ psycopg2==2.8.4                         # For Django to talk to postgres
 #     http://initd.org/psycopg/docs/install.html#binary-install-from-pypi
 
 # Channels
+django-redis==4.10.0                    # Use redis for cache (on heroku; local optional)
 channels==2.2.0                         # Channels; also includes the Daphne server
 channels_redis==2.4.2                   # Channels Layer
 
@@ -35,3 +36,6 @@ ipython==7.11.*
 redis==3.3.8
 qrcode==6.1                             # QR codes for printed private URL sheets
 html2text==2019.8.11                    # Compatibility with plain-text email clients
+scout-apm==2.9.1                        # Performance monitoring
+sentry-sdk==0.13.5                      # Client for Sentry error tracking
+awsebcli==3.18.2                        # Amazon Elastic Beanstalk

@@ -18,6 +18,8 @@ ENABLE_DEBUG_TOOLBAR = False # Must default to false; overriden in Dev config
 DISABLE_SENTRY = True # Overriden in Heroku config
 SECRET_KEY = r'#2q43u&tp4((4&m3i8v%w-6z6pp7m(v0-6@w@i!j5n)n15epwc'
 
+ALLOWED_HOSTS = ['.tabbycat-debate.org']
+
 # ==============================================================================
 # Version
 # ==============================================================================
@@ -320,9 +322,19 @@ SUMMERNOTE_CONFIG = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_tenants.postgresql_backend',
-    },
+        'ENGINE'      : 'django_tenants.postgresql_backend',
+        'NAME'        : os.environ.get('RDS_DB_NAME'),
+        'USER'        : os.environ.get('RDS_USERNAME'),
+        'PASSWORD'    : os.environ.get('RDS_PASSWORD'),
+        'HOST'        : os.environ.get('RDS_HOSTNAME'),
+        'PORT'        : os.environ.get('RDS_PORT'),
+        'CONN_MAX_AGE': None,
+    }
 }
+
+DATABASE_ROUTERS = (
+    'django_tenants.routers.TenantSyncRouter',
+)
 
 TENANT_LIMIT_SET_CALLS = True
 
@@ -334,8 +346,21 @@ ASGI_APPLICATION = "routing.application"
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(os.environ.get("REDIS_HOST", "localhost"), int(os.environ.get("REDIS_HOST_POST", 6379)))],
+        },
     },
+}
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ.get("REDIS_HOST_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "IGNORE_EXCEPTIONS": True, # Don't crash on say ConnectionError due to limits
+        }
+    }
 }
 
 # ==============================================================================
