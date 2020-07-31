@@ -45,16 +45,16 @@ class MainPageView(TemplateView):
 
 class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
     template_name = 'tournaments_list.html'
-    page_title = gettext_lazy("Your Tabbycat Instances")
+    page_title = gettext_lazy("Your Tabbycat Sites")
 
     def get_table(self):
         clients = Client.objects.filter(user=self.request.user)
         table = BaseTableBuilder(view=self, sort_key="date")
         table.add_column(
-            {'key': 'name', 'title': _("Instance Name")},
+            {'key': 'name', 'title': _("Site Name")},
             [{'text': c.name, 'link': get_instance_url(self.request, c.domains.get())} for c in clients])
         table.add_column(
-            {'key': 'date', 'icon': 'clock', 'tooltip': _("When the instance was created")},
+            {'key': 'date', 'icon': 'clock', 'tooltip': _("When the site was created")},
             [{'text': c.created_on} for c in clients])
         return table
 
@@ -68,7 +68,7 @@ class DeleteInstanceView(AssistantMixin, PostOnlyRedirectView):
         name = client.name
 
         client.delete()
-        messages.success(request, _("Deleted the %s instance" % name))
+        messages.success(request, _("Deleted the %s site" % name))
         return super().post(request, *args, **kwargs)
 
 

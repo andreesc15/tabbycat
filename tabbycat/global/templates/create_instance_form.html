@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load add_field_css i18n %}
 
-{% block page-title %}✨{% trans "Create Instance" context "page title" %}{% endblock %}
+{% block page-title %}✨{% trans "Create Site" context "page title" %}{% endblock %}
 {% block head-title %}{% endblock %}
 
 {% block nav %}{% endblock %}
@@ -16,14 +16,14 @@
       <form id="create_instance" action="." method="POST">
       {% csrf_token %}
 
-        {% trans "Create Tabbycat Instance" context "page title" as title %}
+        {% trans "Create Tabbycat Site" context "page title" as title %}
         {% trans "This form will create a Tabbycat site on which you can create tournaments!" as text %}
         {% trans "When created, you'll be brought to your new site to log in with the same account as here." as p1 %}
         {% include "components/form-title.html" with emoji="✨" p2="" %}
 
         {% include "components/form-main.html" %}
 
-        {% trans "Create Instance" context "button" as title %}
+        {% trans "Create Site" context "button" as title %}
         {% trans "Cancel and go back to the site home page" as subtitle %}
         {% url 'global-main-page' as suburl %}
         {% include "components/form-submit.html" %}

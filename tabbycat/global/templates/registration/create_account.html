@@ -17,7 +17,7 @@
       {% csrf_token %}
 
         {% trans "Create Tabbycat Account" context "page title" as title %}
-        {% trans "An account will allow you to create Tabbycat instances." as text %}
+        {% trans "An account will allow you to create Tabbycat sites." as text %}
         {% include "components/form-title.html" with emoji="🔐" p1="" p2="" %}
 
         {% include "components/form-main.html" %}
