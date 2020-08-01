@@ -22,6 +22,7 @@ urlpatterns = [
     path('',
         views.MainPageView.as_view(),
         name='global-main-page'),
+
     path('tournaments/', include([
         path('',
             views.ListOwnTournamentsView.as_view(),
@@ -29,9 +30,29 @@ urlpatterns = [
         path('new/',
             views.CreateInstanceFormView.as_view(),
             name='create-instance'),
-        path('<slug:schema>/delete/',
-            views.DeleteInstanceView.as_view(),
-            name='delete-instance'),
+        path('<slug:schema>/', include([
+            path('redirect-checkout/',
+                views.StripeRedirectView.as_view(),
+                name='stripe-payment-redirect'),
+            path('create/',
+                views.SuccessfulPaymentLandingView.as_view(),
+                name='successful-payment'),
+            path('delete/',
+                views.DeleteInstanceView.as_view(),
+                name='delete-instance'),
+        ])),
+    ])),
+
+    path('stripe/', include([
+        path('get-session/',
+            views.StripeSessionView.as_view(),
+            name='stripe-session'),
+        path('webhook/',
+            views.StripeWebhookView.as_view(),
+            name='stripe-webhook'),
+        path('cancelled/',
+            views.CancelledPaymentRedirectView.as_view(),
+            name='cancelled-payment'),
     ])),
 
     # Set language override

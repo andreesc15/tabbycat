@@ -6,7 +6,8 @@ from actionlog.consumers import ActionLogEntryConsumer
 from adjallocation.consumers import AdjudicatorAllocationWorkerConsumer, PanelEditConsumer
 from checkins.consumers import CheckInEventConsumer
 from draw.consumers import DebateEditConsumer
-from notifications.consumers import NotificationQueueConsumer
+from portal.consumers import PortalQueueConsumer  # noqa: I100, I201
+from notifications.consumers import NotificationQueueConsumer  # noqa: I201
 from results.consumers import BallotResultConsumer, BallotStatusConsumer
 from venues.consumers import VenuesWorkerConsumer
 
@@ -38,6 +39,7 @@ application = ProtocolTypeRouter({
     "channel": ChannelNameRouter({
         # Name used in runworker cmd : SyncConsumer responsible
         "notifications":  NotificationQueueConsumer, # Email sending
+        "portal": PortalQueueConsumer,  # For creating schemas
         "adjallocation": AdjudicatorAllocationWorkerConsumer,
         "venues": VenuesWorkerConsumer,
     }),

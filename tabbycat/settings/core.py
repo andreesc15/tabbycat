@@ -81,9 +81,9 @@ FORMAT_MODULE_PATH = [
 # ==============================================================================
 
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # User language preferences; must be after Session
     'django.middleware.locale.LocaleMiddleware',
@@ -121,12 +121,12 @@ TABBYCAT_APPS = (
     'standings',
     'notifications',
     'importer',
-    'global',
+    'portal',
 )
 
 INSTALLED_APPS = (
-    'jet',
     'django_tenants',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -149,7 +149,7 @@ INSTALLED_APPS = (
 
 SHARED_APPS = (
     'django_tenants',  # mandatory
-    'global', # you must list the app where your tenant model resides in
+    'portal', # you must list the app where your tenant model resides in
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
@@ -183,10 +183,11 @@ LOGIN_REDIRECT_URL = '/'
 FIXTURE_DIRS = (os.path.join(os.path.dirname(BASE_DIR), 'data', 'fixtures'), )
 SILENCED_SYSTEM_CHECKS = ('urls.W002',)
 
-TENANT_MODEL = "global.Client"
-TENANT_DOMAIN_MODEL = "global.Instance"
-PUBLIC_SCHEMA_URLCONF = 'global.urls'
+TENANT_MODEL = "portal.Client"
+TENANT_DOMAIN_MODEL = "portal.Instance"
+PUBLIC_SCHEMA_URLCONF = 'portal.urls'
 AUTO_DROP_SCHEMA = True
+TENANT_COLOR_ADMIN_APPS = False
 
 # ==============================================================================
 # Templates

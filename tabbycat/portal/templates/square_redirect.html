@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load add_field_css i18n %}
+
+{% block page-title %}✨{% trans "Redirect to Stripe" context "page title" %}{% endblock %}
+{% block head-title %}{% endblock %}
+
+{% block nav %}{% endblock %}
+{% block js %}
+{{ block.super }}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+var createCheckoutSession = function () {
+  return fetch("{% url 'stripe-session' %}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: '{"client_id": "{{ client.id }}"}'
+  }).then(response => response.json());
+};
+
+var submitForm = function (evt) {
+  var stripe = Stripe("{{ stripe_public_key }}");
+
+  createCheckoutSession().then(function (data) {
+    stripe.redirectToCheckout({
+      sessionId: data.sessionId
+    }).then(result => result.error ? console.log(result.error.message) : null);
+  });
+};
+document.querySelector('button').addEventListener('click', submitForm);
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-lg-8 ml-lg-auto mr-md-auto">
+
+    <div class="card">
+      {% trans "Redirect to Stripe" context "page title" as title %}
+      {% trans "This will redirect you to Stripe, the payment provider. No payment details are saved on this site." as text %}
+      {% trans "After payment, you'll be redirected to your new site, and you can log in with the same credentials." as p1 %}
+      {% include "components/form-title.html" with emoji="✨" p2="" %}
+
+      {% trans "Pay 40CA$" context "button" as title %}
+      {% trans "JavaScript has to be enabled on this page." as subtitle %}
+      {% include "components/form-submit.html" %}
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
