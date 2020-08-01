@@ -354,24 +354,34 @@ TENANT_LIMIT_SET_CALLS = True
 
 ASGI_APPLICATION = "routing.application"
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [(os.environ.get("REDIS_HOST", "localhost"), int(os.environ.get("REDIS_HOST_POST", 6379)))],
+if 'REDIS_HOST' in os.environ:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [(os.environ.get("REDIS_HOST", "localhost"), int(os.environ.get("REDIS_HOST_POST", 6379)))],
+            },
         },
-    },
-}
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ.get("REDIS_HOST_URL"),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "IGNORE_EXCEPTIONS": True, # Don't crash on say ConnectionError due to limits
+    }
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": os.environ.get("REDIS_HOST_URL"),
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "IGNORE_EXCEPTIONS": True, # Don't crash on say ConnectionError due to limits
+            }
         }
     }
-}
+else:
+    CACHES = { # Use a dummy cache in development
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+       }
+    }
+
+    # Use the cache with database write through for local sessions
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # ==============================================================================
 # Dynamic preferences
