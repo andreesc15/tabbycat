@@ -190,6 +190,15 @@ AUTO_DROP_SCHEMA = True
 TENANT_COLOR_ADMIN_APPS = False
 
 # ==============================================================================
+# Stripe Settings
+# ==============================================================================
+
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_PUBLISH_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+INSTANCE_PRICE_ID = os.environ.get("STRIPE_INSTANCE_PRICE_ID")
+STRIPE_ENDPOINT_SEC = os.environ.get("STRIPE_ENDPOINT_KEY")
+
+# ==============================================================================
 # Templates
 # ==============================================================================
 
