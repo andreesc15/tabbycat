@@ -118,6 +118,7 @@ class StripeSessionView(AssistantMixin, View):
             cancel_url=request.build_absolute_uri(reverse('cancelled-payment')),
         )
         client.session_id = session['id']
+        client.payment_id = session['payment_intent']
         client.save()
         return JsonResponse({'sessionId': session['id']}, status=201)
 
@@ -151,20 +152,29 @@ class StripeWebhookView(View):
         except stripe.error.SignatureVerificationError:  # Invalid signature
             return HttpResponse(status=400)
 
-        if event['type'] == 'checkout.session.completed':
-            session = event['data']['object']
-
-            client = get_object_or_404(Client, session_id=session['id'])
-            client.paid = session.get('amount_total', 0)
-            client.save()
-
-            # Create schema
-            async_to_sync(get_channel_layer().send)("portal", {
-                "type": "create_schema",
-                "client": client.id,
-            })
+        actions = {
+            'payment_intent.succeeded': self.on_payment_success,
+            'payment_intent.canceled': self.on_payment_deny,
+            'payment_intent.payment_failed': self.on_payment_deny,
+        }
+        actions[event['type']](event['data']['object'])
 
         return HttpResponse(status=200)
+
+    def on_payment_success(self, payment):
+        client = get_object_or_404(Client, payment_id=payment['id'])
+        client.paid = payment.get('amount', 0)
+        client.save()
+
+        # Create schema
+        async_to_sync(get_channel_layer().send)("portal", {
+            "type": "create_schema",
+            "client": client.id,
+        })
+
+    def on_payment_deny(self, payment):
+        client = get_object_or_404(Client, payment_id=payment['id'])
+        client.delete()
 
 
 class CancelledPaymentRedirectView(View):
