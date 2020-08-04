@@ -5,6 +5,7 @@ from smtplib import SMTPException
 from channels.consumer import SyncConsumer
 from django.conf import settings
 from django.core import mail
+from django.db import connection
 from django.template import Context, Template
 from django.utils.translation import gettext_lazy as _
 from html2text import html2text
@@ -90,7 +91,11 @@ class NotificationQueueConsumer(SyncConsumer):
             email = mail.EmailMultiAlternatives(
                 subject=subject.render(context), body=html2text(body),
                 from_email=from_email, to=[recipient_to], reply_to=reply_to,
-                headers={'X-SMTPAPI': json.dumps({'unique_args': {'hook-id': hook_id}})}, # SendGrid-specific 'hook-id'
+                headers={
+                    'X-SMTPAPI': json.dumps({'unique_args': {'hook-id': hook_id}}),  # SendGrid-specific 'hook-id'
+                    'X-HOOKID': hook_id,
+                    'X-TCSITE': connection.schema_name,
+                },
             )
             email.attach_alternative(body, "text/html")
             messages.append(email)

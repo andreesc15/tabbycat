@@ -14,7 +14,9 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext as _, gettext_lazy
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
+from django_tenants.utils import schema_context
 
+from notifications.models import EmailStatus, SentMessage
 from utils.mixins import AssistantMixin
 from utils.tables import BaseTableBuilder
 from utils.views import PostOnlyRedirectView, VueTableTemplateView
@@ -191,3 +193,26 @@ class SuccessfulPaymentLandingView(View):
         client = Client.objects.get(schema_name=self.kwargs['schema'])
         time.sleep(5)  # Wait a few seconds to finish making the schema
         return HttpResponseRedirect(get_instance_url(request, client.get_primary_domain()))
+
+
+class SESWebhookView(View):
+
+    def post(self, request, *args, **kwargs):
+        if kwargs['wh_key'] != settings.SES_WEBHOOK_KEY:
+            return HttpResponse(status=403)
+        body = json.loads(request.body)
+
+        status = None
+        if body.get('bounce') is not None:
+            status = EmailStatus.EVENT_TYPE_BOUNCED
+        elif body.get('complaint') is not None:
+            status = EmailStatus.EVENT_TYPE_SPAM
+        elif body.get('delivery') is not None:
+            status = EmailStatus.EVENT_TYPE_DELIVERED
+
+        headers = {h['name']: h['value'] for h in body.get('headers', {})}
+        with schema_context(headers.get('X-TCSITE')):
+            message = SentMessage.objects.get(hook_id=headers.get('X-HOOKID'))
+            message.emailstatus_set.create(event=status)
+
+        return HttpResponse(status=200)

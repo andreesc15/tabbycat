@@ -55,6 +55,8 @@ urlpatterns = [
             name='cancelled-payment'),
     ])),
 
+    path('sns/email/', views.SESWebhookView.as_view(), name='sns-ses-webhook'),
+
     # Set language override
     path('i18n/',
         include('django.conf.urls.i18n')),
