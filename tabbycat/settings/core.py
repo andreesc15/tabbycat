@@ -199,6 +199,18 @@ INSTANCE_PRICE_ID = os.environ.get("STRIPE_INSTANCE_PRICE_ID")
 STRIPE_ENDPOINT_SEC = os.environ.get("STRIPE_ENDPOINT_KEY")
 
 # ==============================================================================
+# Email
+# ==============================================================================
+
+SERVER_EMAIL = os.environ.get('EMAIL_FROM_ADDRESS')
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_FROM_ADDRESS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# ==============================================================================
 # Templates
 # ==============================================================================
 
