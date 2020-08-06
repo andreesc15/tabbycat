@@ -371,7 +371,8 @@ if 'REDIS_HOST' in os.environ:
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
             "CONFIG": {
-                "hosts": [(os.environ.get("REDIS_HOST", "localhost"), int(os.environ.get("REDIS_HOST_POST", 6379)))],
+                "hosts": [os.environ.get("REDIS_HOST_URL")],
+                "group_expiry": 10800,
             },
         },
     }
@@ -382,6 +383,11 @@ if 'REDIS_HOST' in os.environ:
             "OPTIONS": {
                 "CLIENT_CLASS": "django_redis.client.DefaultClient",
                 "IGNORE_EXCEPTIONS": True, # Don't crash on say ConnectionError due to limits
+                # "CONNECTION_POOL_KWARGS": {"max_connections": 5} # See above
+                "SOCKET_CONNECT_TIMEOUT": 5,
+                "SOCKET_TIMEOUT": 60,
+                'KEY_FUNCTION': 'django_tenants.cache.make_key',
+                'REVERSE_KEY_FUNCTION': 'django_tenants.cache.reverse_key',
             }
         }
     }
