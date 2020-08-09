@@ -24,5 +24,8 @@ if os.environ.get('DJANGO_SECRET_KEY', ''):
 if os.environ.get('LOCAL_DEVELOPMENT', ''):
     base_settings.append('development.py')
 
+if os.environ.get('AWS_MULTI', '') == 'true':
+    base_settings.append('aws.py')
+
 
 include(*base_settings)
