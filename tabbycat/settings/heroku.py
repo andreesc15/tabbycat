@@ -81,8 +81,6 @@ CACHES = {
             # "CONNECTION_POOL_KWARGS": {"max_connections": 5} # See above
             "SOCKET_CONNECT_TIMEOUT": 5,
             "SOCKET_TIMEOUT": 60,
-            'KEY_FUNCTION': 'django_tenants.cache.make_key',
-            'REVERSE_KEY_FUNCTION': 'django_tenants.cache.reverse_key',
         },
     },
 }
