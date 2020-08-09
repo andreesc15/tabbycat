@@ -6,8 +6,8 @@ from actionlog.consumers import ActionLogEntryConsumer
 from adjallocation.consumers import AdjudicatorAllocationWorkerConsumer, PanelEditConsumer
 from checkins.consumers import CheckInEventConsumer
 from draw.consumers import DebateEditConsumer
-from portal.consumers import PortalQueueConsumer  # noqa: I100, I201
-from notifications.consumers import NotificationQueueConsumer  # noqa: I201
+from notifications.consumers import NotificationQueueConsumer
+from portal.consumers import PortalQueueConsumer
 from results.consumers import BallotResultConsumer, BallotStatusConsumer
 from venues.consumers import VenuesWorkerConsumer
 
