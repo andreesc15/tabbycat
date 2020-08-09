@@ -4,6 +4,7 @@ import os
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.tabbycat-debate.org').split(',')
+STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 
 # ==============================================================================
 # Database
@@ -165,6 +166,8 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+SES_WEBHOOK_KEY = os.environ.get('SES_WEBHOOK_KEY', '')
 
 # ==============================================================================
 # Channels
