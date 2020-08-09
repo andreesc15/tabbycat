@@ -4,7 +4,7 @@ import os
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.tabbycat-debate.org').split(',')
-STATIC_URL = os.environ.get('STATIC_URL', '/static/')
+SECRET_KEY = os.environ.get('DJ_SECRET_KEY')
 
 # ==============================================================================
 # Database
@@ -134,11 +134,6 @@ TENANT_APPS = (
     'dynamic_preferences',
     'rest_framework.authtoken',
 )
-
-ROOT_URLCONF = 'urls'
-LOGIN_REDIRECT_URL = '/'
-FIXTURE_DIRS = (os.path.join(os.path.dirname(BASE_DIR), 'data', 'fixtures'), )
-SILENCED_SYSTEM_CHECKS = ('urls.W002',)
 
 TENANT_MODEL = "portal.Client"
 TENANT_DOMAIN_MODEL = "portal.Instance"
