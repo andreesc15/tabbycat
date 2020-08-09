@@ -10,6 +10,7 @@ from actionlog.models import ActionLogEntry
 from breakqual.utils import calculate_live_thresholds
 from draw.consumers import BaseAdjudicatorContainerConsumer, EditDebateOrPanelWorkerMixin
 from participants.prefetch import populate_win_counts
+from portal.utils import using_tenant_schema
 from tournaments.models import Round
 
 from .allocators.base import AdjudicatorAllocationError
@@ -50,6 +51,7 @@ class AdjudicatorAllocationWorkerConsumer(EditDebateOrPanelWorkerMixin):
             else:
                 t.preferences[key] = value
 
+    @using_tenant_schema
     def allocate_debate_adjs(self, event):
         round = Round.objects.get(pk=event['extra']['round_id'])
         self._apply_allocation_settings(round, event['extra']['settings'])
@@ -120,6 +122,7 @@ class AdjudicatorAllocationWorkerConsumer(EditDebateOrPanelWorkerMixin):
 
         self.return_response(content, event['extra']['group_name'], msg, level)
 
+    @using_tenant_schema
     def allocate_panel_adjs(self, event):
         round = Round.objects.get(pk=event['extra']['round_id'])
         self._apply_allocation_settings(round, event['extra']['settings'])
@@ -179,6 +182,7 @@ class AdjudicatorAllocationWorkerConsumer(EditDebateOrPanelWorkerMixin):
                 importance -= 1
                 boundary = round((nimportancelevels - 2 - importance) * len(instances) / nimportancelevels)
 
+    @using_tenant_schema
     def prioritise_debates(self, event):
         # TODO: Debates and panels should really be unified in a single function
         round = Round.objects.get(pk=event['extra']['round_id'])
@@ -215,6 +219,7 @@ class AdjudicatorAllocationWorkerConsumer(EditDebateOrPanelWorkerMixin):
         msg = _("Succesfully auto-prioritised debates.")
         self.return_response(content, event['extra']['group_name'], msg, 'success')
 
+    @using_tenant_schema
     def prioritise_panels(self, event):
         rd = Round.objects.get(pk=event['extra']['round_id'])
         panels = rd.preformedpanel_set.all()
@@ -246,6 +251,7 @@ class AdjudicatorAllocationWorkerConsumer(EditDebateOrPanelWorkerMixin):
         msg = _("Succesfully auto-prioritised preformed panels.")
         self.return_response(content, event['extra']['group_name'], msg, 'success')
 
+    @using_tenant_schema
     def create_preformed_panels(self, event):
         round = Round.objects.get(pk=event['extra']['round_id'])
         for i, (bracket_min, bracket_max, liveness) in enumerate(

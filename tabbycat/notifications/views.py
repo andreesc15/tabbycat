@@ -5,6 +5,7 @@ from smtplib import SMTPException
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.contrib import messages
+from django.db import connection
 from django.db.models import Prefetch, Q
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -268,6 +269,7 @@ class CustomEmailCreateView(RoleColumnMixin, BaseSelectPeopleEmailView):
             "body": request.POST['message_body'],
             "tournament": self.tournament.id,
             "send_to": [(p.id, p.email) for p in people],
+            "tenant": connection.schema_name,
         })
 
         self.add_sent_notification(len(people))
@@ -295,6 +297,7 @@ class TemplateEmailCreateView(BaseSelectPeopleEmailView):
             "send_to": email_recipients,
             "subject": request.POST['subject_line'],
             "body": request.POST['message_body'],
+            "tenant": connection.schema_name,
         })
 
         self.add_sent_notification(len(email_recipients))

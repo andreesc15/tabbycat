@@ -5,12 +5,12 @@ from smtplib import SMTPException
 from channels.consumer import SyncConsumer
 from django.conf import settings
 from django.core import mail
-from django.db import connection
 from django.template import Context, Template
 from django.utils.translation import gettext_lazy as _
 from html2text import html2text
 
 from draw.models import Debate
+from portal.utils import using_tenant_schema
 from tournaments.models import Round, Tournament
 
 from .models import BulkNotification, SentMessage
@@ -52,6 +52,7 @@ class NotificationQueueConsumer(SyncConsumer):
             return from_email, [reply_to] # Django wants the reply_to as an array
         return from_email, reply_to # Shouldn't have array of None
 
+    @using_tenant_schema
     def email(self, event):
         # Get database objects
         if 'debate_id' in event['extra']:
@@ -94,7 +95,7 @@ class NotificationQueueConsumer(SyncConsumer):
                 headers={
                     'X-SMTPAPI': json.dumps({'unique_args': {'hook-id': hook_id}}),  # SendGrid-specific 'hook-id'
                     'X-HOOKID': hook_id,
-                    'X-TCSITE': connection.schema_name,
+                    'X-TCSITE': event['tenant'],
                 },
             )
             email.attach_alternative(body, "text/html")
@@ -111,6 +112,7 @@ class NotificationQueueConsumer(SyncConsumer):
 
         self._send(event, messages, records)
 
+    @using_tenant_schema
     def email_custom(self, event):
         messages = []
         records = []
@@ -124,7 +126,11 @@ class NotificationQueueConsumer(SyncConsumer):
             email = mail.EmailMultiAlternatives(
                 subject=event['subject'], body=html2text(event['body']),
                 from_email=from_email, to=[address], reply_to=reply_to,
-                headers={'X-SMTPAPI': json.dumps({'unique_args': {'hook-id': hook_id}})}, # SendGrid-specific 'hook-id'
+                headers={
+                    'X-SMTPAPI': json.dumps({'unique_args': {'hook-id': hook_id}}),  # SendGrid-specific 'hook-id'
+                    'X-HOOKID': hook_id,
+                    'X-TCSITE': event['tenant'],
+                },
             )
             email.attach_alternative(event['body'], "text/html")
             messages.append(email)

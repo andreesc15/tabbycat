@@ -4,6 +4,7 @@ from asgiref.sync import async_to_sync
 from channels.consumer import SyncConsumer
 from channels.generic.websocket import JsonWebsocketConsumer
 from channels.layers import get_channel_layer
+from django.db import connection
 
 from actionlog.models import ActionLogEntry
 from adjallocation.serializers import SimpleDebateAllocationSerializer, SimpleDebateImportanceSerializer
@@ -44,6 +45,7 @@ class BaseAdjudicatorContainerConsumer(SuperuserRequiredWebsocketMixin, RoundWeb
                       'tournament_id': self.tournament.id,
                       'settings': action_settings,
                       'group_name': self.group_name()},
+            "tenant": connection.schema_name,
         })
 
     def get_debates_or_panels(self, debates_or_panels):

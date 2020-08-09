@@ -2,6 +2,7 @@ from django.utils.translation import gettext as _
 
 from actionlog.models import ActionLogEntry
 from draw.consumers import EditDebateOrPanelWorkerMixin
+from portal.utils import using_tenant_schema
 from tournaments.models import Round
 
 from .allocator import allocate_venues
@@ -10,6 +11,7 @@ from .serializers import SimpleDebateVenueSerializer
 
 class VenuesWorkerConsumer(EditDebateOrPanelWorkerMixin):
 
+    @using_tenant_schema
     def allocate_debate_venues(self, event):
         round = Round.objects.get(pk=event['extra']['round_id'])
         group = event['extra']['group_name']
