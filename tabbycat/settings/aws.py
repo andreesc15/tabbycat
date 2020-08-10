@@ -5,6 +5,7 @@ import os
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.tabbycat-debate.org').split(',')
 SECRET_KEY = os.environ.get('DJ_SECRET_KEY')
+STATIC_URL = os.getenv('STATIC_URL', '/static/')
 
 # ==============================================================================
 # Database
