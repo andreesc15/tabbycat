@@ -31,7 +31,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def get_instance_url(request, instance):
     link = request.scheme + "://" + instance.domain
     server_port = request.META.get('SERVER_PORT', 443)
-    if server_port != 443 and server_port != 80:
+    if server_port != 443 and server_port != 80 and server_port != 8000:
         link += ":" + str(server_port)
     return link + "/"
 

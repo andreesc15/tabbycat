@@ -1,8 +1,7 @@
-# WSGI server handles the standard django routes; optimised for high performance
-http: gunicorn --bind :8000 --workers 4 --threads 2 tabbycat.wsgi:application
+# Production
 
-# ASGI server handles the asychronous routes (websockets)
-websocket: daphne -b 0.0.0.0 -p 5000 tabbycat.asgi:application
+# Note that this runs honcho, which in turn runs a second 'MultiProcfile'
+# This better allows for multiple processes to be run simultaneously
 
-# Workers
-#worker: python tabbycat/manage.py runworker notifications portal adjallocation venues
+web: honcho -f ProcfileMulti start
+worker: python tabbycat/manage.py runworker notifications portal adjallocation venues
