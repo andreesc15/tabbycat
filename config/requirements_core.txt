@@ -36,6 +36,7 @@ awsebcli==3.18.2                        # Amazon Elastic Beanstalk
 stripe==2.49.0                          # Payments
 honcho==1.0.1                           # Allows a Procfile to run multiple processes
 gunicorn==19.9.0                        # Primary server for wsgi
+requests==2.24.0                        # Requests to subscribe to SNS
 
 # Misc
 ipython==7.11.*

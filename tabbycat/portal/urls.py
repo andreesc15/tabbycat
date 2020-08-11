@@ -55,7 +55,7 @@ urlpatterns = [
             name='cancelled-payment'),
     ])),
 
-    path('sns/email/', views.SESWebhookView.as_view(), name='sns-ses-webhook'),
+    path('sns/email/<slug:wh_key>/', views.SESWebhookView.as_view(), name='sns-ses-webhook'),
 
     # Set language override
     path('i18n/',

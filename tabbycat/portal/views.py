@@ -2,6 +2,7 @@ import json
 import logging
 import time
 
+import requests
 import stripe
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
@@ -199,8 +200,13 @@ class SESWebhookView(View):
 
     def post(self, request, *args, **kwargs):
         if kwargs['wh_key'] != settings.SES_WEBHOOK_KEY:
-            return HttpResponse(status=403)
+            return HttpResponse(status=401)
         body = json.loads(request.body)
+
+        # Subscribe to SNS
+        if body.get('Type') == "SubscriptionConfirmation":
+            requests.get(body.get('SubscribeURL'))
+            return HttpResponse(status=200)
 
         status = None
         if body.get('bounce') is not None:
