@@ -4,10 +4,10 @@ from asgiref.sync import async_to_sync
 from channels.consumer import SyncConsumer
 from channels.generic.websocket import JsonWebsocketConsumer
 from channels.layers import get_channel_layer
-from django.db import connection
 
 from actionlog.models import ActionLogEntry
 from adjallocation.serializers import SimpleDebateAllocationSerializer, SimpleDebateImportanceSerializer
+from portal.utils import ws_using_tenant_schema
 from tournaments.mixins import RoundWebsocketMixin
 from utils.mixins import SuperuserRequiredWebsocketMixin
 from venues.serializers import SimpleDebateVenueSerializer
@@ -25,6 +25,7 @@ class BaseAdjudicatorContainerConsumer(SuperuserRequiredWebsocketMixin, RoundWeb
     that can be updated directly and the original object returned. This avoids
     having to serialise/re-serialise objects that creates many more queries"""
 
+    @ws_using_tenant_schema
     def receive_json(self, content):
         """ Select the appropriate method given the indicated attribute in JSON
         i.e. from { "importance": { "73" : "1" }, "componentID": 2885 } """
@@ -45,7 +46,7 @@ class BaseAdjudicatorContainerConsumer(SuperuserRequiredWebsocketMixin, RoundWeb
                       'tournament_id': self.tournament.id,
                       'settings': action_settings,
                       'group_name': self.group_name()},
-            "tenant": connection.schema_name,
+            "tenant": self.scope["schema"],
         })
 
     def get_debates_or_panels(self, debates_or_panels):
@@ -123,6 +124,7 @@ class DebateEditConsumer(BaseAdjudicatorContainerConsumer):
     venues_serializer = SimpleDebateVenueSerializer
     teams_serializer = EditDebateTeamsDebateSerializer
 
+    @ws_using_tenant_schema
     def receive_json(self, content):
         for (key, value) in content.items():
             if key == 'sides_confirmed':

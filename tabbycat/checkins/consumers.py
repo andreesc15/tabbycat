@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 
 from options.utils import use_team_code_names_data_entry
+from portal.utils import ws_using_tenant_schema
 from tournaments.mixins import TournamentWebsocketMixin
 
 from .models import Event, Identifier
@@ -29,6 +30,7 @@ class CheckInEventConsumer(TournamentWebsocketMixin, JsonWebsocketConsumer):
         )
 
     # Issue the relevant checkins
+    @ws_using_tenant_schema
     def broadcast_checkin(self, event):
         content = event['content']
         barcode_ids = [b for b in content['barcodes'] if b is not None]
