@@ -14,6 +14,7 @@ from django.utils.encoding import force_text
 from django.utils.translation import gettext as _
 from django.views.generic.base import ContextMixin
 from django.views.generic.detail import SingleObjectMixin
+from django_tenants.utils import schema_context
 
 from adjallocation.models import DebateAdjudicator
 from breakqual.utils import calculate_live_thresholds
@@ -168,15 +169,17 @@ class TournamentWebsocketMixin(TournamentFromUrlMixin):
         return super()
 
     def connect(self):
-        async_to_sync(self.channel_layer.group_add)(
-            self.group_name(), self.channel_name,
-        )
+        with schema_context(self.scope['schema']):
+            async_to_sync(self.channel_layer.group_add)(
+                self.group_name(), self.channel_name,
+            )
         super().connect()
 
     def disconnect(self, message):
-        async_to_sync(self.channel_layer.group_discard)(
-            self.group_name(), self.channel_name,
-        )
+        with schema_context(self.scope['schema']):
+            async_to_sync(self.channel_layer.group_discard)(
+                self.group_name(), self.channel_name,
+            )
         super().disconnect(message)
 
 
