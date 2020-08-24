@@ -65,7 +65,7 @@ class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
         table = BaseTableBuilder(view=self, sort_key="date")
         table.add_column(
             {'key': 'name', 'title': _("Site Name")},
-            [{'text': c.name, 'link': get_instance_url(self.request, c.domains.get())} for c in clients])
+            [{'text': c.name, 'link': get_instance_url(self.request, c.domains.get(is_primary=True))} for c in clients])
         table.add_column(
             {'key': 'date', 'icon': 'clock', 'tooltip': _("When the site was created")},
             [{'text': c.created_on} for c in clients])
@@ -217,6 +217,9 @@ class SESWebhookView(View):
             status = EmailStatus.EVENT_TYPE_DELIVERED
 
         headers = {h['name']: h['value'] for h in body.get('headers', {})}
+        if headers.get('X-TCSITE') is None:  # Test emails don't include header
+            return HttpResponse(status=200)
+
         with schema_context(headers.get('X-TCSITE')):
             message = SentMessage.objects.get(hook_id=headers.get('X-HOOKID'))
             message.emailstatus_set.create(event=status)
