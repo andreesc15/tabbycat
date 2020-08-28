@@ -201,22 +201,24 @@ class SESWebhookView(View):
     def post(self, request, *args, **kwargs):
         if kwargs['wh_key'] != settings.SES_WEBHOOK_KEY:
             return HttpResponse(status=401)
-        body = json.loads(request.body)
+        body = json.loads(request.body.decode('utf-8'))
 
         # Subscribe to SNS
         if body.get('Type') == "SubscriptionConfirmation":
             requests.get(body.get('SubscribeURL'))
             return HttpResponse(status=200)
 
+        message_body = json.loads(body['Message'])
         status = None
-        if body.get('bounce') is not None:
+        if 'bounce' in message_body:
             status = EmailStatus.EVENT_TYPE_BOUNCED
-        elif body.get('complaint') is not None:
+        elif 'complaint' in message_body:
             status = EmailStatus.EVENT_TYPE_SPAM
-        elif body.get('delivery') is not None:
+        elif 'delivery' in message_body:
             status = EmailStatus.EVENT_TYPE_DELIVERED
 
-        headers = {h['name']: h['value'] for h in body.get('headers', {})}
+        mail_body = message_body.get('mail', {})
+        headers = {h['name']: h['value'] for h in mail_body.get('headers', {})}
         if headers.get('X-TCSITE') is None:  # Test emails don't include header
             return HttpResponse(status=200)
 
