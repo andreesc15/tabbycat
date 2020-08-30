@@ -23,7 +23,7 @@ from utils.tables import BaseTableBuilder
 from utils.views import PostOnlyRedirectView, VueTableTemplateView
 
 from .forms import InstanceCreationForm, UserCreationForm
-from .models import Client
+from .models import Client, Instance
 
 logger = logging.getLogger(__name__)
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -63,9 +63,18 @@ class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
     def get_table(self):
         clients = Client.objects.filter(user=self.request.user)
         table = BaseTableBuilder(view=self, sort_key="date")
-        table.add_column(
-            {'key': 'name', 'title': _("Site Name")},
-            [{'text': c.name, 'link': get_instance_url(self.request, c.domains.get(is_primary=True))} for c in clients])
+
+        instances = []
+        for c in clients:
+            c_row = {'text': c.name}
+            try:
+                c_row['link'] = get_instance_url(self.request, c.domains.get(is_primary=True))
+            except Instance.DoesNotExist:
+                c_row['link'] = reverse('stripe-payment-redirect', kwargs={'schema': c.schema_name})
+                c_row['text'] += _(" (Unpaid)")
+            instances.append(c_row)
+
+        table.add_column({'key': 'name', 'title': _("Site Name")}, instances)
         table.add_column(
             {'key': 'date', 'icon': 'clock', 'tooltip': _("When the site was created")},
             [{'text': c.created_on} for c in clients])
