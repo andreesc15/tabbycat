@@ -169,7 +169,8 @@ class StripeWebhookView(View):
             'payment_intent.canceled': self.on_payment_deny,
             'payment_intent.payment_failed': self.on_payment_deny,
         }
-        actions[event['type']](event['data']['object'])
+        if event['type'] in actions:
+            actions[event['type']](event['data']['object'])
 
         return HttpResponse(status=200)
 

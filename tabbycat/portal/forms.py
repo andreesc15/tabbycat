@@ -36,7 +36,7 @@ class InstanceCreationForm(forms.ModelForm):
         if commit:
             client.save()
 
-            main_instance = Instance.objects.get(tenant__schema_name='public')
+            main_instance = Instance.objects.get(tenant__schema_name='public', is_primary=True)
             Instance.objects.create(tenant=client, domain=client.schema_name + "." + main_instance.domain)
 
         return client
