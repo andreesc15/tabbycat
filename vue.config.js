@@ -4,7 +4,7 @@ module.exports = {
   // Need to set baseUrl for hot module reloading (proxies to the local server)
   // But want to disable this when building for production
   publicPath: process.env.NODE_ENV === 'production' ?
-    '/static/vue/'
+    'https://calico-static.s3.us-east-2.amazonaws.com/vue/'
     : 'http://localhost:8888',
   // Don't add a hash to the filename
   filenameHashing: false,
