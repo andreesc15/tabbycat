@@ -33,7 +33,8 @@ TENANT_LIMIT_SET_CALLS = True
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.4.5-mt'
+TABBYCAT_VERSION = '2.4.5-c'
+TABBYCAT_CODENAME = 'Manx - Calico'
 
 # ==============================================================================
 # Django-specific Modules
