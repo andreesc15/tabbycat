@@ -33,7 +33,7 @@ TENANT_LIMIT_SET_CALLS = True
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.4.5-c'
+TABBYCAT_VERSION = '2.4.6-c'
 TABBYCAT_CODENAME = 'Manx - Calico'
 
 # ==============================================================================
@@ -109,6 +109,8 @@ INSTALLED_APPS = (
 SHARED_APPS = (
     'django_tenants',  # mandatory
     'portal', # you must list the app where your tenant model resides in
+    'jet',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django.contrib.humanize',

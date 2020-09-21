@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.views.i18n import JavaScriptCatalog
@@ -65,6 +66,16 @@ urlpatterns = [
     path('jsi18n/',
          JavaScriptCatalog.as_view(domain="djangojs"),
          name='javascript-catalog'),
+
+    # Summernote (WYSYWIG)
+    path('summernote/',
+        include('django_summernote.urls')),
+
+    # Admin area
+    path('jet/',
+        include('jet.urls', 'jet')),
+    path('database/',
+        admin.site.urls),
 ]
 
 if settings.DEBUG and settings.ENABLE_DEBUG_TOOLBAR:  # Only serve debug toolbar when on DEBUG
