@@ -81,6 +81,15 @@ class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
         return table
 
 
+class TournamentDetailView(AssistantMixin, TemplateView):
+    template_name = "tournament_detail.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs = super().get_context_data(**kwargs)
+        kwargs['client'] = get_object_or_404(Client, user=self.request.user, schema_name=self.kwargs['schema'])
+        return kwargs
+
+
 class DeleteInstanceView(AssistantMixin, PostOnlyRedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('own-tournaments-list')
@@ -229,6 +238,8 @@ class SESWebhookView(View):
 
         mail_body = message_body.get('mail', {})
         headers = {h['name']: h['value'] for h in mail_body.get('headers', {})}
+
+        logger.info("Notification %s from %s", headers.get('X-HOOKID'), headers.get('X-TCSITE'))
         if headers.get('X-TCSITE') is None:  # Test emails don't include header
             return HttpResponse(status=200)
 

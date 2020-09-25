@@ -32,6 +32,9 @@ urlpatterns = [
             views.CreateInstanceFormView.as_view(),
             name='create-instance'),
         path('<slug:schema>/', include([
+            path('',
+                views.TournamentDetailView.as_view(),
+                name='tournament-detail'),
             path('redirect-checkout/',
                 views.StripeRedirectView.as_view(),
                 name='stripe-payment-redirect'),
