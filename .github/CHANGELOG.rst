@@ -16,6 +16,8 @@ Change Log
 - Fixed simulated annealing adjudicator allocator when initialised with the Hungarian method (`#1619 <https://github.com/TabbycatDebate/tabbycat/pull/1619>`_)
 - Added selectors for adjudicator positions in draw emails (`#1423 <https://github.com/TabbycatDebate/tabbycat/pull/1423>`_)
 - Implemented debate postponement, allowing debates to be marked as "postponed" in the results page. Postponed debates do not block draw generation, contrary to unconfirmed debates. (`#1563 <https://github.com/TabbycatDebate/tabbycat/pull/1563>`_)
+- Added round weights so that team points can be pondered between rounds, implementing tapered scoring. Weights only affect the sum of team points.
+- Shifted most team and speaker metrics to use database-provided rankings, and calculates all metrics in the same query.
 
 
 2.4.6
