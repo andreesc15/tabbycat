@@ -521,6 +521,8 @@ class BasePublicNewBallotSetView(PersonalizablePublicTournamentPageMixin, BaseBa
         self.debate = self.debateadj.debate
         self.ballotsub = BallotSubmission(debate=self.debate, ip_address=get_ip_address(self.request),
             submitter_type=BallotSubmission.SUBMITTER_PUBLIC)
+        if self.kwargs.get('url_key') is not None:
+            self.ballotsub.participant_submitter = Adjudicator.objects.get(url_key=self.kwargs['url_key'])
 
         if not self.debate.adjudicators.has_chair:
             return self.error_page(_("Your debate doesn't have a chair, so you can't enter results for it. "
