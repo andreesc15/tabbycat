@@ -37,8 +37,8 @@
             <a v-if="!isElimination" class="dropdown-item" href="#" @click="setSorting('liveness')">
               Sort by Liveness
             </a>
-            <a v-if="isElimination" class="dropdown-item" href="#" @click="setSorting('rank')">
-              Sort by Break Rank
+            <a class="dropdown-item" href="#" @click="setSorting('rank')">
+              Sort by Room Rank
             </a>
           </div>
         </div>
