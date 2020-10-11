@@ -17,6 +17,9 @@ class Client(TenantMixin):
     auto_create_schema = False
     auto_drop_schema = True
 
+    def __str__(self):
+        return "%s (%s)" % (self.name, self.schema_name)
+
 
 class Instance(DomainMixin):
     pass
