@@ -10,7 +10,6 @@ from django.db.models import Count, Q
 from django.shortcuts import redirect, resolve_url
 from django.urls import reverse_lazy
 from django.utils.html import format_html_join
-from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView, UpdateView
@@ -86,11 +85,11 @@ class BaseTournamentDashboardHomeView(TournamentMixin, WarnAboutDatabaseUseMixin
                     'content_object', 'user').order_by('-timestamp')[:updates]
         kwargs["initialActions"] = json.dumps([a.serialize for a in actions])
 
-        subs = t.current_round.debate_set.filter(
+        debates = t.current_round.debate_set.filter(
             ballotsubmission__confirmed=True,
         ).order_by('-ballotsubmission__timestamp')[:updates]
-        populate_confirmed_ballots(subs, results=True)
-        subs = [d._confirmed_ballot.serialize_like_actionlog for d in subs]
+        populate_confirmed_ballots(debates, results=True)
+        subs = [d._confirmed_ballot.serialize_like_actionlog for d in debates]
         kwargs["initialBallots"] = json.dumps(subs)
 
         status = t.current_round.draw_status
@@ -292,6 +291,7 @@ class SetCurrentRoundView(AdministratorMixin, TournamentMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
+        from django.utils.http import url_has_allowed_host_and_scheme
         # Copied from django.contrib.auth.views.LoginView.get_success_url
         redirect_to = self.get_redirect_to(use_default=True)
         url_is_safe = url_has_allowed_host_and_scheme(

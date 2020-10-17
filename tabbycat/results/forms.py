@@ -127,7 +127,6 @@ class BaseResultForm(forms.Form):
 
     confirmed = forms.BooleanField(required=False)
     discarded = forms.BooleanField(required=False)
-    debate_result_status = forms.ChoiceField(choices=Debate.STATUS_CHOICES)
 
     def __init__(self, ballotsub, password=False, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -136,6 +135,9 @@ class BaseResultForm(forms.Form):
         self.tournament = self.debate.round.tournament
 
         self.has_tournament_password = password and self.tournament.pref('public_use_password')
+
+        status_choices = Debate.STATUS_CHOICES if self.tournament.pref('enable_postponements') else Debate.STATUS_CHOICES_RESTRICTED
+        self.fields['debate_result_status'] = forms.ChoiceField(choices=status_choices)
 
         self.initial.update({
             'debate_result_status': self.debate.result_status,
@@ -322,9 +324,11 @@ class BaseBallotSetForm(BaseResultForm):
 
     def create_declared_winner_dropdown(self):
         """This method creates a drop-down with a list of the teams in the debate"""
+        teams = [(s, _("%(team)s (%(side)s)") % {
+            'team': self.debate.get_team(s).short_name, 'side': get_side_name(self.tournament, s, 'full')}) for s in self.sides]
         return forms.TypedChoiceField(
             label=_("Winner"), required=True, empty_value=None,
-            choices=[(None, _("---------"))] + [(s, self.debate.get_team(s).short_name) for s in self.sides],
+            choices=[(None, _("---------"))] + teams,
         )
 
     def initial_data(self):
@@ -572,7 +576,7 @@ class ScoresMixin:
                     ))
 
                 # The reply speaker must have given a substantive speech.
-                if len(speaker_positions.get(reply_speaker, [])) == 0:
+                if self.tournament.pref('require_substantive_for_reply') and len(speaker_positions.get(reply_speaker, [])) == 0:
                     self.add_error(self._fieldname_speaker(side, self.reply_position), forms.ValidationError(
                         _("The reply speaker for this team did not give a substantive speech."),
                         code='reply_speaker_not_repeat',
@@ -738,7 +742,7 @@ class SingleBallotSetForm(ScoresMixin, BaseBallotSetForm):
             score = self.cleaned_data[self._fieldname_score(side, pos)]
             result.set_score(side, pos, score)
 
-        if self._fieldname_declared_winner() in self.cleaned_data:
+        if self.declared_winner not in ['none', 'high-points']:
             result.set_winners(set([self.cleaned_data[self._fieldname_declared_winner()]]))
 
     # --------------------------------------------------------------------------
@@ -826,17 +830,17 @@ class PerAdjudicatorBallotSetForm(ScoresMixin, BaseBallotSetForm):
 
             else:
                 if len(totals) == 2:
-                    high_point_declared = max(side_totals, key=lambda key: side_totals[key]) == cleaned_data[self._fieldname_declared_winner()]
+                    high_point_declared = max(side_totals, key=lambda key: side_totals[key]) == cleaned_data[self._fieldname_declared_winner(adj)]
 
                     # Check that it was not a draw.
                     if totals[0] == totals[1] and self.declared_winner in ['none', 'high-points']:
                         self.add_error(None, forms.ValidationError(
-                            _("The total scores for the teams are the same (i.e. a draw) for adjudicator %(adj)s."),
+                            _("The total scores for the teams are the same (i.e. a draw) for adjudicator %(adjudicator)s."),
                             params={'adjudicator': adj.name}, code='draw',
                         ))
                     elif self.declared_winner in ['high-points', 'tied-points'] and not high_point_declared:
                         self.add_error(None, forms.ValidationError(
-                            _("The declared winner does not correspond to the team with the highest score for adjudicator %(adj)s."),
+                            _("The declared winner does not correspond to the team with the highest score for adjudicator %(adjudicator)s."),
                             params={'adjudicator': adj.name}, code='wrong_winner',
                         ))
 
@@ -854,9 +858,8 @@ class PerAdjudicatorBallotSetForm(ScoresMixin, BaseBallotSetForm):
                 score = self.cleaned_data[self._fieldname_score(adj, side, pos)]
                 result.set_score(adj, side, pos, score)
 
-            declared_winner = self.cleaned_data.get(self._fieldname_declared_winner(adj))
-            if declared_winner is not None:
-                result.set_winners(adj, set([declared_winner]))
+            if self.declared_winner not in ['none', 'high-points']:
+                result.set_winners(adj, set([self.cleaned_data.get(self._fieldname_declared_winner(adj))]))
 
     # --------------------------------------------------------------------------
     # Template access methods
