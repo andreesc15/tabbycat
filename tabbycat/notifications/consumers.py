@@ -54,18 +54,14 @@ class NotificationQueueConsumer(SyncConsumer):
     def email(self, event):
         # Get database objects
         if 'debate_id' in event['extra']:
-            event['extra']['debate'] = Debate.objects.all().select_related(
-                'round', 'round__tournament').get(pk=event['extra'].pop('debate_id'))
-            round = event['extra']['debate'].round
+            round = Debate.objects.get(pk=event['extra']['debate_id']).round
             t = round.tournament
         elif 'round_id' in event['extra']:
-            round = Round.objects.all().select_related('tournament').get(pk=event['extra'].pop('round_id'))
-            event['extra']['round'] = round
+            round = Round.objects.get(pk=event['extra']['round_id'])
             t = round.tournament
         else:
             round = None
             t = Tournament.objects.get(pk=event['extra']['tournament_id'])
-            event['extra']['tournament'] = t
 
         from_email, reply_to = self._get_from_fields(t)
         notification_type = event['message']
