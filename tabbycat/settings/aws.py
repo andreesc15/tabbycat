@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'utils.middleware.DebateMiddleware',
+    'portal.middleware.TimezoneMiddleware',
 ]
 
 TABBYCAT_APPS = (

@@ -8,6 +8,7 @@ after the query, so the search_path gets reset.
 
 import re
 
+import pytz
 from channels.auth import _get_user_session_key, AuthMiddleware
 from channels.db import database_sync_to_async
 from channels.sessions import CookieMiddleware, SessionMiddleware, SessionMiddlewareInstance
@@ -18,8 +19,11 @@ from django.contrib.auth import (
     load_backend,
 )
 from django.contrib.auth.models import AnonymousUser
+from django.utils import timezone
 from django.utils.crypto import constant_time_compare
 from django_tenants.utils import schema_context
+
+from .models import Instance
 
 
 class TenantSchemaMiddleware:
@@ -113,3 +117,19 @@ class TenantAuthMiddleware(AuthMiddleware):
 AuthMiddlewareStack = lambda inner: TenantSchemaMiddleware(CookieMiddleware(  # noqa: E731
     TenantSessionMiddleware(TenantAuthMiddleware(inner)),
 ))
+
+
+class TimezoneMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        try:
+            # Remove port due to AWS
+            tenant = Instance.objects.select_related('tenant').get(domain=request.get_host().split(':')[0]).tenant
+            if tenant.timezone:
+                timezone.activate(pytz.timezone(tenant.timezone))
+        except Instance.DoesNotExist:
+            pass
+
+        return self.get_response(request)

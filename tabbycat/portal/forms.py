@@ -21,14 +21,12 @@ class InstanceCreationForm(forms.ModelForm):
 
     class Meta:
         model = Client
-        fields = ("name", "schema_name")
+        fields = ("name", "schema_name", "timezone")
         labels = {
             "schema_name": _("Slug"),
-            "name": _("Name"),
         }
         help_texts = {
             "schema_name": _("The name used in the URL of the site. Must be alphanumeric."),
-            "name": _("The name for the site that will appear in the list of your sites."),
         }
 
     def save(self, commit=True):
