@@ -704,15 +704,13 @@ class SingleBallotSetForm(ScoresMixin, BaseBallotSetForm):
 
         else:
             if len(totals) == 2:
-                high_point_declared = max(side_totals, key=lambda key: side_totals[key]) == cleaned_data[self._fieldname_declared_winner()]
-
                 # Check that no teams had the same total
                 if totals[0] == totals[1] and self.declared_winner in ['none', 'high-points']:
                     self.add_error(None, forms.ValidationError(
                         _("The total scores for the teams are the same (i.e. a draw)."),
                         code='draw',
                     ))
-                elif self.declared_winner in ['high-points', 'tied-points'] and not high_point_declared:
+                elif self.declared_winner in ['high-points', 'tied-points'] and max(side_totals, key=lambda key: side_totals[key]) != cleaned_data.get(self._fieldname_declared_winner()):
                     self.add_error(None, forms.ValidationError(
                         _("The declared winner does not correspond to the team with the highest score."),
                         code='wrong_winner',
