@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 13:59-0300\n"
-"PO-Revision-Date: 2020-07-05 17:03\n"
+"POT-Creation-Date: 2020-11-16 14:55-0400\n"
+"PO-Revision-Date: 2020-11-16 19:17\n"
 "Last-Translator: philip_tc\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "The team can't be in a break category of a different tournament. Please remove: %(category)s"
 msgstr "Команда не может быть в брейковой категории на другом турнире. Пожалуйста, удалите: %(category)s"
 
-#: participants/admin.py:148
+#: participants/admin.py:146
 #, python-format
 msgid "%(count)d speaker had their URL key removed."
 msgid_plural "%(count)d speakers had their URL keys removed."
@@ -32,11 +32,11 @@ msgstr[1] "%(count)d URL-ключ этих спикеров был удален.
 msgstr[2] "%(count)d URL-ключ этих спикеров был удален."
 msgstr[3] "%(count)d URL-ключ этих спикеров был удален."
 
-#: participants/admin.py:152 participants/admin.py:211
+#: participants/admin.py:150 participants/admin.py:209
 msgid "Delete URL key"
 msgstr "Удалить ключ URL"
 
-#: participants/admin.py:206
+#: participants/admin.py:204
 #, python-format
 msgid "%(count)d adjudicator had their URL key removed."
 msgid_plural "%(count)d adjudicators had their URL keys removed."
@@ -451,26 +451,26 @@ msgstr "<strong>Не забудьте:</strong> Если у этого судь�
 msgid "<strong>Warning:</strong> If there are “debate team” objects in the above list, <strong>you probably shouldn't delete this %(object_name)s</strong>."
 msgstr "<strong>Предупреждение:</strong>Если в списке выше объекты \"команда\", <strong>вам, возможно, не стоит удалять это %(object_name)s</strong>."
 
-#: participants/templates/admin/participants/delete_debateteam_warning.html:13
+#: participants/templates/admin/participants/delete_debateteam_warning.html:14
 #, python-format
-msgid "<strong>Warning:</strong> If there are “debate team” objects in the above list, <strong>you probably shouldn't delete these %(objects_name)s</strong>."
+msgid "<strong>Warning:</strong> If there are “debate team” objects in the above list, <strong>you probably shouldn't delete the selected %(objects_name)s</strong>."
 msgstr "<strong>Предупреждение:</strong>Если в списке выше объекты \"команда\", <strong>вам, возможно, не стоит удалять это %(objects_name)s</strong>."
 
 #. Translators: This follows the above sentence in the same paragraph.
-#: participants/templates/admin/participants/delete_debateteam_warning.html:20
+#: participants/templates/admin/participants/delete_debateteam_warning.html:21
 msgid "This is especially the case if any team that would be deleted has already participated in a debate. If a team already has a result entered for it, deleting the team also deletes those results, <strong>which normally breaks the tab</strong>, even if you think you don't need those results anymore. If a team has debated and is withdrawing from the tournament, you should <strong>not</strong> delete it. Just mark the team inactive under the “Availability” section of the Tabbycat admin area."
 msgstr "Это особенно важна в случаях, если какая-то команда, которая уже участвует в дебатах, будет удалена. Если результаты команды уже вбиты, удаление этой команды также удаляет эти результаты, <strong> что обычно приводит к сбоям тэба</strong>, даже если вы думаете, что вам больше не нужны эти результаты. Если команда дебатировала, но покинула турнир, вам <strong> не нужно </strong> её удалять. Просто отметьте эту команду как неактивную в секции \"Доступность\" в области администратора в Tabbycat."
 
-#: participants/templates/admin/participants/delete_debateteam_warning.html:32
+#: participants/templates/admin/participants/delete_debateteam_warning.html:33
 msgid "Note that deleting an institution also deletes all teams from that institution."
 msgstr "Обратите внимание, что при удалении клуба также удаляются все команды из этого клуба."
 
-#: participants/templates/admin/participants/delete_debateteam_warning.html:40
+#: participants/templates/admin/participants/delete_debateteam_warning.html:41
 #, python-format
 msgid "If you're very sure about deleting this %(object_name)s, please delete the above objects first, and be sure to heed the warning that you will see on the “debate team” objects page before proceeding."
 msgstr "Если вы очень уверены, что хотите удалить это %(object_name)s, пожалуйста, сначала удалите вышеупомянутые объекты и будьте уверены, что вы увидите на странице «команда дебатов» объектов перед продолжением."
 
-#: participants/templates/admin/participants/delete_debateteam_warning.html:46
+#: participants/templates/admin/participants/delete_debateteam_warning.html:47
 #, python-format
 msgid "If you're very sure about deleting these %(objects_name)s, please delete the above objects first, and be sure to heed the warning that you will see on the “debate team” objects page before proceeding."
 msgstr "Если вы точно уверены, что хотите удалить эти объекты %(objects_name)s, пожалуйста, сначала удалите объекты, расположенные выше и внимательно отнеситесь к предупреждению, которую вы увидите на странице объектов \"дебатирующие команды\" перед продолжением."
@@ -529,62 +529,122 @@ msgstr "Тема %(seq)s:"
 msgid "The motion(s) for this round haven't yet been released."
 msgstr "Тема(ы) на этот раунд ещё не опубликованы."
 
-#: participants/templates/current_round/round_adj.html:13
+#: participants/templates/current_round/round_adj.html:14
+#, python-format
+msgid "%(adjudicator)s is the <strong>chair</strong> adjudicating %(aff)s vs %(neg)s in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "%(adjudicator)s в качестве <strong>чэйра</strong> судит %(aff)s против %(neg)s в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:18
 #, python-format
 msgid "%(adjudicator)s is the <strong>chair</strong> adjudicating %(aff)s vs %(neg)s in <strong>%(room)s</strong>."
 msgstr "%(adjudicator)s в качестве <strong>чэйра</strong> судит %(aff)s против %(neg)s в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:17
+#: participants/templates/current_round/round_adj.html:24
+#, python-format
+msgid "You are the <strong>chair</strong> adjudicating %(aff)s vs %(neg)s in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "Вы <strong>судите</strong>чэйром%(aff)s против %(neg)s в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:28
 #, python-format
 msgid "You are the <strong>chair</strong> adjudicating %(aff)s vs %(neg)s in <strong>%(room)s</strong>."
 msgstr "Вы <strong>судите</strong>чэйром%(aff)s против %(neg)s в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:23
+#: participants/templates/current_round/round_adj.html:36
+#, python-format
+msgid "%(adjudicator)s is a <strong>%(type)s</strong> adjudicating %(aff)s vs %(neg)s in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "%(adjudicator)s в качестве <strong>%(type)s</strong>судит%(aff)s против %(neg)s в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:40
 #, python-format
 msgid "%(adjudicator)s is a <strong>%(type)s</strong> adjudicating %(aff)s vs %(neg)s in <strong>%(room)s</strong>."
 msgstr "%(adjudicator)s в качестве <strong>%(type)s</strong>судит%(aff)s против %(neg)s в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:27
+#: participants/templates/current_round/round_adj.html:46
+#, python-format
+msgid "You are a <strong>%(type)s</strong> adjudicating %(aff)s vs %(neg)s in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "Вы в качестве <strong>%(type)s</strong> судите %(aff)s против %(neg)s в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:50
 #, python-format
 msgid "You are a <strong>%(type)s</strong> adjudicating %(aff)s vs %(neg)s in <strong>%(room)s</strong>."
 msgstr "Вы в качестве <strong>%(type)s</strong> судите %(aff)s против %(neg)s в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:33
+#: participants/templates/current_round/round_adj.html:58
+#, python-format
+msgid "%(adjudicator)s is adjudicating %(aff)s vs %(neg)s in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "%(adjudicator)s судит %(aff)s против %(neg)s в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:62
 #, python-format
 msgid "%(adjudicator)s is adjudicating %(aff)s vs %(neg)s in <strong>%(room)s</strong>."
 msgstr "%(adjudicator)s судит %(aff)s против %(neg)s в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:37
+#: participants/templates/current_round/round_adj.html:68
+#, python-format
+msgid "You are adjudicating %(aff)s vs %(neg)s in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "Вы судите %(aff)s против %(neg)s в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:72
 #, python-format
 msgid "You are adjudicating %(aff)s vs %(neg)s in <strong>%(room)s</strong>."
 msgstr "Вы судите %(aff)s против %(neg)s в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:48
+#: participants/templates/current_round/round_adj.html:85
+#, python-format
+msgid "%(adjudicator)s is the <strong>chair</strong> adjudicating in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "%(adjudicator)s - <strong>чэйр</strong> в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:89
 #, python-format
 msgid "%(adjudicator)s is the <strong>chair</strong> adjudicating in <strong>%(room)s</strong>."
 msgstr "%(adjudicator)s - <strong>чэйр</strong> в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:52
+#: participants/templates/current_round/round_adj.html:95
+#, python-format
+msgid "You are the <strong>chair</strong> adjudicating in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "Вы <strong> чэйр</strong> в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:99
 #, python-format
 msgid "You are the <strong>chair</strong> adjudicating in <strong>%(room)s</strong>."
 msgstr "Вы <strong> чэйр</strong>в<strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:58
+#: participants/templates/current_round/round_adj.html:107
+#, python-format
+msgid "%(adjudicator)s is a <strong>%(type)s</strong> adjudicating in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "%(adjudicator)s является<strong>%(type)s</strong>судьей в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:111
 #, python-format
 msgid "%(adjudicator)s is a <strong>%(type)s</strong> adjudicating in <strong>%(room)s</strong>."
 msgstr "%(adjudicator)s является<strong>%(type)s</strong>судьей в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:62
+#: participants/templates/current_round/round_adj.html:117
+#, python-format
+msgid "You are a <strong>%(type)s</strong> adjudicating in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "Вы <strong>%(type)s</strong>судите в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:121
 #, python-format
 msgid "You are a <strong>%(type)s</strong> adjudicating in <strong>%(room)s</strong>."
 msgstr "Вы <strong>%(type)s</strong>судите в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:68
+#: participants/templates/current_round/round_adj.html:129
+#, python-format
+msgid "%(adjudicator)s is adjudicating in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "%(adjudicator)s судит в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:133
 #, python-format
 msgid "%(adjudicator)s is adjudicating in <strong>%(room)s</strong>."
 msgstr "%(adjudicator)s судит в <strong>%(room)s</strong>."
 
-#: participants/templates/current_round/round_adj.html:72
+#: participants/templates/current_round/round_adj.html:139
+#, python-format
+msgid "You are adjudicating in <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+msgstr "Вы судите в <a href=\"%(url)s\"><strong>%(room)s</strong></a>."
+
+#: participants/templates/current_round/round_adj.html:143
 #, python-format
 msgid "You are adjudicating in <strong>%(room)s</strong>."
 msgstr "Вы судите в <strong>%(room)s</strong>."
@@ -597,7 +657,7 @@ msgstr ""
 #: participants/templates/current_round/round_team.html:16
 #, python-format
 msgid "You are debating as the <strong>%(side)s</strong> team against <strong>%(opponent)s</strong>."
-msgstr ""
+msgstr "Вы играете на позиции <strong>%(side)s</strong> против <strong>%(opponent)s</strong>."
 
 #: participants/templates/current_round/round_team.html:22
 #, python-format
@@ -677,29 +737,33 @@ msgstr "Непредвиденная форма обратной связи на
 msgid "%(name)s doesn't have any feedback to submit."
 msgstr "%(name)s не имеет формы обратной связи для отправки."
 
-#: participants/templates/in_this_round.html:8
+#: participants/templates/in_this_round.html:9
 #, python-format
 msgid "In This Round (%(round)s)"
 msgstr "В этом раунде (%(round)s)"
 
-#: participants/templates/in_this_round.html:12
+#: participants/templates/in_this_round.html:13
+msgid "In This Round"
+msgstr ""
+
+#: participants/templates/in_this_round.html:16
 msgid "(Not Released to Public)"
 msgstr "(Не выпущено публично)"
 
-#: participants/templates/in_this_round.html:19
+#: participants/templates/in_this_round.html:23
 msgid "Room TBA"
 msgstr "Аудитория будет анонсирована позже"
 
-#: participants/templates/in_this_round.html:31
+#: participants/templates/in_this_round.html:35
 #, python-format
 msgid "%(adjudicator)s is not adjudicating this round."
 msgstr "%(adjudicator)s не судит этот раунд."
 
-#: participants/templates/in_this_round.html:35
+#: participants/templates/in_this_round.html:39
 msgid "You are not adjudicating this round."
 msgstr "Вы не судите этот раунд."
 
-#: participants/templates/in_this_round.html:50
+#: participants/templates/in_this_round.html:54
 #, python-format
 msgid "It looks like %(team)s is competing in %(ndebates)s debate this round."
 msgid_plural "It looks like %(team)s is competing in %(ndebates)s debates this round."
@@ -708,20 +772,20 @@ msgstr[1] "Похоже что %(team)s участвует в %(ndebates)s де�
 msgstr[2] "Похоже что %(team)s участвует в %(ndebates)s дебатах в этом раунде."
 msgstr[3] "Похоже что %(team)s участвует в %(ndebates)s дебатах в этом раунде."
 
-#: participants/templates/in_this_round.html:56
+#: participants/templates/in_this_round.html:60
 msgid "If this is an error, please contact a tab director immediately."
 msgstr "Если это ошибка, немедленно свяжитесь с тэбмастером."
 
-#: participants/templates/in_this_round.html:71
+#: participants/templates/in_this_round.html:75
 #, python-format
 msgid "%(team)s does not have a debate this round."
 msgstr "%(team)s не дебатировала в этом раунде."
 
-#: participants/templates/in_this_round.html:75
+#: participants/templates/in_this_round.html:79
 msgid "You do not have a debate this round."
 msgstr "В этом раунде нет дебатов."
 
-#: participants/templates/in_this_round.html:87
+#: participants/templates/in_this_round.html:91
 msgid "The draw for this round hasn't yet been released."
 msgstr "Сетка на этот раунд ещё не была опубликована."
 
@@ -853,20 +917,20 @@ msgstr "Кодовое имя"
 msgid "Team Registration"
 msgstr "Регистрация команд"
 
-#: participants/views.py:208
+#: participants/views.py:207
 msgid "Results"
 msgstr "Результаты"
 
-#: participants/views.py:213 participants/views.py:247
+#: participants/views.py:212 participants/views.py:246
 #, python-format
 msgid "Record for %(name)s"
 msgstr "Запись для %(name)s"
 
-#: participants/views.py:244
+#: participants/views.py:243
 msgid "Previous Rounds"
 msgstr "Предыдущие раунды"
 
-#: participants/views.py:333
+#: participants/views.py:332
 #, python-format
 msgid "Saved category: %(list)s"
 msgid_plural "Saved categories: %(list)s"
@@ -875,11 +939,11 @@ msgstr[1] "Сохранена категории: %(list)s"
 msgstr[2] "Сохранена категории: %(list)s"
 msgstr[3] "Сохранена категории: %(list)s"
 
-#: participants/views.py:339
+#: participants/views.py:338
 msgid "No changes were made to the categories."
 msgstr "В категории не было внесено никаких изменений."
 
-#: participants/views.py:352
+#: participants/views.py:351
 msgid "Speaker Category Eligibility"
 msgstr "Доступность спикера для категории"
 

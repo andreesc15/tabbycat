@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabbycat\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 13:59-0300\n"
-"PO-Revision-Date: 2020-07-05 18:05\n"
+"POT-Creation-Date: 2020-07-19 19:52-0300\n"
+"PO-Revision-Date: 2020-07-19 23:24\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -891,4 +891,8 @@ msgstr "Les utilisateurs ayant le status équipe peuvent voir et modifier la zon
 #: users/admin.py:22
 msgid "Superusers have full access all areas of Tabbycat necessary to run a tournament. Users who are not superusers are still able to perform data entry tasks such as adding results and feedback but can't access confidential areas such as the Breaks and Feedback sections. Chief adjudicators and their deputies are generally given superuser status if they know what they are doing."
 msgstr "Les utilisateurs ayant le statut super-utilisateur ont l'accès plein à tous les zones de Tabbycat dont ils ont besoin pour diriger un tournoi. Ceux qui ne sont pas super-utilisateurs peuvent néanmoins accomplir des tâches, telles que l'ajout des résultats et des évaluations, mais ils ne peuvent pas accéder les zones confidentielles, par examples les sections de la qualification et pour voir les évaluations. Les membres de l'équipe d'adjudications reçoivent en général ce status s'ils savent ce qu'ils font."
+
+#: users/templates/admin/auth/delete_user_warning.html:6
+msgid "<strong>Warning:</strong> You shouldn't delete users from the database once they've done something, because the database logs actions taken by those users, and deleting the users also deletes the related logs. If you wish to deactivate a user account, go back to edit the user, click on the “Permissions” tab, unchecked the “Active” box, and save the user."
+msgstr "<strong>Attention :</strong> Vous ne devriez pas supprimer des utilisateurs de la base de données après qu'ils aient fait des actions, parce que la base de données enregistre les actions des utilisateurs, donc en supprimant des utilisateurs, le journal des actions de l'utilisateur serait aussi supprimé. Pour désactiver un utilisateur, retournez à l'utilisateur sous l'onglet « Permissions » et décochez « Actif », puis sauvegarder."
 
