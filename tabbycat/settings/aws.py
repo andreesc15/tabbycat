@@ -33,7 +33,7 @@ TENANT_LIMIT_SET_CALLS = True
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.4.6-c'
+TABBYCAT_VERSION = '2.4.7-c'
 TABBYCAT_CODENAME = 'Manx - Calico'
 
 # ==============================================================================
