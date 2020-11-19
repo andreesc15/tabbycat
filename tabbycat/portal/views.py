@@ -5,8 +5,6 @@ from subprocess import PIPE, Popen
 
 import requests
 import stripe
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
@@ -16,7 +14,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext as _, gettext_lazy
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
-from django_tenants.utils import schema_context, schema_exists
+from django_tenants.utils import schema_context
 
 from notifications.models import EmailStatus, SentMessage
 from utils.mixins import AssistantMixin
@@ -31,11 +29,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def get_instance_url(request, instance):
-    link = request.scheme + "://" + instance.domain
-    # server_port = request.META.get('SERVER_PORT', 443)
-    # if server_port != 443 and server_port != 80 and server_port != 8000:
-    #     link += ":" + str(server_port)
-    return link + "/"
+    return "//" + instance.domain + "/"
 
 
 class CreateAccountView(FormView):
@@ -94,7 +88,6 @@ class TournamentDetailView(AssistantMixin, TemplateView):
         kwargs['client'] = client
         kwargs['page_title'] = client.name
         kwargs['domain'] = client.get_primary_domain()
-        kwargs['exists'] = schema_exists(client.schema_name)
         return kwargs
 
 
@@ -222,11 +215,9 @@ class StripeWebhookView(View):
         client.paid = payment.get('amount', 0)
         client.save()
 
-        # Create schema
-        async_to_sync(get_channel_layer().send)("portal", {
-            "type": "create_schema",
-            "client": client.id,
-        })
+        # Add domain
+        main_instance = Instance.objects.get(tenant__schema_name='public', is_primary=True)
+        Instance.objects.create(tenant=client, domain=client.schema_name.lower() + "." + main_instance.domain)
 
     def on_payment_deny(self, payment):
         client = get_object_or_404(Client, payment_id=payment['id'])
@@ -245,7 +236,6 @@ class SuccessfulPaymentLandingView(View):
 
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(schema_name=self.kwargs['schema'])
-        time.sleep(5)  # Wait a few seconds to finish making the schema
         return HttpResponseRedirect(get_instance_url(request, client.get_primary_domain()))
 
 

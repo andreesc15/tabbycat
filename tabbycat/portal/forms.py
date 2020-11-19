@@ -1,8 +1,10 @@
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from django import forms
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from .models import Client, Instance
+from .models import Client
 
 
 class UserCreationForm(BaseUserCreationForm):
@@ -36,7 +38,10 @@ class InstanceCreationForm(forms.ModelForm):
         if commit:
             client.save()
 
-            main_instance = Instance.objects.get(tenant__schema_name='public', is_primary=True)
-            Instance.objects.create(tenant=client, domain=client.schema_name + "." + main_instance.domain)
+            # Create schema
+            async_to_sync(get_channel_layer().send)("portal", {
+                "type": "create_schema",
+                "client": client.id,
+            })
 
         return client
