@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+from subprocess import PIPE, Popen
 
 import requests
 import stripe
@@ -15,7 +16,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext as _, gettext_lazy
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
-from django_tenants.utils import schema_context
+from django_tenants.utils import schema_context, schema_exists
 
 from notifications.models import EmailStatus, SentMessage
 from utils.mixins import AssistantMixin
@@ -65,6 +66,7 @@ class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
         table = BaseTableBuilder(view=self, sort_key="date")
 
         instances = []
+        control_links = []
         for c in clients:
             c_row = {'text': c.name}
             try:
@@ -73,8 +75,10 @@ class ListOwnTournamentsView(AssistantMixin, VueTableTemplateView):
                 c_row['link'] = reverse('stripe-payment-redirect', kwargs={'schema': c.schema_name})
                 c_row['text'] += _(" (Unpaid)")
             instances.append(c_row)
+            control_links.append({'link': reverse('tournament-detail', kwargs={'schema': c.schema_name}), 'text': _("Control")})
 
         table.add_column({'key': 'name', 'title': _("Site Name")}, instances)
+        table.add_column({'key': 'control', 'title': _("Control")}, control_links)
         table.add_column(
             {'key': 'date', 'icon': 'clock', 'tooltip': _("When the site was created")},
             [{'text': c.created_on} for c in clients])
@@ -85,8 +89,12 @@ class TournamentDetailView(AssistantMixin, TemplateView):
     template_name = "tournament_detail.html"
 
     def get_context_data(self, **kwargs):
+        client = get_object_or_404(Client, user=self.request.user, schema_name=self.kwargs['schema'])
         kwargs = super().get_context_data(**kwargs)
-        kwargs['client'] = get_object_or_404(Client, user=self.request.user, schema_name=self.kwargs['schema'])
+        kwargs['client'] = client
+        kwargs['page_title'] = client.name
+        kwargs['domain'] = client.get_primary_domain()
+        kwargs['exists'] = schema_exists(client.schema_name)
         return kwargs
 
 
@@ -101,6 +109,32 @@ class DeleteInstanceView(AssistantMixin, PostOnlyRedirectView):
         client.delete()
         messages.success(request, _("Deleted the %s site" % name))
         return super().post(request, *args, **kwargs)
+
+
+class BackupInstanceView(AssistantMixin, PostOnlyRedirectView):
+
+    def create_filename(self):
+        date = time.strftime("%Y-%m-%d-%H-%M", time.gmtime())
+        return "%s-%s.sql" % (self.client.schema_name, date)
+
+    def get_postgres_params(self):
+        db = settings.DATABASES['default']
+        return [
+            'pg_dump',
+            'postgres://%s:%s@%s:%s/%s' % (db['USER'], db['PASSWORD'], db['HOST'], db['PORT'], db['NAME']),
+            '-n', self.client.schema_name,
+            '-O', '-x',
+        ]
+
+    def post(self, request, *args, **kwargs):
+        self.client = get_object_or_404(Client, user=request.user, schema_name=self.kwargs['schema'])
+
+        process = Popen(self.get_postgres_params(), stdout=PIPE)
+        output, errors = process.communicate()
+
+        response = HttpResponse(content_type='application/sql', content=output)
+        response['Content-Disposition'] = "attachment; filename=%s" % (self.create_filename(),)
+        return response
 
 
 class CreateInstanceFormView(AssistantMixin, FormView):

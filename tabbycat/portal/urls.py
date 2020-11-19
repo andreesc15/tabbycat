@@ -44,6 +44,9 @@ urlpatterns = [
             path('delete/',
                 views.DeleteInstanceView.as_view(),
                 name='delete-instance'),
+            path('backup/',
+                views.BackupInstanceView.as_view(),
+                name='backup-instance'),
         ])),
     ])),
 
