@@ -9,9 +9,5 @@ python manage.py migrate_schemas --noinput
 echo "-----> Running dynamic preferences checks"
 python manage.py checkpreferences_schemas --tenant
 
-echo "-----> Running static asset compilation"
-npm install -g @vue/cli-service-global
-npm run build
-
 echo "-----> Running static files compilation"
 python manage.py collectstatic --noinput
