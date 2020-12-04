@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load add_field_css i18n %}
+
+{% block head-title %}{% endblock %}
+{% block nav %}{% include "nav/global_nav.html" %}{% endblock nav %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-lg-8 ml-lg-auto mr-md-auto">
+
+    <div class="card">
+      <form action="{% url 'delete-instance' schema=client.schema_name %}" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger" id="deleteSite" type="submit" data-toggle="tooltip" title="{% trans "This button will delete the site and all associated data." %}">
+          {% trans "Delete Site & Data" %}
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

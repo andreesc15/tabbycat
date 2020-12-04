@@ -91,7 +91,9 @@ class TournamentDetailView(AssistantMixin, TemplateView):
         return kwargs
 
 
-class DeleteInstanceView(AssistantMixin, PostOnlyRedirectView):
+class DeleteInstanceView(AssistantMixin, TemplateView):
+    template_name = 'delete-site.html'
+
     def get_redirect_url(self, *args, **kwargs):
         return reverse('own-tournaments-list')
 
@@ -101,7 +103,7 @@ class DeleteInstanceView(AssistantMixin, PostOnlyRedirectView):
 
         client.delete()
         messages.success(request, _("Deleted the %s site" % name))
-        return super().post(request, *args, **kwargs)
+        return HttpResponseRedirect(self.get_redirect_url(*args, **kwargs))
 
 
 class BackupInstanceView(AssistantMixin, PostOnlyRedirectView):

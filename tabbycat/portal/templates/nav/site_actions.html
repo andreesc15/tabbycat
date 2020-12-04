@@ -23,10 +23,7 @@
 </div>
 
 <div class="btn-group">
-  <form action="{% url 'delete-instance' schema=client.schema_name %}" method="POST">
-    {% csrf_token %}
-    <button class="btn btn-danger" id="deleteSite" type="submit" data-toggle="tooltip" title="{% trans "This button will delete the site and all associated data." %}">
-      {% trans "Delete Site & Data" %}
-    </button>
-  </form>
+  <a class="btn btn-danger" href="{% url 'delete-instance' schema=client.schema_name %}">
+    {% trans "Delete Site & Data" %}
+  </a>
 </div>
