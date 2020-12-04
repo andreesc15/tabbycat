@@ -33,7 +33,7 @@ TENANT_LIMIT_SET_CALLS = True
 # Version
 # ==============================================================================
 
-TABBYCAT_VERSION = '2.5.0-c'
+TABBYCAT_VERSION = '2.5.1-c'
 TABBYCAT_CODENAME = 'Nebelung - Calico'
 
 # ==============================================================================
