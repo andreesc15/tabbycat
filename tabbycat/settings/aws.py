@@ -30,13 +30,6 @@ DATABASE_ROUTERS = (
 TENANT_LIMIT_SET_CALLS = True
 
 # ==============================================================================
-# Version
-# ==============================================================================
-
-TABBYCAT_VERSION = '2.5.1-c'
-TABBYCAT_CODENAME = 'Nebelung - Calico'
-
-# ==============================================================================
 # Django-specific Modules
 # ==============================================================================
 
@@ -159,6 +152,7 @@ STRIPE_ENDPOINT_SEC = os.environ.get("STRIPE_ENDPOINT_KEY")
 # Email
 # ==============================================================================
 
+EMAIL_DOMAIN = os.environ.get('EMAIL_FROM_ADDRESS').split("@")[-1]
 SERVER_EMAIL = os.environ.get('EMAIL_FROM_ADDRESS')
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_FROM_ADDRESS')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')

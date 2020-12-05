@@ -97,6 +97,12 @@ class DeleteInstanceView(AssistantMixin, TemplateView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('own-tournaments-list')
 
+    def get_context_data(self, **kwargs):
+        client = get_object_or_404(Client, user=self.request.user, schema_name=self.kwargs['schema'])
+        kwargs = super().get_context_data(**kwargs)
+        kwargs['client'] = client
+        return kwargs
+
     def post(self, request, *args, **kwargs):
         client = get_object_or_404(Client, user=request.user, schema_name=self.kwargs['schema'])
         name = client.name
