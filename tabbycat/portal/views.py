@@ -225,7 +225,7 @@ class StripeWebhookView(View):
 
         # Add domain
         main_instance = Instance.objects.get(tenant__schema_name='public', is_primary=True)
-        Instance.objects.create(tenant=client, domain=client.schema_name.lower() + "." + main_instance.domain)
+        Instance.objects.get_or_create(tenant=client, domain=client.schema_name.lower() + "." + main_instance.domain)
 
     def on_payment_deny(self, payment):
         client = get_object_or_404(Client, payment_id=payment['id'])
