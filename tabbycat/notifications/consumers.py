@@ -45,7 +45,7 @@ class NotificationQueueConsumer(SyncConsumer):
             SentMessage.objects.bulk_create(records)
 
     def _get_from_fields(self, t):
-        from_email = "%s <%s>" % (t.short_name, settings.DEFAULT_FROM_EMAIL)
+        from_email = "%s <%s>" % (t.short_name, self.tenant + "@" + settings.EMAIL_DOMAIN)
         reply_to = None
         if t.pref('reply_to_address'):
             reply_to = "%s <%s>" % (t.pref('reply_to_name'), t.pref('reply_to_address'))
@@ -55,6 +55,7 @@ class NotificationQueueConsumer(SyncConsumer):
 
     @using_tenant_schema
     def email(self, event):
+        self.tenant = event['tenant']
         # Get database objects
         if 'debate_id' in event['extra']:
             event['extra']['debate'] = Debate.objects.select_related('round', 'round__tournament').get(pk=event['extra'].pop('debate_id'))
@@ -124,6 +125,7 @@ class NotificationQueueConsumer(SyncConsumer):
 
     @using_tenant_schema
     def email_custom(self, event):
+        self.tenant = event['tenant']
         messages = []
         records = []
 
