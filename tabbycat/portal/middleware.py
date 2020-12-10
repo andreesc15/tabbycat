@@ -124,12 +124,13 @@ class TimezoneMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        try:
-            # Remove port due to AWS
-            tenant = Instance.objects.select_related('tenant').get(domain=request.get_host().split(':')[0]).tenant
-            if tenant.timezone:
-                timezone.activate(pytz.timezone(tenant.timezone))
-        except Instance.DoesNotExist:
-            pass
+        # Remove port due to AWS
+        with schema_context('public'):
+            try:
+                timezone.activate(pytz.timezone(
+                    Instance.objects.select_related('tenant').get(domain=request.get_host().split(':')[0]).tenant.timezone),
+                )
+            except Instance.DoesNotExist:
+                pass
 
         return self.get_response(request)
