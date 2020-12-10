@@ -9,20 +9,15 @@
 {{ block.super }}
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-var createCheckoutSession = function () {
-  return fetch("{% url 'stripe-session' %}", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: '{"client_id": "{{ client.id }}"}'
-  }).then(response => response.json());
-};
-
+let session = fetch("{% url 'stripe-session' %}", {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: '{"client_id": "{{ client.id }}"}'
+}).then(response => response.json());
 var submitForm = function (evt) {
   var stripe = Stripe("{{ stripe_public_key }}");
 
-  createCheckoutSession().then(function (data) {
+  session.then(function (data) {
     stripe.redirectToCheckout({
       sessionId: data.sessionId
     }).then(result => result.error ? console.log(result.error.message) : null);
@@ -43,6 +38,23 @@ document.querySelector('button').addEventListener('click', submitForm);
       {% trans "This will redirect you to Stripe, the payment provider. No payment details are saved on this site." as text %}
       {% trans "After payment, you'll be redirected to your new site, and you can log in with the same credentials." as p1 %}
       {% include "components/form-title.html" with emoji="✨" p2="" %}
+
+      <div class="list-group-item pt-4">
+        <table style="width:100%;">
+          <thead>
+            <tr>
+              <th>Site</th>
+              <th>Price (CAD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ client.name }} ({{ client.schema_name }})</td>
+              <td>50.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       {% trans "Pay 50CA$" context "button" as title %}
       {% trans "JavaScript has to be enabled on this page." as subtitle %}

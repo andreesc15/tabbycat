@@ -160,6 +160,10 @@ class StripeSessionView(AssistantMixin, View):
     def post(self, request, *args, **kwargs):
         body = json.loads(request.body)
         client = get_object_or_404(Client, user=request.user, pk=body['client_id'])
+
+        if client.session_id:
+            return JsonResponse({'sessionId': client.session_id}, status=201)
+
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
@@ -168,9 +172,7 @@ class StripeSessionView(AssistantMixin, View):
                 'description': client.name,
             }],
             mode='payment',
-            success_url=request.build_absolute_uri(
-                reverse('successful-payment', kwargs={'schema': client.schema_name}),
-            ) + '?session_id={CHECKOUT_SESSION_ID}',
+            success_url=request.build_absolute_uri(reverse('successful-payment')) + '?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=request.build_absolute_uri(reverse('cancelled-payment')),
         )
         client.session_id = session['id']
@@ -235,7 +237,7 @@ class StripeWebhookView(View):
 
 
 class CancelledPaymentRedirectView(View):
-    redirect_url = reverse_lazy('create-instance')
+    redirect_url = reverse_lazy('global-main-page')
 
     def get(self, request, *args, **kwargs):
         messages.error(self.request, _("The payment was cancelled."))
@@ -245,7 +247,11 @@ class CancelledPaymentRedirectView(View):
 class SuccessfulPaymentLandingView(View):
 
     def get(self, request, *args, **kwargs):
-        client = Client.objects.get(schema_name=self.kwargs['schema'])
+        session_id = self.request.GET.get('session_id')
+        if session_id is None:
+            return HttpResponseRedirect(reverse('create-instance'))
+
+        client = Client.objects.get(session_id=session_id)
         return HttpResponseRedirect(get_instance_url(request, client.get_primary_domain()))
 
 
