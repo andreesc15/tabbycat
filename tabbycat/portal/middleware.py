@@ -23,8 +23,6 @@ from django.utils import timezone
 from django.utils.crypto import constant_time_compare
 from django_tenants.utils import schema_context
 
-from .models import Instance
-
 
 class TenantSchemaMiddleware:
     """Add schema to the scope of the websocket."""
@@ -124,13 +122,5 @@ class TimezoneMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # Remove port due to AWS
-        with schema_context('public'):
-            try:
-                timezone.activate(pytz.timezone(
-                    Instance.objects.select_related('tenant').get(domain=request.get_host().split(':')[0]).tenant.timezone),
-                )
-            except Instance.DoesNotExist:
-                pass
-
+        timezone.activate(pytz.timezone(request.tenant.timezone))
         return self.get_response(request)

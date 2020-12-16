@@ -10,12 +10,11 @@ class DebateMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        response = self.get_response(request)
-        return response
+        return self.get_response(request)
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         if 'tournament_slug' in view_kwargs and request.path.split('/')[1] != 'api':
-            cached_key = "%s_%s" % (view_kwargs['tournament_slug'], 'object')
+            cached_key = "%s_%s_%s" % (request.tenant.schema_name, view_kwargs['tournament_slug'], 'object')
             cached_tournament_object = cache.get(cached_key)
 
             if cached_tournament_object:
@@ -27,8 +26,8 @@ class DebateMiddleware(object):
                 cache.set(cached_key, request.tournament, None)
 
             if 'round_seq' in view_kwargs:
-                cached_key = "%s_%s_%s" % (view_kwargs['tournament_slug'],
-                                           view_kwargs['round_seq'], 'object')
+                cached_key = "%s_%s_%s_%s" % (request.tenant.schema_name, view_kwargs['tournament_slug'],
+                                              view_kwargs['round_seq'], 'object')
                 cached_round_object = cache.get(cached_key)
                 if cached_round_object:
                     request.round = cached_round_object

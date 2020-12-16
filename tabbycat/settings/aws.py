@@ -152,7 +152,7 @@ STRIPE_ENDPOINT_SEC = os.environ.get("STRIPE_ENDPOINT_KEY")
 # Email
 # ==============================================================================
 
-EMAIL_DOMAIN = os.environ.get('EMAIL_FROM_ADDRESS').split("@")[-1]
+EMAIL_DOMAIN = os.environ.get('EMAIL_FROM_ADDRESS', '').split("@")[-1]
 SERVER_EMAIL = os.environ.get('EMAIL_FROM_ADDRESS')
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_FROM_ADDRESS')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
